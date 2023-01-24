@@ -1,0 +1,27 @@
+.fixed_btn {
+  position: fixed;
+  right: 20px;
+  bottom: 10px;
+
+  .fixed_btn_item {
+    width: 2.1875rem;
+    height: 2.1875rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin: 10px 0;
+    background: var(--primary-color);
+    box-shadow: 0 0 10px var(--shadow-color);
+    cursor: pointer;
+    transition: all 0.4s ease-in-out;
+
+    &.hide {
+      display: none;
+    }
+
+    &:hover {
+      box-shadow: 0 0 20px var(--shadow-color);
+    }
+  }
+}
