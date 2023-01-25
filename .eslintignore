@@ -130,3 +130,7 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
+# prettier
+.prettiercache
+.prettierignore
+.prettierrc.js

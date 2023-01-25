@@ -6,9 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "next lint --file",
+    "eslint": "eslint --ext .js,.ts,.tsx,.jsx,.css,.scss .",
     "format": "prettier --write '*/**/*.{js,ts,tsx,jsx,css,scss}' ",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "lint-staged": "lint-staged"
   },
   "dependencies": {
     "@next/font": "13.1.5",
@@ -33,12 +35,5 @@
     "husky": "^8.0.3",
     "lint-staged": "^13.1.0",
     "prettier": "^2.8.3"
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "lint",
-      "format",
-      "git add"
-    ]
   }
 }
