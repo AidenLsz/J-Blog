@@ -3,55 +3,55 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 
 import NavData from '@/public/data.json'
 
-
-const data ={
-  "NavData":[
+const data = {
+  NavData: [
     {
-      "id":"1",
-      "name":"Home",
-      "url":"/"
+      id: '1',
+      name: '首页',
+      url: '/'
     },
     {
-      "id":"2",
-      "name":"About",
-      "url":"http://www.yahoo.com"
+      id: '2',
+      name: '沸点',
+      url: '/pins'
     },
     {
-      "id":"3",
-      "name":"Contact",
-      "url":"http://www.bing.com"
+      id: '3',
+      name: '课程',
+      url: '/courses'
     },
     {
-      "id":"4",
-      "name":"Services",
-      "url":"http://www.msn.com"
+      id: '4',
+      name: '直播',
+      url: '/live'
     },
     {
-      "id":"5",
-      "name":"Portfolio",
-      "url":"http://www.msn.com"
+      id: '5',
+      name: '活动',
+      url: 'http://www.msn.com'
     },
     {
-      "id":"6",
-      "name":"Blog",
-      "url":"http://www.msn.com"
+      id: '6',
+      name: '竞赛',
+      url: '/competitions'
     },
     {
-      "id":"7",
-      "name":"Contact",
-      "url":"http://www.msn.com"
+      id: '7',
+      name: '商城',
+      url: '/shop'
     },
     {
-      "id":"8",
-      "name":"Services",
-      "url":"http://www.msn.com"
-
+      id: '8',
+      name: 'APP',
+      url: '/app'
+    },
+    {
+      id: '9',
+      name: '插件',
+      url: '/plugins'
     }
   ]
 }
-export default function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export default function handler(req: NextApiRequest, res: NextApiResponse) {
   res.status(200).json(data)
 }
