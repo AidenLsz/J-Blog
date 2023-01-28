@@ -14,3 +14,8 @@ export const getIsSupportWebp = (context: AppContext) => {
   const { headers = {} } = context.ctx.req || {};
   return headers.accept?.includes("image/webp");
 };
+
+export const handlerScroll=()=>{
+    console.log("到底了");
+
+}

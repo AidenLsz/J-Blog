@@ -16,8 +16,7 @@ const FixedBtn: NextPage = () => {
 
   // 滚动事件处理函数
   const handlerScroll = () => {
-    const scrollTop =
-      document.documentElement.scrollTop || document.body.scrollTop
+    const scrollTop =document.documentElement.scrollTop || document.body.scrollTop
     if (scrollTop > 830) {
       setIsShow(true)
     } else {
