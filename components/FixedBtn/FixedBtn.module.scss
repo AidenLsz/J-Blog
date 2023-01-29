@@ -1,0 +1,35 @@
+.fixed_btn {
+  position: fixed;
+  right: 20px;
+  bottom: 10px;
+
+  .fixed_btn_item {
+    width: 2.1875rem;
+    height: 2.1875rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin: 10px 0;
+    background: var(--primary-color);
+    box-shadow: 0 0 7px var(--shadow-color);
+    cursor: pointer;
+    transition: all 0.4s ease-in-out;
+    border: var(--border-color) solid 1px;
+    &:first-child {
+      color: var(--secondary-secondary-text-color);
+    }
+    &:last-child {
+      //  降低饱和度
+      filter: opacity(0.7);
+      color: var(--active-color);
+    }
+    &.hide {
+      display: none;
+    }
+
+    &:hover {
+      box-shadow: 0 0 15px var(--shadow-color);
+    }
+  }
+}
