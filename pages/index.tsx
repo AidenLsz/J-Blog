@@ -1,19 +1,24 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/index.module.scss'
-import { NextPage } from 'next'
+import { NextPage } from "next"
+import Navbarview from "@/components/navbar-view"
+import MainContent from "@/components/maincontent/maincontent"
+import Timelinecontent from "@/components/timelinecontent/timelinecontent"
+import Timeline_entrylist from "@/components/timeline_entrylist/timeline_entrylist"
 
 const Home: NextPage = () => {
   return (
-    <>
-      <div className={styles.test}>首页</div>
-      <div className={styles.test}>首页</div>
-      <div className={styles.test}>首页</div>
-      <div className={styles.test}>首页</div>
-      <div className={styles.test}>首页</div>
-      <div className={styles.test}>首页</div>
-      <div className={styles.test}>首页</div>
-    </>
+    <MainContent>
+      <>
+        <Navbarview />
+        <Timelinecontent>
+          <Timeline_entrylist>
+            <></>
+          </Timeline_entrylist>
+          {/* 
+          <Sidebar>
+          </Sidebar> */}
+        </Timelinecontent>
+      </>
+    </MainContent>
   )
 }
 export default Home

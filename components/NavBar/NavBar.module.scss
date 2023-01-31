@@ -5,7 +5,7 @@
   box-shadow: 0 0 10x var(--shadow-color);
 
   .nav_wrapper {
-    width: 90rem /* 1440/16 */;
+    max-width: 1440px;  /* 1440/16 */;
     height: 100%;
     margin: 0 auto;
     display: flex;
@@ -25,7 +25,6 @@
       .nav__menu__wrapper {
         display: flex;
         align-items: center;
-        margin: 0 1.25rem;
 
         .nav__menu {
           display: flex;
