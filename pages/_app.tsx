@@ -1,4 +1,5 @@
 import '@/styles/globals.scss'
+
 import type { AppProps } from 'next/app'
 import App, { AppContext } from 'next/app'
 import Layout from '@/layout'
@@ -15,7 +16,7 @@ const MyApp = (data: AppProps & INavBarProps): JSX.Element => {
   return (
     <div>
       <Head>
-        <title>{`A Demo for 《SSR 实战：官网开发指南》`}</title>
+        <title>{`J-Blog`}</title>
         <meta
           name="description"
           content={`A Demo for 《SSR 实战：官网开发指南》`}
