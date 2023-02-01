@@ -27,10 +27,9 @@ const Home: NextPage = ({data_nav,data_tab}:any) => {
 
 export const getServerSideProps: GetServerSideProps = async () =>  {
   const tab = axios.get('http://localhost:1337/api/article-tabs')
-  const navbarview = axios.get('http://localhost:1337/api/top-tabs')
+  const navbarview = axios.get('http://localhost:1337/api/article-type-tabs')
   const res_tab = (await tab).data.data
   const res_nav = (await navbarview).data.data
-  res_nav.sort(function(a:any,b:any){return a.attributes.tag-b.attributes.tag});
   return {
     props:{
       data_tab:res_tab,

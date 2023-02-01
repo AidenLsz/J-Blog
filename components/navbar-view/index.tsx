@@ -12,8 +12,7 @@ function Navbarview({Data_Nav}:any):JSX.Element{
          <a key={post.attributes.tag} href="" className={
           `{
          ${Styles.nav_item} 
-         ${post.attributes.tag==1? Styles.active:null}
-         ${post.attributes.tag==Data_Nav.length? Styles.right:null}
+         ${post.id==1? Styles.active:null}
         }`
          }>
          <div className={Styles.category_popover_box}>
