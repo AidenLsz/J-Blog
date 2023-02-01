@@ -5,6 +5,7 @@
     background-color: #fff;
 }
 
+
 .list_header {
     padding: 1.3rem 1rem;
     border-bottom: 1px solid hsla(0,0%,59.2%,.1);
@@ -36,4 +37,12 @@
 .nav_item {
     position: relative;
     cursor: pointer;
+    
+}
+.list_header .nav_list .nav_item.active a, 
+.list_header .nav_list .nav_item a:hover {
+    color: #007fff;
+}
+.right{
+    border-right:none!important;
 }
