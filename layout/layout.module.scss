@@ -1,3 +1,10 @@
 .layout_wrapper {
   width: 100%;
+  background: var(--main-background-color);
+
+  .main_header_box {
+    position: relative;
+    height: 5rem;
+    background: var(--navbar-background-color);
+  }
 }

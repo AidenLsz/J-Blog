@@ -12,6 +12,7 @@ const Layout: NextPage<ILayoutProps & { children: JSX.Element }> = ({
 }) => {
   return (
     <div className={styles.layout_wrapper}>
+        <div className={styles.main_header_box}></div>
       <NavBar NavData={NavData} />
       {children}
       <FixedBtn />
