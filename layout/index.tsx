@@ -3,6 +3,7 @@ import NavBar from '@/components/NavBar/NavBar'
 import FixedBtn from '@/components/FixedBtn/FixedBtn'
 import { INavBarItemProps } from '@/components/NavBar/NavBar'
 import styles from './layout.module.scss'
+
 export interface ILayoutProps {
   NavData: INavBarItemProps[]
 }
@@ -12,7 +13,9 @@ const Layout: NextPage<ILayoutProps & { children: JSX.Element }> = ({
 }) => {
   return (
     <div className={styles.layout_wrapper}>
-      <NavBar NavData={NavData} />
+        <div className={styles.main_header_box}>
+        <NavBar NavData={NavData} />
+        </div>
       {children}
       <FixedBtn />
     </div>
