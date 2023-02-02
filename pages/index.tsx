@@ -3,7 +3,8 @@ import Image from 'next/image'
 import styles from '../styles/index.module.scss'
 import { NextPage } from 'next'
 
-const Home: NextPage = () => {
+const Home: NextPage = (props) => {
+  console.log(props)
   return (
     <>
       <div className={styles.test}>首页</div>

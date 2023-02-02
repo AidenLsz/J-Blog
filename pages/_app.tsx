@@ -9,6 +9,7 @@ import { ThemeContextProvider } from '@/stores/theme'
 import { UserAgentProvider } from '@/stores/userAgent'
 import { INavBarProps } from '@/components/NavBar/NavBar'
 import '@fortawesome/fontawesome-free/css/all.min.css'
+import { log } from 'console'
 
 const MyApp = (data: AppProps & INavBarProps): JSX.Element => {
   const { Component, pageProps, NavData } = data
@@ -40,6 +41,7 @@ const MyApp = (data: AppProps & INavBarProps): JSX.Element => {
 MyApp.getInitialProps = async (context: AppContext): Promise<AppProps> => {
   const pageProps = await App.getInitialProps(context)
   const data = await axios.get('http://localhost:3000/api/NavData')
+  console.log(Object.assign({}, pageProps, data.data))
 
   return Object.assign({}, pageProps, data.data)
 }
