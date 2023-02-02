@@ -5,7 +5,7 @@ interface IUserAgentContextProps {
   userAgent: Environment
 }
 
-interface IProps {
+export interface IProps {
   children: JSX.Element
 }
 
