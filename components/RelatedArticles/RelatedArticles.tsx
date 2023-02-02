@@ -24,5 +24,4 @@ const RelatedArticles=({article}:any)=>{
     )
 }
   
-  //根据前一个页面传过来的tab，找出对应文章的前十个
 export default RelatedArticles
