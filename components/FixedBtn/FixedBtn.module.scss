@@ -22,7 +22,7 @@
     &:nth-child(2) {
       //  降低饱和度
       filter: opacity(0.7);
-      color: var(--active-color);
+      color: var(--link-color);
     }
     &.hide {
       display: none;
