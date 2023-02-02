@@ -5,17 +5,21 @@ import Timelinecontent from "@/components/timelinecontent/timelinecontent"
 import Timeline_entrylist from "@/components/timeline_entrylist/timeline_entrylist"
 import axios from 'axios'
 import { GetServerSideProps } from 'next'
+import BusinessCard, { BusinessCardData } from "@/components/BusinessCard/BusinessCard"
+import { LOCALDOMAIN } from "@/utils"
+import { BusinessCardProps } from "@/components/BusinessCard/BusinessCard"
 
-const Home: NextPage = ({data_nav,data_tab}:any) => {
 
+
+const Home: NextPage<any> = ({data_nav,data_tab}) => {
   return (
     <MainContent>
       <>
         <Navbarview Data_Nav={data_nav}/>
         <Timelinecontent>
           <Timeline_entrylist Data={data_tab}>
-            <></>
           </Timeline_entrylist>
+          
           {/* 
           <Sidebar>
           </Sidebar> */}
@@ -33,7 +37,7 @@ export const getServerSideProps: GetServerSideProps = async () =>  {
   return {
     props:{
       data_tab:res_tab,
-      data_nav:res_nav
+      data_nav:res_nav,
     }
   }
 }
