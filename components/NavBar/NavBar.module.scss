@@ -8,7 +8,7 @@
   transform: translate3d(0, -100%, 0);
   background: var(--navbar-background-color);
   border-bottom: var(--navbar-bottom-border);
-
+  transition: transform 0.2s ease-in-out;
   color: var(--primary-text-color);
   height: 5rem;
   z-index: 250;
