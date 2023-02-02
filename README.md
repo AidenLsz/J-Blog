@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# J-Blog
-=======
 # J-Blog
 
 ```bash
@@ -11,4 +8,3 @@ yarn dev
 # or
 pnpm dev
 ```
->>>>>>> 2265ffa (Synchronize project)

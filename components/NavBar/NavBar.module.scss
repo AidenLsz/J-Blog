@@ -5,8 +5,7 @@
   box-shadow: 0 0 10x var(--shadow-color);
 
   .nav_wrapper {
-    width: 90rem /* 1440/16 */
-  ;
+    max-width: 1440px;  /* 1440/16 */;
     height: 100%;
     margin: 0 auto;
     display: flex;
@@ -26,7 +25,6 @@
       .nav__menu__wrapper {
         display: flex;
         align-items: center;
-        margin: 0 1.25rem;
 
         .nav__menu {
           display: flex;
@@ -53,12 +51,10 @@
                 width: 100%;
               }
             }
-
             a {
               text-decoration: none;
               color: var(--primary-text-color);
             }
-
             &::after {
               content: '';
               display: block;
@@ -112,7 +108,6 @@
 
       width: calc(100% - 53%);
       position: relative;
-
       .nav__search {
         position: absolute;
         left: 0;
@@ -133,20 +128,16 @@
         &:hover {
           border: var(--tertiary-color) 1px solid;
         }
-
         &.focus {
           width: 350px;
           border: var(--active-color) 1px solid;
-
           .search_icon {
             color: var(--active-color);
           }
         }
-
         .nav__search__input {
           width: 70%;
-          height: 1.875rem /* 30/16 */
-        ;
+          height: 1.875rem /* 30/16 */;
           padding: 0 1rem;
           border: none;
           outline: none;
@@ -155,13 +146,11 @@
           font-size: 1rem;
           font-weight: 500;
           background: transparent;
-
           &::placeholder {
             font-size: 14px;
             color: var(--secondary-text-color);
           }
         }
-
         .search_icon {
           display: inline-block;
           width: 30px;
@@ -173,7 +162,6 @@
           background-color: var(--secondary-color);
         }
       }
-
       .create__group {
         position: absolute;
         left: 250px;
@@ -182,7 +170,6 @@
         display: flex;
         align-items: center;
         justify-content: center;
-
         .create__btn {
           width: 100px;
           height: 30px;
@@ -196,7 +183,6 @@
           border-radius: 4px;
           scale: 1;
           transition: width 0.2s ease-in-out;
-
           .add__btn {
             width: 85%;
             height: 30px;
@@ -211,7 +197,6 @@
               background-color: var(--active-hover-color);
             }
           }
-
           .more {
             flex: 0 0 auto;
             display: flex;
@@ -226,23 +211,19 @@
             cursor: pointer;
             border-left: var(--border-color) solid 1px;
             transition: background-color 0.1s linear 0.05s;
-
             .more__icon {
               width: 12px;
               height: 12px;
               fill: var(--primary-color);
               transform: rotate(180deg);
-
               &.active {
                 transform: rotate(0);
               }
             }
-
             &:hover {
               background-color: var(--active-hover-color);
             }
           }
-
           .more__list {
             display: none;
             position: absolute;
@@ -255,7 +236,6 @@
             box-shadow: 0 0 1px var(--shadow-color);
             border-radius: 4px;
             transition: all 0.2s ease-in-out;
-
             span {
               display: block;
               width: 100%;
@@ -264,17 +244,14 @@
               text-align: center;
               color: var(--text-color);
               cursor: pointer;
-
               &:hover {
                 background: var(--secondary-color);
               }
             }
-
             &.active {
               display: block;
             }
           }
-
           &.focus {
             width: 0;
             // display: none;
@@ -283,7 +260,6 @@
           }
         }
       }
-
       .nav__user {
         position: absolute;
         right: 0;
@@ -295,23 +271,19 @@
         margin-left: 1.5rem;
 
         justify-content: space-around;
-
         div {
           margin-right: 2rem;
         }
-
         .nav__user__avatar {
           width: 2.5rem;
           height: 2.5rem;
           border-radius: 50%;
           background: var(--secondary-color);
         }
-
         .theme__wrapper {
           display: flex;
           align-items: center;
           justify-content: center;
-
           .theme__icon {
             color: var(--primary-text-color);
             display: inline-block;

@@ -1,7 +1,7 @@
 * {
   padding: 0;
   margin: 0;
-  transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+  transition: background-color 0.05s ease-in-out, color 0.05s ease-in-out;
 }
 
 html[data-theme='dark'] {
@@ -47,4 +47,14 @@ html {
   font-size: 12px;
   scroll-behavior: smooth;
   background-color: var(--background-color);
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+  color: #909090;
+}
+
+li {
+  list-style: none;
 }

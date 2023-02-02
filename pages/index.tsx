@@ -1,33 +1,40 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/index.module.scss'
-import {GetServerSideProps, NextPage} from 'next'
-import BusinessCard, {BusinessCardData} from '@/components/BusinessCard/BusinessCard'
-import axios from "axios";
+import { NextPage } from "next"
+import Navbarview from "@/components/navbar-view"
+import MainContent from "@/components/maincontent/maincontent"
+import Timelinecontent from "@/components/timelinecontent/timelinecontent"
+import Timeline_entrylist from "@/components/timeline_entrylist/timeline_entrylist"
+import axios from 'axios'
+import { GetServerSideProps } from 'next'
 
-export interface IHomeProps {
-    BusinessCardData: BusinessCardData[]
+const Home: NextPage = ({data_nav,data_tab}:any) => {
+
+  return (
+    <MainContent>
+      <>
+        <Navbarview Data_Nav={data_nav}/>
+        <Timelinecontent>
+          <Timeline_entrylist Data={data_tab}>
+            <></>
+          </Timeline_entrylist>
+          {/* 
+          <Sidebar>
+          </Sidebar> */}
+        </Timelinecontent>
+      </>
+    </MainContent>
+  )
 }
 
-const Home: NextPage<IHomeProps> = (BusinessCardData) => {
-    return (
-        <>
-            <BusinessCard {...BusinessCardData}/>
-            <div className={styles.test}>首页</div>
-            <div className={styles.test}>首页</div>
-            <div className={styles.test}>首页</div>
-            <div className={styles.test}>首页</div>
-            <div className={styles.test}>首页</div>
-            <div className={styles.test}>首页</div>
-            <div className={styles.test}>首页</div>
-        </>
-    )
-}
-export const getServerSideProps: GetServerSideProps = async context => {
-    const res = await axios.get("http://localhost:3000/api/BusinessCardData")
-    return {
-        props: res.data
+export const getServerSideProps: GetServerSideProps = async () =>  {
+  const tab = axios.get('http://localhost:1337/api/article-tabs')
+  const navbarview = axios.get('http://localhost:1337/api/article-type-tabs')
+  const res_tab = (await tab).data.data
+  const res_nav = (await navbarview).data.data
+  return {
+    props:{
+      data_tab:res_tab,
+      data_nav:res_nav
     }
+  }
 }
-
 export default Home
