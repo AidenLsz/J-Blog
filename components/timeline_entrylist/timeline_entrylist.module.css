@@ -1,0 +1,48 @@
+.timeline_entrylist{
+    margin-right: 21.667rem;
+    border-radius: 2px;
+    width: 700px;
+    background-color: #fff;
+}
+
+
+.list_header {
+    padding: 1.3rem 1rem;
+    border-bottom: 1px solid hsla(0,0%,59.2%,.1);
+}
+
+.list_header .list_nav, .list_header .nav_list {
+    display: flex;
+    justify-content: space-between;
+}
+.list_nav {
+    justify-content: flex-start!important;
+}
+
+.list_header .nav_list {
+    align-items: center;
+    line-height: 1;
+}
+
+.list_nav .nav_list .nav_item {
+    font-size: 1.17rem;
+}
+
+.list_header .nav_item {
+    padding: 0 1.2rem;
+    font-size: 1.16rem;
+    border-right: 1px solid hsla(0,0%,59.2%,.2);
+}
+
+.nav_item {
+    position: relative;
+    cursor: pointer;
+    
+}
+.list_header .nav_list .nav_item.active a, 
+.list_header .nav_list .nav_item a:hover {
+    color: #007fff;
+}
+.right{
+    border-right:none!important;
+}
