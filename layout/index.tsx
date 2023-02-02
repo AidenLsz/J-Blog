@@ -13,8 +13,9 @@ const Layout: NextPage<ILayoutProps & { children: JSX.Element }> = ({
 }) => {
   return (
     <div className={styles.layout_wrapper}>
-        <div className={styles.main_header_box}></div>
-      <NavBar NavData={NavData} />
+        <div className={styles.main_header_box}>
+        <NavBar NavData={NavData} />
+        </div>
       {children}
       <FixedBtn />
     </div>

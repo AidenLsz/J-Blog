@@ -5,6 +5,7 @@ import React from "react";
 function Navbarview({Data_Nav}:any):JSX.Element{
   return (
     <div>
+      
       <div className={Styles.view_nav}>
         <div className={Styles.nav_list}>
 
