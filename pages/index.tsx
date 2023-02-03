@@ -23,14 +23,18 @@ const Home: NextPage<any> = ({
   data_nav,
   data_tab,
   AdvertisementData,
-  UserListData
+  UserListData,
+  data_ad
 }) => {
   return (
     <MainContent>
       <>
         <Navbarview Data_Nav={data_nav} />
         <Timelinecontent>
-          <Timeline_entrylist Data={data_tab}></Timeline_entrylist>
+          <Timeline_entrylist
+            Data_Tab={data_tab}
+            Data_Ad={data_ad}
+          ></Timeline_entrylist>
 
           {/* 
           <Sidebar>
@@ -50,6 +54,7 @@ const Home: NextPage<any> = ({
 export const getServerSideProps: GetServerSideProps = async () => {
   const tab = axios.get("http://localhost:1337/api/article-tabs")
   const navbarview = axios.get("http://localhost:1337/api/article-type-tabs")
+
   const res_tab = (await tab).data.data
   const res_nav = (await navbarview).data.data
   const { data: advertisement } = await axios.get(
@@ -58,12 +63,15 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const { data: userlist } = await axios.get(
     "http://localhost:1337/api/author-lists?populate=deep"
   )
+  const res_ad = (await advertisement).data.data
+  console.log(res_ad[0].attributes.AuthorName)
   return {
     props: {
       data_tab: res_tab,
       data_nav: res_nav,
       AdvertisementData: advertisement.data,
-      UserListData: userlist.data
+      UserListData: userlist.data,
+      data_ad: res_ad
     }
   }
 }
