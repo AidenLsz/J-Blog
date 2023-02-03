@@ -12,6 +12,7 @@ import { BusinessCardProps } from "@/components/BusinessCard/BusinessCard"
 
 
 const Home: NextPage<any> = ({data_nav,data_tab}) => {
+  console.log(data_nav)
   return (
     <MainContent>
       <>
@@ -19,8 +20,8 @@ const Home: NextPage<any> = ({data_nav,data_tab}) => {
         <Timelinecontent>
           <Timeline_entrylist Data={data_tab}>
           </Timeline_entrylist>
-          
-          {/* 
+
+          {/*
           <Sidebar>
           </Sidebar> */}
         </Timelinecontent>

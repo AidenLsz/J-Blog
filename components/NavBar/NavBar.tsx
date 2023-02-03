@@ -68,29 +68,30 @@ const NavBar: NextPage<INavBarProps> = ({NavData}) => {
         <header className={`${styles.main_header} ${!IsHide ? styles.visible : ''}`}>
             <div className={styles.container}>
                 <a href="https://juejin.cn/" className={styles.logo_wrap}>
-                    <div className={styles.logo}></div>
+                    <div className={styles.logo}/>
                     <div className={styles.title}>稀土掘金</div>
                 </a>
                 <nav role="navigation" className={styles.main_nav}>
                     <ul className={styles.nav_list}>
                         <li className={styles.main_nav_list}>
                             <div className={`${styles.phone_show_menu} ${styles.isResourceVisible}`}
-                                 onClick={(e) =>{
+                                 onClick={(e) => {
                                      e.stopPropagation()
-                                     setMobileNav(!MobileNav)}
+                                     setMobileNav(!MobileNav)
+                                 }
                                  }
                             >
                                 <span>首页</span>
                                 <svg width="12" height="12" viewBox="0 0 12 12"
                                      fill="none" xmlns="http://www.w3.org/2000/svg"
-                                     className={`${styles.mobile_menu_icon} ${MobileNav?styles.active:''}`}
+                                     className={`${styles.mobile_menu_icon} ${MobileNav ? styles.active : ''}`}
 
                                 >
                                     <path
-                                        d="M2.45025 4.82431C2.17422 4.49957 2.40501 4.00049 2.83122 4.00049H9.16878C9.59498 4.00049 9.82578 4.49957 9.54975 4.82431L6.38097 8.55229C6.1813 8.78719 5.8187 8.78719 5.61903 8.55229L2.45025 4.82431Z"></path>
+                                        d="M2.45025 4.82431C2.17422 4.49957 2.40501 4.00049 2.83122 4.00049H9.16878C9.59498 4.00049 9.82578 4.49957 9.54975 4.82431L6.38097 8.55229C6.1813 8.78719 5.8187 8.78719 5.61903 8.55229L2.45025 4.82431Z"/>
                                 </svg>
                             </div>
-                            <ul className={`${styles.phone_hide} ${MobileNav?styles.show:''}`}>
+                            <ul className={`${styles.phone_hide} ${MobileNav ? styles.show : ''}`}>
                                 {
                                     NavData.map((item) => {
                                         return (
@@ -131,7 +132,7 @@ const NavBar: NextPage<INavBarProps> = ({NavData}) => {
                                     target="_blank"
                                     href="https://juejin.cn/report2022/mobile?utm_source=daohang"
                                     className={styles.activity} rel="noreferrer">
-                                    <Image src="/年度报告.image" alt="123" width={115} height={40}></Image>
+                                    <Image src="/年度报告.image" alt="123" width={115} height={40}/>
                                 </a>
                                 </li>
                             </ul>
@@ -152,7 +153,7 @@ const NavBar: NextPage<INavBarProps> = ({NavData}) => {
 
                                             <div className={styles.search_icon_container}>
                                                 <Image className={styles.search_icon} src="/search.svg"
-                                                       width={16} height={16} alt="123"></Image>
+                                                       width={16} height={16} alt="123"/>
                                             </div>
                                             <div className={styles.typehead}>
                                                 <div className={styles.search_annual}>
@@ -201,7 +202,7 @@ const NavBar: NextPage<INavBarProps> = ({NavData}) => {
                                                      className={` ${styles.unfold12_icon} ${!IsActive ? styles.active : ''}`}>
                                                     <path
                                                         d="M2.45025 4.82383C2.17422 4.49908 2.40501 4 2.83122 4H9.16878C9.59499 4 9.82578 4.49908 9.54975 4.82382L6.38097 8.5518C6.1813 8.7867 5.8187 8.7867 5.61903 8.5518L2.45025 4.82383Z"
-                                                        fill="white"></path>
+                                                        fill="white"/>
                                                 </svg>
                                             </div>
                                             <ul className={`${styles.more_list} ${IsActive ? styles.active : ''}`}>
@@ -229,7 +230,7 @@ const NavBar: NextPage<INavBarProps> = ({NavData}) => {
                                 <div className={styles.vip_title}>
                                     <div className={styles.vip_entry_img}>
                                         <Image className={styles.vip_img} src="/vip.svg" width={24} height={24}
-                                               alt="vip"></Image>
+                                               alt="vip"/>
                                     </div>
                                     <div className={styles.vip_words}>会员</div>
                                 </div>
@@ -241,12 +242,12 @@ const NavBar: NextPage<INavBarProps> = ({NavData}) => {
                                          className={styles.notification_icon}>
                                         <path
                                             d="M6.01132 10.2856C6.28115 6.54234 8.68619 4.28564 11.9999 4.28564C15.3136 4.28564 17.7186 6.54234 17.9885 10.2856C18.1219 12.1363 18.4093 13.708 19.9473 15.8848C20.1889 16.2267 19.953 16.7142 19.5343 16.7142H4.46546C4.04679 16.7142 3.81092 16.2267 4.05252 15.8848C5.59053 13.708 5.87793 12.1363 6.01132 10.2856Z"
-                                            strokeWidth="1.5" strokeLinecap="round"></path>
+                                            strokeWidth="1.5" strokeLinecap="round"/>
                                         <path d="M11.9573 3.21436V4.28578" strokeWidth="3"
-                                              strokeLinecap="round"></path>
+                                              strokeLinecap="round"/>
                                         <path
                                             d="M9.57495 18.8569C9.92795 19.8557 10.8804 20.5712 12.0001 20.5712C13.1197 20.5712 14.0722 19.8557 14.4252 18.8569H9.57495Z"
-                                            strokeLinecap="round" strokeLinejoin="round"></path>
+                                            strokeLinecap="round" strokeLinejoin="round"/>
                                     </svg>
                                 </a>
                                 <ul
@@ -284,7 +285,7 @@ const NavBar: NextPage<INavBarProps> = ({NavData}) => {
                                     <div className={styles.avatar}>
                                         <Image className={styles.avatarImg} src="/avatar.awebp" alt="123"
                                                width={40} height={40}
-                                        ></Image>
+                                        />
                                     </div>
                                 </div>
                             </li>
