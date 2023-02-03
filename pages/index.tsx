@@ -11,13 +11,13 @@ import { BusinessCardProps } from "@/components/BusinessCard/BusinessCard"
 
 
 
-const Home: NextPage<any> = ({data_nav,data_tab}) => {
+const Home: NextPage<any> = ({data_nav,data_tab,data_ad}) => {
   return (
     <MainContent>
       <>
         <Navbarview Data_Nav={data_nav}/>
         <Timelinecontent>
-          <Timeline_entrylist Data={data_tab}>
+          <Timeline_entrylist Data_Tab={data_tab} Data_Ad={data_ad}>
           </Timeline_entrylist>
           
           {/* 
@@ -32,12 +32,17 @@ const Home: NextPage<any> = ({data_nav,data_tab}) => {
 export const getServerSideProps: GetServerSideProps = async () =>  {
   const tab = axios.get('http://localhost:1337/api/article-tabs')
   const navbarview = axios.get('http://localhost:1337/api/article-type-tabs')
+  const advertisement = axios.get('http://localhost:1337/api/advertisements?populate=*')
+
   const res_tab = (await tab).data.data
   const res_nav = (await navbarview).data.data
+  const res_ad=(await advertisement).data.data
+  console.log(res_ad[0].attributes.AuthorName);
   return {
     props:{
       data_tab:res_tab,
       data_nav:res_nav,
+      data_ad:res_ad
     }
   }
 }
