@@ -143,16 +143,12 @@
                 }
 
 
-                &.download_icon {
-
-                  // .download_app {
-
-                  // }
+               
 
                   .tablead {
                     position: absolute;
                     top: 5px;
-                    left: 7px;
+                    left: 16px;
                     z-index: 9;
                     white-space: nowrap;
                     padding: 2px 7px;
@@ -165,7 +161,7 @@
                     line-height: 18px;
                     color: #fff;
                   }
-                }
+              
               }
 
               .broswer_extension {
@@ -241,17 +237,23 @@
             }
 
             .menu_list {
-
+              background: var(--primary-background-color);
+              padding: 8px;
+              box-sizing: border-box;
+              box-shadow: 0 0 24px rgb(81 87 103 / 16%);
+              border-radius: 6px;
               &.notification_dropdown_menu {
                 display: none;
                 position: absolute;
                 left: -120px;
-                top: 58px
+                top: 58px;
+                padding: 10px;
+                transition: none;
               }
 
               .menu_item {
                 &:hover {
-                  background: var(--secondary-text-color);
+                  background: #f2f3f5;
                   border-radius: 4px;
                 }
 
@@ -281,6 +283,11 @@
                     right: 0;
                   }
                 }
+              }
+            }
+            &.notification_item:hover{
+              .menu_list.notification_dropdown_menu {
+                display: block;
               }
             }
 
@@ -413,7 +420,9 @@
                       border: 1px solid #ebebeb;
                       background-color: #fff;
                       display: none;
-
+                      &.active {
+                        display: block;
+                      }
                       .search_annual {
                         padding: .5rem 1rem;
                         display: flex;
@@ -651,6 +660,10 @@
 
 
 @media screen and (min-width: 1149px) and (max-width: 1440px) {
+  .container {
+    width: 97%;
+    margin: 0 2rem !important;
+  }
   .broswer_extension, .download_icon {
     display: none !important;
   }
