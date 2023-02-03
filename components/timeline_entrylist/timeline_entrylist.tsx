@@ -3,6 +3,7 @@ import React from "react"
 import Styles from "../timeline_entrylist/timeline_entrylist.module.css"
 import Image from "next/image"
 import { timeStamp } from "console"
+import { LOCALDOMAIN } from "@/utils"
 
 
 function TimeCal(date:string):string{
@@ -99,7 +100,7 @@ function Timeline_entrylist({Data_Tab,Data_Ad}:any): JSX.Element {
               width={120} 
               height={80} 
               className={`${Styles.lazy} ${Styles.thumb}`} 
-              src='/969260ab77f2d99b3f047e0d3d7e09b7_100x100.awebp' />
+              src={`http://127.0.0.1:1337${Data_Ad[0].attributes.image.data[0].attributes.url}`}/>
             </div>
         </div>
       </li>
