@@ -1,15 +1,26 @@
-import Styles from "./navbar.module.css";
+import Styles from "./NavBarView.module.css";
 import React from "react";
 
+export interface navBarProps {
+    navBarData: navBarData[]
+}
 
-function Navbarview({Data_Nav}: any): JSX.Element {
+export interface navBarData {
+    id: number
+    attributes: {
+        title: string,
+        createdAt: string,
+        updatedAt: string,
+        publishedAt: string
+    }
+}
+
+function NavBarView({navBarData}: navBarProps): JSX.Element {
     return (
         <div>
-
             <div className={Styles.view_nav}>
                 <div className={Styles.nav_list}>
-
-                    {Data_Nav.map((post: any) => (
+                    {navBarData.map((post: any) => (
                         <a key={post.id} href="" className={
                             `{
          ${Styles.nav_item} 
@@ -21,11 +32,10 @@ function Navbarview({Data_Nav}: any): JSX.Element {
                             </div>
                         </a>
                     ))}
-
                 </div>
             </div>
         </div>
     );
 }
 
-export default Navbarview;
+export default NavBarView;

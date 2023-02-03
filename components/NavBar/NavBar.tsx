@@ -1,7 +1,7 @@
 import {NextPage} from "next"
 import Image from "next/image"
 import styles from "./NavBar.module.scss"
-import React, {useContext, useEffect, useState} from "react"
+import React, {FC, useContext, useEffect, useState} from "react"
 import {ThemeContext} from "@/stores/theme"
 import {Themes} from "@/constants/enum"
 import {usePathname} from "next/navigation"
@@ -17,7 +17,7 @@ export interface INavBarProps {
     NavData: INavBarItemProps[]
 }
 
-const NavBar: NextPage<INavBarProps> = ({NavData}) => {
+const NavBar: FC<INavBarProps> = ({NavData}) => {
 
     const [MobileNav, setMobileNav] = useState<boolean>(false)
     const [IsHide, setIsHide] = useState<boolean>(false)
