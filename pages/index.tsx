@@ -1,17 +1,30 @@
 import { NextPage } from "next"
+import { GetServerSideProps } from "next"
 import Navbarview from "@/components/navbar-view"
 import MainContent from "@/components/maincontent/maincontent"
 import Timelinecontent from "@/components/timelinecontent/timelinecontent"
 import Timeline_entrylist from "@/components/timeline_entrylist/timeline_entrylist"
-import axios from "axios"
-import { GetServerSideProps } from "next"
+import Advertisement from "@/components/Advertisement/Advertisement"
+import UserList from "@/components/UserList/UserList"
 import BusinessCard, {
   BusinessCardData
 } from "@/components/BusinessCard/BusinessCard"
+
+import style from "./index.module.scss"
+import axios from "axios"
+
 import { LOCALDOMAIN } from "@/utils"
 import { BusinessCardProps } from "@/components/BusinessCard/BusinessCard"
 
-const Home: NextPage<any> = ({ data_nav, data_tab }) => {
+import { AdvertisementProps } from "@/components/Advertisement/Advertisement"
+import { UserListProp } from "@/components/UserList/UserList"
+
+const Home: NextPage<any> = ({
+  data_nav,
+  data_tab,
+  AdvertisementData,
+  UserListData
+}) => {
   return (
     <MainContent>
       <>
@@ -22,6 +35,12 @@ const Home: NextPage<any> = ({ data_nav, data_tab }) => {
           {/* 
           <Sidebar>
           </Sidebar> */}
+          <aside>
+            <Advertisement
+              AdvertisementData={AdvertisementData}
+            ></Advertisement>
+            <UserList UserListData={UserListData}></UserList>
+          </aside>
         </Timelinecontent>
       </>
     </MainContent>
@@ -33,10 +52,18 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const navbarview = axios.get("http://localhost:1337/api/article-type-tabs")
   const res_tab = (await tab).data.data
   const res_nav = (await navbarview).data.data
+  const { data: advertisement } = await axios.get(
+    "http://localhost:1337/api/advertisements?populate=deep"
+  )
+  const { data: userlist } = await axios.get(
+    "http://localhost:1337/api/author-lists?populate=deep"
+  )
   return {
     props: {
       data_tab: res_tab,
-      data_nav: res_nav
+      data_nav: res_nav,
+      AdvertisementData: advertisement.data,
+      UserListData: userlist.data
     }
   }
 }
