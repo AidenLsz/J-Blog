@@ -39,7 +39,7 @@ const Home: NextPage<any> = ({
           {/* 
           <Sidebar>
           </Sidebar> */}
-          <aside>
+          <aside className={style["aside"]}>
             <Advertisement
               AdvertisementData={AdvertisementData}
             ></Advertisement>
@@ -54,23 +54,23 @@ const Home: NextPage<any> = ({
 export const getServerSideProps: GetServerSideProps = async () => {
   const tab = axios.get("http://localhost:1337/api/article-tabs")
   const navbarview = axios.get("http://localhost:1337/api/article-type-tabs")
+  const advertisement = axios.get("http://localhost:1337/api/advertisements")
 
   const res_tab = (await tab).data.data
   const res_nav = (await navbarview).data.data
-  const { data: advertisement } = await axios.get(
+  const res_ad = (await advertisement).data.data
+  const { data: res_advertisement } = await axios.get(
     "http://localhost:1337/api/advertisements?populate=deep"
   )
-  const { data: userlist } = await axios.get(
+  const { data: res_userlist } = await axios.get(
     "http://localhost:1337/api/author-lists?populate=deep"
   )
-  const res_ad = (await advertisement).data.data
-  console.log(res_ad[0].attributes.AuthorName)
   return {
     props: {
       data_tab: res_tab,
       data_nav: res_nav,
-      AdvertisementData: advertisement.data,
-      UserListData: userlist.data,
+      AdvertisementData: res_advertisement.data,
+      UserListData: res_userlist.data,
       data_ad: res_ad
     }
   }

@@ -1,4 +1,5 @@
-.aside {
-  position: sticky;
-  right:0;
+@media screen and (max-width:960px) {
+  .aside {
+    display: none;
+  }
 }
