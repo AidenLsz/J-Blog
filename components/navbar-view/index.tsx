@@ -10,7 +10,7 @@ function Navbarview({Data_Nav}:any):JSX.Element{
         <div className={Styles.nav_list}>
 
         {Data_Nav.map((post:any) => (
-         <a key={post.attributes.tag} href="" className={
+         <a key={post.id} href="" className={
           `{
          ${Styles.nav_item} 
          ${post.id==1? Styles.active:null}
