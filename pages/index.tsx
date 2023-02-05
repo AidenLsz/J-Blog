@@ -6,7 +6,7 @@ import Timeline_entrylist from "@/components/timeline_entrylist/timeline_entryli
 import axios from 'axios'
 import { GetServerSideProps } from 'next'
 import BusinessCard, { BusinessCardData } from "@/components/BusinessCard/BusinessCard"
-import { LOCALDOMAIN } from "@/utils"
+import { LOCALDOMAIN,SERVERDOMAIN } from "@/utils"
 import { BusinessCardProps } from "@/components/BusinessCard/BusinessCard"
 
 
@@ -30,14 +30,13 @@ const Home: NextPage<any> = ({data_nav,data_tab,data_ad}) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async () =>  {
-  const tab = axios.get('http://localhost:1337/api/article-tabs')
-  const navbarview = axios.get('http://localhost:1337/api/article-type-tabs')
-  const advertisement = axios.get('http://localhost:1337/api/advertisements?populate=*')
-
+  const tab = axios.get(`${SERVERDOMAIN}/api/article-tabs`)
+  const navbarview = axios.get(`${SERVERDOMAIN}/api/article-type-tabs`)
+  const advertisement = axios.get(`${SERVERDOMAIN}/api/articles?populate=*`)
   const res_tab = (await tab).data.data
   const res_nav = (await navbarview).data.data
   const res_ad=(await advertisement).data.data
-  console.log(res_ad[0].attributes.AuthorName);
+ // console.log(res_ad[0].attributes.image.data[0].attributes.url);
   return {
     props:{
       data_tab:res_tab,
