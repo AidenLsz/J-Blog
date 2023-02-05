@@ -1,5 +1,6 @@
 .timelinecontent{
     position: relative;
     margin-top: 0.33rem;
-    
+    display: flex;
+    justify-content: space-between;
 }
