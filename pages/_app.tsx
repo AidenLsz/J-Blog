@@ -11,6 +11,7 @@ import { UserAgentProvider } from "@/stores/userAgent"
 import { INavBarItemProps } from "@/components/NavBar/NavBar"
 import "@fortawesome/fontawesome-free/css/all.min.css"
 import { log } from "console"
+import { SERVERDOMAIN } from "@/utils"
 
 interface INavBarProps {
   data: INavBarItemProps[]
@@ -47,7 +48,7 @@ const MyApp = (Props: AppProps & INavBarProps): JSX.Element => {
 MyApp.getInitialProps = async (context: AppContext): Promise<AppProps> => {
   const pageProps = await App.getInitialProps(context)
   // const data = await axios.get('http://localhost:3000/api/NavData')
-  const res = await axios.get("http://localhost:1337/api/top-tabs")
+  const res = await axios.get(`${SERVERDOMAIN}/api/top-tabs`)
 
   return Object.assign({}, pageProps, res.data)
 }

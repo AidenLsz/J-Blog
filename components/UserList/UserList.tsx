@@ -2,6 +2,7 @@ import Link from "next/link"
 import style from "./UserList.module.scss"
 import { NextPage } from "next"
 import Image from "next/image"
+import { SERVERDOMAIN } from "@/utils"
 
 export interface UserListItemProp {
   id: number
@@ -29,7 +30,7 @@ const UserList: NextPage<UserListProp> = ({ UserListData }) => {
             <div key={user.id} className={style["user-item"]}>
               <div className={style["link"]}>
                 <Image
-                  src={`http://127.0.0.1:1337${user.attributes.image.data.attributes.url}`}
+                  src={`${SERVERDOMAIN}${user.attributes.image.data.attributes.url}`}
                   className={style["avatar"]}
                   alt="作者头像"
                   width={500}

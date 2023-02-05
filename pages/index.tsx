@@ -60,10 +60,10 @@ export const getServerSideProps: GetServerSideProps = async () =>  {
   const res_nav = (await navbarview).data.data
   const res_ad=(await advertisement).data.data
   const { data: res_advertisement } = await axios.get(
-    "http://localhost:1337/api/advertisements?populate=deep"
+    `${SERVERDOMAIN}/api/advertisements?populate=deep`
   )
   const { data: res_userlist } = await axios.get(
-    "http://localhost:1337/api/author-lists?populate=deep"
+    `${SERVERDOMAIN}/api/author-lists?populate=deep`
   )
  // console.log(res_ad[0].attributes.image.data[0].attributes.url);
   return {

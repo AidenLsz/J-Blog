@@ -27,7 +27,7 @@ const ArticleDetail: NextPage<IArticleProps> = ({ title, page, content, author, 
 
 export const getServerSideProps: GetServerSideProps = async context => {
     const { articleId } = context.query;
-    const { data } = await axios.get(`${LOCALDOMAIN}/api/ArticleInfo`, {
+    const { data } = await axios.get(`${SERVERDOMAIN}/api/ArticleInfo`, {
         params: {
             articleId,
         },
