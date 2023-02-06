@@ -29,13 +29,13 @@ const UserList: NextPage<UserListProp> = ({ UserListData }) => {
           return (
             <div key={user.id} className={style["user-item"]}>
               <div className={style["link"]}>
-                <Image
-                  src={`${SERVERDOMAIN}${user.attributes.image.data.attributes.url}`}
+                {/* <Image
+                  src={`${user.attributes.attributes.img}`}
                   className={style["avatar"]}
                   alt="作者头像"
                   width={500}
                   height={500}
-                ></Image>
+                ></Image> */}
                 <div className={style["user-info"]}>
                   <Link href="/userlist" className={style["user-name"]}>
                     <span className={style["name"]}>

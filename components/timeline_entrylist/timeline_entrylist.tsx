@@ -6,7 +6,7 @@ import { timeStamp } from "console"
 import { LOCALDOMAIN, SERVERDOMAIN } from "@/utils"
 import Advertisement from "./advertisement"
 
-function TimeCal(date: string): string {
+export function TimeCal(date: string): string {
   let timestamp = new Date()
   let cur_year = timestamp.getFullYear()
   let cur_month = timestamp.getMonth() + 1
@@ -15,7 +15,7 @@ function TimeCal(date: string): string {
   let cur_min = timestamp.getMinutes()
   let cur_sec = timestamp.getSeconds()
   let year = Number(date.slice(0, 4))
-  console.log(year)
+  //console.log(year)
   let gap_year = cur_year - year
   if (gap_year > 0) {
     return gap_year.toString() + "年前"
