@@ -25,12 +25,13 @@ const Home: NextPage<any> = ({
   data_tab,
   AdvertisementData,
   UserListData,
-  data_ad
+  data_ad,
+  IsFixed
 }) => {
   return (
     <MainContent>
       <>
-        <Navbarview Data_Nav={data_nav} />
+        <Navbarview Data_Nav={data_nav} IsFixed={IsFixed}/>
         <Timelinecontent>
           <Timeline_entrylist
             Data_Tab={data_tab}

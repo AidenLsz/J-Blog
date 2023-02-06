@@ -23,14 +23,13 @@ const MyApp = (Props: AppProps & INavBarProps): JSX.Element => {
   return (
     <div>
       <Head>
-        <title>{`J-Blog`}</title>
-        <meta
-          name="description"
-          content={`A Demo for 《SSR 实战：官网开发指南》`}
-        />
+        <title>J-Blog</title>
+        <meta name="description" content="模仿掘金的技术内容分享与交流平台。我们通过技术文章、沸点、课程、直播等产品和服务，打造一个激发开发者创作灵感，激励开发者沉淀分享，陪伴开发者成长的综合类技术社区。"/>
+        <meta name="keywords" content="掘金,稀土,Vue.js,前端面试题,Kotlin,ReactNative,Python" />
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
         <meta name="viewport" content="user-scalable=no" />
         <meta name="viewport" content="initial-scale=1,maximum-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/logo_light.svg" />
       </Head>
       <LanguageContextProvider>
         <ThemeContextProvider>
