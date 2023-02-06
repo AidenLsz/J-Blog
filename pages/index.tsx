@@ -27,6 +27,7 @@ export interface IProps {
     data_ad: DataAd,
     AdvertisementData: AdvertisementItemProps,
     UserListData: UserListItemProp,
+    IsFixed: boolean
 }
 
 const Home: NextPage<IProps> = ({
@@ -35,11 +36,12 @@ const Home: NextPage<IProps> = ({
                                     AdvertisementData,
                                     UserListData,
                                     data_ad,
+                                    IsFixed
                                 }) => {
     return (
         <MainContent>
             <>
-                <Navbarview dataNav={data_nav}/>
+                <Navbarview dataNav={data_nav} IsFixed={IsFixed}/>
                 <TimeLineContent>
                     <Timeline_entrylist
                         dataTab={data_tab}
