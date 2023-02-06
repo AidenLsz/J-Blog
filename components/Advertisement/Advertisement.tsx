@@ -1,6 +1,7 @@
 import style from "./Advertisement.module.scss"
 import Image from "next/image"
 import { NextPage } from "next"
+import { SERVERDOMAIN } from "@/utils"
 
 export interface AdvertisementItemProps {
   id: number
@@ -31,7 +32,7 @@ const Advertisement: NextPage<AdvertisementProps> = ({ AdvertisementData }) => {
     <aside className={style["advertisement-container"]}>
       <div className={style["advertisement"]}>
         <Image
-          src={`http://127.0.0.1:1337${AdvertisementData[0].attributes.image.data.attributes.url}`}
+          src={`${SERVERDOMAIN}${AdvertisementData[0].attributes.image.data.attributes.url}`}
           alt="广告"
           width={400}
           height={400}
@@ -42,7 +43,7 @@ const Advertisement: NextPage<AdvertisementProps> = ({ AdvertisementData }) => {
       </div>
       <div className={style["download-container"]}>
         <Image
-          src={`http://127.0.0.1:1337${downloadData[0].attributes.qr_code.data.attributes.url}`}
+          src={`${SERVERDOMAIN}${AdvertisementData[0].attributes.image.data.attributes.url}`}
           className={style["download-logo"]}
           alt="二维码"
           width={500}

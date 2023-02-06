@@ -150,3 +150,9 @@
     overflow: clip;
     border-style: none;
 }
+
+.blank{
+    width:120px;
+    height:80px;
+    background-color: white;
+}

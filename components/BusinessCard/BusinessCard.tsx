@@ -65,6 +65,7 @@ const BusinessCard: FC<BusinessCardProps> = (props) => {
         <Fragment>
             <div className={classes.businessCard}>
                 <Link href={"/"} className={classes.userItem}>
+                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img className={classes.img} src={props.BusinessCardData[0].avatar_large} width={48} height={48}
                          alt="avatar"/>
                     <div className={classes.infoBox}>
