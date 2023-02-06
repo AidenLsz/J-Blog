@@ -1,5 +1,5 @@
 import React from 'react';
-import {IProps} from '@/stores/userAgent'
+import {IProps} from '../../stores/userAgent'
 import Styles from '../maincontent/maincontent.module.css'
 
 
