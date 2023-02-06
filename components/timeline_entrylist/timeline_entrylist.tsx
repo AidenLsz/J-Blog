@@ -5,6 +5,19 @@ import Image from "next/image"
 import { timeStamp } from "console"
 import { LOCALDOMAIN, SERVERDOMAIN } from "@/utils"
 import Advertisement from "./advertisement"
+import {FC} from "react";
+import {navBarViewData} from "@/components/navbar-view";
+
+
+export interface timeLineEntryListProps {
+    dataTab: navBarViewData
+    dataAd: navBarViewData,
+}
+
+
+export interface DataAd extends navBarViewData {
+    brief: string
+}
 
 export function TimeCal(date: string): string {
   let timestamp = new Date()
@@ -55,16 +68,16 @@ export function TimeCal(date: string): string {
   return "时间计算有误"
 }
 
-function Timeline_entrylist({ Data_Tab, Data_Ad }: any): JSX.Element {
+export const Timeline_entrylist: FC<timeLineEntryListProps> = ({dataTab, dataAd}) => {
   return (
     <div className={Styles.timeline_entrylist}>
       <header className={Styles.list_header}>
         <nav role="navigation" className={Styles.list_nav}>
           <ul className={Styles.nav_list}>
-            {Data_Tab.map((post: any) => (
+                        {Object.values(dataTab).map((post: any) => (
               <li
                 className={`${Styles.nav_item} ${
-                  post.id == Data_Tab.length ? Styles.right : ""
+                                    post.id == Object.values(dataTab).length ? Styles.right : ""
                 } ${post.id == 1 ? Styles.active : ""} `}
                 key={post.id}
               >
@@ -73,11 +86,11 @@ function Timeline_entrylist({ Data_Tab, Data_Ad }: any): JSX.Element {
             ))}
           </ul>
         </nav>
-      </header> 
-      <Advertisement data={Data_Ad}></Advertisement>
-     {/* <ArticleList>
+      </header>
+            <Advertisement data={dataAd}/>
+            {/*<ArticleList>*/}
 
-     </ArticleList> */}
+            {/*</ArticleList>*/}
     </div>
   )
 }
