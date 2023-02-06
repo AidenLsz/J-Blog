@@ -1,4 +1,4 @@
-import { SERVERDOMAIN } from '@/utils'
+import {SERVERDOMAIN} from '@/utils'
 import Image from 'next/image'
 import Styles from '../timeline_entrylist/timeline_entrylist.module.css'
 import { TimeCal } from './timeline_entrylist'
@@ -41,12 +41,7 @@ return <div>
       height={80} 
       className={`${Styles.lazy} ${Styles.thumb}`} 
       src={`${SERVERDOMAIN}${post.attributes.image.data[0].attributes.url}`}/>}
-     
     </div>
-</div>
-</li>)}
-       
-</div> 
 }
 
 export default Advertisement;
