@@ -100,7 +100,7 @@ function Timeline_entrylist({ Data_Tab, Data_Ad }: any): JSX.Element {
               width={120}
               height={80}
               className={`${Styles.lazy} ${Styles.thumb}`}
-              src={`http://127.0.0.1:1337${Data_Ad[0].attributes.image.data[0].attributes.url}`}
+              src=""
             />
           </div>
         </div>
