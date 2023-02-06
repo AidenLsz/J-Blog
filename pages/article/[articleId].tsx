@@ -1,5 +1,5 @@
 import { NextPage, GetServerSideProps } from 'next'
-import { LOCALDOMAIN } from 'utils'
+import { LOCALDOMAIN, SERVERDOMAIN } from 'utils'
 import Image from 'next/image'
 import { Converter } from 'showdown'
 import { IArticleProps } from '@/pages/api/ArticleInfo';

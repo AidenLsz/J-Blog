@@ -17,7 +17,7 @@
     transition: all 0.4s ease-in-out;
     border: var(--border-color) solid 1px;
     &:first-child {
-      color: var(--secondary-secondary-text-color);
+      color: var(--primary-text-color);
     }
     &:nth-child(2) {
       //  降低饱和度

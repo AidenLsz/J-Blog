@@ -2,11 +2,11 @@ import Styles from "./navbar.module.css";
 import React from "react";
 
 
-function Navbarview({Data_Nav}:any):JSX.Element{
+function Navbarview({Data_Nav,IsFixed}:any):JSX.Element{
   return (
     <div>
       
-      <div className={Styles.view_nav}>
+      <div className={`${Styles.view_nav} ${IsFixed?Styles.fixed:''}`}>
         <div className={Styles.nav_list}>
 
         {Data_Nav.map((post:any) => (
