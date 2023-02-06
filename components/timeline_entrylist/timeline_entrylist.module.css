@@ -62,12 +62,12 @@
     padding: 12px 20px 0;
 }
 
-.advertisement .meta_container .user_message, .advertisement .meta_container {
+ .meta_container .user_message, .meta_container {
     display: flex;
     align-items: center;
 }
 
-.advertisement .meta_container .user_message .userbox {
+.meta_container .user_message .userbox {
     max-width: 162px;
     font-size: 13px;
     line-height: 22px;
@@ -83,27 +83,27 @@
     align-items: center;
 }
 
-.advertisement .meta_container .dividing {
+.meta_container .dividing {
     width: 1px;
     height: 14px;
     background: #e5e6eb;
     margin: 0 8px;
 }
 
-.advertisement .meta_container .date {
+.meta_container .date {
     line-height: 22px;
     font-size: 13px;
     color: #86909c;
 }
 
-.advertisement .main{
+.main{
     margin-top: 6px;
     padding-bottom: 12px;
     display: flex;
     border-bottom: 1px solid #e5e6eb;
 }
 
-.advertisement .main .info_box {
+.main .info_box {
     flex-grow: 1;
 }
 
@@ -120,7 +120,7 @@
     object-fit: cover;
 }
 
-.advertisement .main .info_box .title {
+ .main .info_box .title {
     font-weight: 700;
     font-size: 16px;
     line-height: 24px;
@@ -133,7 +133,7 @@
     -webkit-line-clamp: 1;
 }
 
-.advertisement .main .info_box .description{
+.main .info_box .description{
     font-weight: 400;
     font-size: 13px;
     line-height: 22px;
@@ -145,7 +145,7 @@
     -webkit-line-clamp: 2;
 }
 
-.advertisement .img{
+.img{
     overflow-clip-margin: content-box;
     overflow: clip;
     border-style: none;
@@ -176,3 +176,62 @@
 .none{
     display: none;
 }
+/* 
+.action_list>.item, .action_list {
+    display: flex;
+    align-items: center;
+}
+
+.content_wrapper{
+    display: flex;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e5e6eb;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.content_wrapper .content_main{
+    flex: 1 1 auto;
+}
+
+.title_row {
+    display: flex;
+    margin-bottom: 8px;
+}
+
+.title{
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    color: #1d2129;
+    width: 100%;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+}
+
+.abstract{
+    margin-bottom: 10px;
+}
+
+.abstract a{
+    color: #86909c;
+    font-size: 13px;
+    line-height: 22px;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+}
+
+.action_list>.item{
+    position: relative;
+    margin-right: 20px;
+    font-size: 13px;
+    line-height: 20px;
+    color: #4e5969;
+    flex-shrink: 0;
+} */
