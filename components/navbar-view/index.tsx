@@ -13,14 +13,15 @@ export interface navBarViewData {
 }
 
 export interface navBarViewProps {
-    dataNav: navBarViewData
+    dataNav: navBarViewData,
+    IsFixed: boolean
 }
 
 
-export const Navbarview: FC<navBarViewProps> = ({dataNav}) => {
+export const Navbarview: FC<navBarViewProps> = ({dataNav,IsFixed}) => {
   return (
     <div>
-            <div className={Styles.view_nav}>
+              <div className={`${Styles.view_nav} ${IsFixed?Styles.fixed:''}`}>
         <div className={Styles.nav_list}>
                     {Object.values(dataNav).map((post: navBarViewData) => (
          <a key={post.id} href="" className={
