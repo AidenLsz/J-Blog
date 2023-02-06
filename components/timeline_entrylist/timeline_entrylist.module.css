@@ -157,7 +157,7 @@
 }
 
 .blank{
-    width:120px;
+    width:0px;
     height:80px;
     background-color: white;
 }
@@ -176,6 +176,25 @@
     display: flex;
     align-items: center;
     color: #86909c;
+}
+.tag_list .tag {
+    position: relative;
+    flex-shrink: 0;
+    font-size: 13px;
+    line-height: 22px;
+    padding: 0 8px;
+    color: #86909c;
+}
+
+.tag_list .tag:not(:last-child):after {
+    position: absolute;
+    right: -1px;
+    display: block;
+    content: " ";
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+    background: #4e5969;
 }
 
 .none{
