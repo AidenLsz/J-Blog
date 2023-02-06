@@ -1,43 +1,44 @@
 import Link from "next/link"
 import style from "./UserList.module.scss"
-import { NextPage } from "next"
+import {NextPage} from "next"
 import Image from "next/image"
-import { SERVERDOMAIN } from "@/utils"
+import {SERVERDOMAIN} from "@/utils"
 
 export interface UserListItemProp {
-  id: number
-  attributes: {
-    title: string
-    description: string
-    createdAt: Date
-    updatedAt: Date
-    publishedAt: Date
-    level: number
-    image: any
-  }
-}
-export interface UserListProp {
-  UserListData: UserListItemProp[]
+    id: number
+    attributes: {
+        title: string
+        description: string
+        createdAt: Date
+        updatedAt: Date
+        publishedAt: Date
+        level: number
+        image: any
+    }
 }
 
-const UserList: NextPage<UserListProp> = ({ UserListData }) => {
-  return (
-    <div className={style["container"]}>
-      <header className={style["user-block-header"]}>🎖️作者榜</header>
-      <div>
-        {UserListData.map((user) => {
-          return (
-            <div key={user.id} className={style["user-item"]}>
-              <div className={style["link"]}>
-                <Image
-                  src={`${SERVERDOMAIN}${user.attributes.image.data.attributes.url}`}
-                  className={style["avatar"]}
-                  alt="作者头像"
-                  width={500}
-                  height={500}
-                ></Image>
-                <div className={style["user-info"]}>
-                  <Link href="/userlist" className={style["user-name"]}>
+export interface UserListProp {
+    UserListData: UserListItemProp
+}
+
+const UserList: NextPage<UserListProp> = ({UserListData}) => {
+    return (
+        <div className={style["container"]}>
+            <header className={style["user-block-header"]}>🎖️作者榜</header>
+            <div>
+                {Object.values(UserListData).map((user) => {
+                    return (
+                        <div key={user.id} className={style["user-item"]}>
+                            <div className={style["link"]}>
+                                <Image
+                                    src={`${SERVERDOMAIN}${user.attributes.image.data.attributes.url}`}
+                                    className={style["avatar"]}
+                                    alt="作者头像"
+                                    width={500}
+                                    height={500}
+                                />
+                                <div className={style["user-info"]}>
+                                    <Link href="/userlist" className={style["user-name"]}>
                     <span className={style["name"]}>
                       {user.attributes.title}
                     </span>

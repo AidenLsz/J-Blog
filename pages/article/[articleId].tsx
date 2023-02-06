@@ -1,5 +1,5 @@
 import { NextPage, GetServerSideProps } from 'next'
-import { LOCALDOMAIN, SERVERDOMAIN } from 'utils'
+import { LOCALDOMAIN } from 'utils'
 import Image from 'next/image'
 import { Converter } from 'showdown'
 import { IArticleProps } from '@/pages/api/ArticleInfo';
@@ -46,9 +46,9 @@ export const getServerSideProps: GetServerSideProps = async context => {
     const data1 = (await articles).data.data
 
     const tab = data1.filter((item:any)=>{
-        return item.id==2  //articleId 
+        return item.id==2  //articleId
     })[0].attributes.article_type_tabs.data[0].attributes.title
-    
+
     const article = (await data).data
     const data3 = article.filter((item:any)=>{
         return tab==item.attributes.title

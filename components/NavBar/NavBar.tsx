@@ -8,15 +8,15 @@ import { Themes } from "@/constants/enum"
 import { usePathname } from "next/navigation"
 import { useRouter } from "next/router"
 export interface INavBarItemProps {
-  id: string
-  attributes: {
-    title: string
-    createdAt: Date
-    updatedAt: Date
-    publishedAt: Date
-    tag?: string
-    url: string
-  }
+    id: string
+    attributes: {
+        title: string
+        createdAt: Date
+        updatedAt: Date
+        publishedAt: Date
+        tag?: string
+        url: string
+    }
 }
 
 export interface INavBarProps {
@@ -58,13 +58,13 @@ const NavBar: NextPage<INavBarProps> = ({ NavData,IsFixed }) => {
 
     return () => {
       document.removeEventListener("click", handleClick)
-   
+
     }
   })
 
 
   return (
-    
+
     <header
       className={`${styles.main_header} ${!IsFixed ? styles.visible : ""}`}
     >
@@ -187,64 +187,64 @@ const NavBar: NextPage<INavBarProps> = ({ NavData,IsFixed }) => {
                           <span className={styles.search_annual_txt}>
                             开启我的2022年度报告
                           </span>
-                        </div>
-                        <div className={styles.title}>
-                          <span>搜索历史</span>
-                          <span className={styles.clear}>清空</span>
-                        </div>
-                        <div className={styles.list}>
-                          <div>青训营</div>
-                          <div>next</div>
-                          <div>nextjs</div>
-                          <div>node</div>
-                          <div>nodejs</div>
-                          <div>青训营笔记</div>
-                        </div>
-                      </div>
-                    </form>
-                  </li>
-                  <li
-                    className={`${styles.nav_item} ${styles.add} ${
-                      IsFocus ? styles.hide : ""
-                    }`}
-                  >
-                    <div className={styles.add_group}>
-                      <button
-                        className={`${styles.add_btn} ${
-                          IsFocus ? styles.hide : ""
-                        }`}
-                      >
-                        创作者中心
-                      </button>
-                      <div
-                        className={styles.more}
-                        onClick={(e) => {
-                          e.stopPropagation() //由于添加document时间会冒泡，所以需要阻止冒泡，或者把子元素添加一遍more className
-                          setIsActive(!IsActive)
-                        }}
-                      >
-                        <svg
-                          width="12"
-                          height="12"
-                          viewBox="0 0 12 12"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                          className={` ${styles.unfold12_icon} ${
-                            !IsActive ? styles.active : ""
-                          }`}
-                        >
-                          <path
-                            d="M2.45025 4.82383C2.17422 4.49908 2.40501 4 2.83122 4H9.16878C9.59499 4 9.82578 4.49908 9.54975 4.82382L6.38097 8.5518C6.1813 8.7867 5.8187 8.7867 5.61903 8.5518L2.45025 4.82383Z"
-                            fill="white"
-                          ></path>
-                        </svg>
-                      </div>
-                      <ul
-                        className={`${styles.more_list} ${
-                          IsActive ? styles.active : ""
-                        }`}
-                      >
-                        <li className={styles.item}>
+                                                </div>
+                                                <div className={styles.title}>
+                                                    <span>搜索历史</span>
+                                                    <span className={styles.clear}>清空</span>
+                                                </div>
+                                                <div className={styles.list}>
+                                                    <div>青训营</div>
+                                                    <div>next</div>
+                                                    <div>nextjs</div>
+                                                    <div>node</div>
+                                                    <div>nodejs</div>
+                                                    <div>青训营笔记</div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </li>
+                                    <li
+                                        className={`${styles.nav_item} ${styles.add} ${
+                                            IsFocus ? styles.hide : ""
+                                        }`}
+                                    >
+                                        <div className={styles.add_group}>
+                                            <button
+                                                className={`${styles.add_btn} ${
+                                                    IsFocus ? styles.hide : ""
+                                                }`}
+                                            >
+                                                创作者中心
+                                            </button>
+                                            <div
+                                                className={styles.more}
+                                                onClick={(e) => {
+                                                    e.stopPropagation() //由于添加document时间会冒泡，所以需要阻止冒泡，或者把子元素添加一遍more className
+                                                    setIsActive(!IsActive)
+                                                }}
+                                            >
+                                                <svg
+                                                    width="12"
+                                                    height="12"
+                                                    viewBox="0 0 12 12"
+                                                    fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    className={` ${styles.unfold12_icon} ${
+                                                        !IsActive ? styles.active : ""
+                                                    }`}
+                                                >
+                                                    <path
+                                                        d="M2.45025 4.82383C2.17422 4.49908 2.40501 4 2.83122 4H9.16878C9.59499 4 9.82578 4.49908 9.54975 4.82382L6.38097 8.5518C6.1813 8.7867 5.8187 8.7867 5.61903 8.5518L2.45025 4.82383Z"
+                                                        fill="white"
+                                                    />
+                                                </svg>
+                                            </div>
+                                            <ul
+                                                className={`${styles.more_list} ${
+                                                    IsActive ? styles.active : ""
+                                                }`}
+                                            >
+                                                <li className={styles.item}>
                           <span
                             className={`${styles.icon} ${styles.write_article}`}
                           >
