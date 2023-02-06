@@ -24,8 +24,14 @@ return <div>
         {TimeCal(post.attributes.updatedAt)}
         </div>
 
-        <div className={`${post.attributes.ad?Styles.none:Styles.dividing}`}></div>
+
       <div className={`${post.attributes.ad?Styles.none:Styles.tag_list}`}>
+      {(`${post.attributes.article_type_tabs.data}`.length==0 &&
+      `${post.attributes.article_type_tabs.data}`.length==0)?
+         null
+        :
+        <div className={`${post.attributes.ad?Styles.none:Styles.dividing_left}`}></div>}
+
         {`${post.attributes.article_type_tabs.data}`=="null"?
         null
         :

@@ -72,7 +72,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     const {data: res_userlist} = await axios.get(
         `${SERVERDOMAIN}/api/author-lists?populate=deep`
     )
-    //console.log(res_ad[0].attributes.article_type_tabs.data);
+   // console.log(res_ad[2].attributes.article_type_tabs.data);
     return {
         props: {
             data_tab: res_tab,

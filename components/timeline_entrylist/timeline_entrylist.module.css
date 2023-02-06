@@ -94,6 +94,12 @@
     background: #e5e6eb;
     margin: 0 8px;
 }
+.meta_container .dividing_left {
+    width: 1px;
+    height: 14px;
+    background: #e5e6eb;
+    margin: 0 0 0 8px;
+}
 
 .meta_container .date {
     line-height: 22px;
