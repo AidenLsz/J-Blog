@@ -39,6 +39,7 @@ export const UserAgentProvider = ({ children }: IProps): JSX.Element => {
     return (): void => {
       window.removeEventListener('resize', checkUserAgent)
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [typeof document !== 'undefined' && document.body.offsetWidth])
 
   return (
