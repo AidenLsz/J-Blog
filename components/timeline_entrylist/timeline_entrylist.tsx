@@ -1,6 +1,6 @@
 import { IProps } from "@/stores/userAgent"
 import React from "react"
-import Styles from "../timeline_entrylist/timeline_entrylist.module.css"
+import Styles from "../timeline_entrylist/timeline_entrylist.module.scss"
 import Image from "next/image"
 import { timeStamp } from "console"
 import { LOCALDOMAIN, SERVERDOMAIN } from "@/utils"
