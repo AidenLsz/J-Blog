@@ -23,10 +23,11 @@ export interface AdvertisementProps {
 
 const Advertisement: NextPage<AdvertisementProps> = ({ AdvertisementData }) => {
   function filterDownload(AdvertisementData: AdvertisementItemProps[]) {
-    return AdvertisementData.filter((item) => item.attributes.title)
+    return AdvertisementData.filter((item) => item.attributes.qr_code.data)
   }
 
   const downloadData = filterDownload(AdvertisementData)
+  console.log(downloadData)
 
   return (
     <aside className={style["advertisement-container"]}>
@@ -43,7 +44,7 @@ const Advertisement: NextPage<AdvertisementProps> = ({ AdvertisementData }) => {
       </div>
       <div className={style["download-container"]}>
         <Image
-          src={`${SERVERDOMAIN}${AdvertisementData[0].attributes.image.data.attributes.url}`}
+          src={`${SERVERDOMAIN}${downloadData[0].attributes.qr_code.data.attributes.url}`}
           className={style["download-logo"]}
           alt="二维码"
           width={500}
