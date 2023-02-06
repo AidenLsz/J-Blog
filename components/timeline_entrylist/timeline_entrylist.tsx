@@ -3,7 +3,8 @@ import React from "react"
 import Styles from "../timeline_entrylist/timeline_entrylist.module.css"
 import Image from "next/image"
 import { timeStamp } from "console"
-import { LOCALDOMAIN } from "@/utils"
+import { LOCALDOMAIN, SERVERDOMAIN } from "@/utils"
+import Advertisement from "./advertisement"
 
 function TimeCal(date: string): string {
   let timestamp = new Date()
@@ -73,38 +74,10 @@ function Timeline_entrylist({ Data_Tab, Data_Ad }: any): JSX.Element {
           </ul>
         </nav>
       </header>
-      <li className={Styles.item}>
-        <div className={Styles.advertisement}>
-          <div className={Styles.meta_container}>
-            <div className={Styles.user_message}>
-              <a className={Styles.userbox}>
-                <div className={Styles.popper_box}>
-                  {Data_Ad[0].attributes.AuthorName}
-                </div>
-              </a>
-            </div>
-            <div className={Styles.dividing}></div>
-            <div className={Styles.date}>
-              {TimeCal(Data_Ad[0].attributes.updatedAt)}
-            </div>
-          </div>
-          <div className={Styles.main}>
-            <div className={Styles.info_box}>
-              <a className={Styles.title}>{Data_Ad[0].attributes.title}</a>
-              <a className={Styles.description}>
-                {Data_Ad[0].attributes.description}
-              </a>
-            </div>
-            <Image
-              alt="广告位"
-              width={120}
-              height={80}
-              className={`${Styles.lazy} ${Styles.thumb}`}
-              src=""
-            />
-          </div>
-        </div>
-      </li>
+      <Advertisement data={Data_Ad}></Advertisement>
+      {/* <ArticleList>
+
+     </ArticleList> */}
     </div>
   )
 }

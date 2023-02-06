@@ -2,6 +2,7 @@ import { AppContext } from "next/app";
 
 export const LOCALDOMAIN = "http://127.0.0.1:3000";
 export const CMSDOMAIN = "http://127.0.0.1:1337";
+export const SERVERDOMAIN="http://101.42.229.5:1337";
 
 export const getIsMobile = (context: AppContext) => {
   const { headers = {} } = context.ctx.req || {};
