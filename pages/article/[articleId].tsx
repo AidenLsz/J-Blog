@@ -5,6 +5,7 @@ import { Converter } from 'showdown'
 import { IArticleProps } from '@/pages/api/ArticleInfo';
 import styles from './Article.module.scss'
 import axios from 'axios';
+import { SERVERDOMAIN } from 'utils';
 
 const ArticleDetail: NextPage<IArticleProps> = ({ title, page, content, author, createTime, description }) => {
     const converter = new Converter({
@@ -27,7 +28,7 @@ const ArticleDetail: NextPage<IArticleProps> = ({ title, page, content, author, 
 
 export const getServerSideProps: GetServerSideProps = async context => {
     const { articleId } = context.query;
-    const { data } = await axios.get(`${SERVERDOMAIN}/api/ArticleInfo`, {
+    const { data } = await axios.get(`${LOCALDOMAIN}/api/ArticleInfo`, {
         params: {
             articleId,
         },

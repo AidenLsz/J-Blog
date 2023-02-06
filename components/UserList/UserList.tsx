@@ -39,6 +39,7 @@ const UserList: NextPage<UserListProp> = ({UserListData}) => {
                                 />
                                 <div className={style["user-info"]}>
                                     <Link href="/userlist" className={style["user-name"]}>
+
                     <span className={style["name"]}>
                       {user.attributes.title}
                     </span>

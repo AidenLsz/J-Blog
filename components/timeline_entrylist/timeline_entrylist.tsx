@@ -8,6 +8,7 @@ import Advertisement from "./advertisement"
 import {FC} from "react";
 import {navBarViewData} from "@/components/navbar-view";
 
+
 export interface timeLineEntryListProps {
     dataTab: navBarViewData
     dataAd: navBarViewData,
