@@ -3,17 +3,11 @@ import { useState } from 'react'
 import Image from 'next/image'
 import Styles from '../timeline_entrylist/timeline_entrylist.module.scss'
 
-
-
-
 function Advertisement({data,article_tab}:any):JSX.Element{
   const [dislike,setDislike]=useState([0])
  // console.log(data[0].attributes.updatedAt);
     return <div>
-    {data.sort((a,b)=>{
-      if(a.attributes.updatedAt.indexOf('天')>-1&&b.attributes.updatedAt.inddexof('天')==-1)
-      return 1})
-    .map((post:any)=> 
+          {data.map((post:any)=> 
      <li key={post.id} className={`${(dislike.indexOf(post.id)==-1)?Styles.item:Styles.none}`}>
     <div className={Styles.advertisement}>
     <div className={`${Styles.meta_container}`}>
@@ -26,7 +20,7 @@ function Advertisement({data,article_tab}:any):JSX.Element{
       </div>
       <div className={Styles.dividing}></div>
       <div className={Styles.date}>
-        {post.attributes.updatedAt}
+        {post.attributes.date}
         </div>
       <div className={`${post.attributes.ad?Styles.none:Styles.tag_list}`}>
       {(`${post.attributes.article_type_tabs.data}`.length==0 &&
