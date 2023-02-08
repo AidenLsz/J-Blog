@@ -36,6 +36,7 @@ const Advertisement: NextPage<AdvertisementProps> = ({AdvertisementData}) => {
           alt="广告"
           width={400}
           height={400}
+          priority
                 />
         <div className={style["advertisement-label"]}>
           <span>广告</span>

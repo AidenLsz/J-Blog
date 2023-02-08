@@ -1,5 +1,5 @@
 import { IProps } from "@/stores/userAgent"
-import React from "react"
+import React, { useState } from "react"
 import Styles from "../timeline_entrylist/timeline_entrylist.module.scss"
 import Image from "next/image"
 import { timeStamp } from "console"
@@ -69,6 +69,8 @@ export function TimeCal(date: string): string {
 }
 
 export const Timeline_entrylist: FC<timeLineEntryListProps> = ({dataTab, dataAd}) => {
+const [active,setActive]=useState(1)
+
   return (
     <div className={Styles.timeline_entrylist}>
       <header className={Styles.list_header}>
@@ -78,8 +80,9 @@ export const Timeline_entrylist: FC<timeLineEntryListProps> = ({dataTab, dataAd}
               <li
                 className={`${Styles.nav_item} ${
                                     post.id == Object.values(dataTab).length ? Styles.right : ""
-                } ${post.id == 1 ? Styles.active : ""} `}
+                } ${post.id == active ? Styles.active : ""} `}
                 key={post.id}
+                onClick={()=>{setActive(post.id)}}
               >
                 <a>{post.attributes.title}</a>
               </li>
@@ -87,7 +90,7 @@ export const Timeline_entrylist: FC<timeLineEntryListProps> = ({dataTab, dataAd}
           </ul>
         </nav>
       </header>
-            <Advertisement data={dataAd}/>
+            <Advertisement data={dataAd} article_tab={active}/>
             {/*<ArticleList>*/}
 
             {/*</ArticleList>*/}
