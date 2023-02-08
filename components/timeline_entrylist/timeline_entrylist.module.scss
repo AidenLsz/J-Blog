@@ -1,13 +1,14 @@
 .timeline_entrylist{
     margin-right:1rem;
     border-radius: 2px;
+    padding: 0.2rem;
     width: 700px;
     color: var(--primary-text-color);
     background-color: var(--primary-background-color);
 }
 
 .advertisement:hover {
-    background: #fafafa;
+    background: var(--secondary-background-color);
 }
 
 @media (max-width: 960px){

@@ -1,6 +1,6 @@
 import {NextPage} from "next"
 import {GetServerSideProps} from "next"
-import {SERVERDOMAIN} from "@/utils"
+import {SERVERDOMAIN,getDiffTime} from "@/utils"
 import Navbarview, {navBarViewData} from "@/components/navbar-view"
 import MainContent from "@/components/maincontent/maincontent"
 import TimeLineContent from "@/components/timelinecontent/timelinecontent"
@@ -74,6 +74,11 @@ export const getServerSideProps: GetServerSideProps = async () => {
     const {data: res_userlist} = await axios.get(
         `${SERVERDOMAIN}/api/author-lists?populate=deep`
     )
+
+    for (let i = 0; i < res_ad.length; i++) {
+        res_ad[i].attributes.updatedAt = getDiffTime(res_ad[i].attributes.updatedAt)
+    }
+    
    // console.log(res_ad[2].attributes.article_type_tabs.data);
     return {
         props: {
@@ -81,7 +86,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
             data_nav: res_nav,
             AdvertisementData: res_advertisement.data,
             UserListData: res_userlist.data,
-            data_ad: res_ad
+            data_ad: res_ad,
         }
     }
 }

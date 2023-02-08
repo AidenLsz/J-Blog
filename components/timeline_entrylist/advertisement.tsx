@@ -2,7 +2,7 @@ import { SERVERDOMAIN } from '@/utils'
 import { useState } from 'react'
 import Image from 'next/image'
 import Styles from '../timeline_entrylist/timeline_entrylist.module.scss'
-import { TimeCal } from './timeline_entrylist'
+
 
 
 
@@ -22,7 +22,7 @@ return <div>
       </div>
       <div className={Styles.dividing}></div>
       <div className={Styles.date}>
-        {TimeCal(post.attributes.updatedAt)}
+        {post.attributes.updatedAt}
         </div>
       <div className={`${post.attributes.ad?Styles.none:Styles.tag_list}`}>
       {(`${post.attributes.article_type_tabs.data}`.length==0 &&
