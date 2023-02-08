@@ -3,7 +3,7 @@ import Link from "next/link"
 import {FC, Fragment} from "react";
 import Image from "next/image";
 import {useState} from "react";
-
+import { LOCALDOMAIN,CMSDOMAIN} from 'utils'
 export interface BusinessCardData {
     avatar_large: string,
     user_id: number,
@@ -65,7 +65,7 @@ const BusinessCard: FC<BusinessCardProps> = (props) => {
         <Fragment>
             <div className={classes.businessCard}>
                 <Link href={"/"} className={classes.userItem}>
-                    <img className={classes.img} src={props.BusinessCardData[0].avatar_large} width={48} height={48}
+                    <Image className={classes.img} src={`${CMSDOMAIN}${props.BusinessCardData[0].avatar_large}`} width={48} height={48}
                          alt="avatar"/>
                     <div className={classes.infoBox}>
                             <span className={classes.userName}>{props.BusinessCardData[0].user_name}

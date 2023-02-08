@@ -54,7 +54,7 @@ const Home: NextPage<any> = ({
 export const getServerSideProps: GetServerSideProps = async () => {
   const tab = axios.get("http://localhost:1337/api/article-tabs")
   const navbarview = axios.get("http://localhost:1337/api/article-type-tabs")
-  const advertisement = axios.get("http://localhost:1337/api/advertisements")
+  const advertisement = axios.get("http://localhost:1337/api/advertisements?populate=*")
 
   const res_tab = (await tab).data.data
   const res_nav = (await navbarview).data.data

@@ -9,8 +9,9 @@ const data = {
             "user_name": "麻不烧",
             "company": "黄油相机",
             "job_title": "程序员",
-            "avatar_large": "https://p26-passport.byteacctimg.com/img/user-avatar/8edbb3239d32ea2bd21a5517604a5445~300x300.image",
+            "avatar_large": "/uploads/4_3592202c86.webp",
             "level": 5,
+            "attributes":{title:'1'},
             "got_digg_count": 3050,
             "got_view_count": 159608,
         }

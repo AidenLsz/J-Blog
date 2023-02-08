@@ -1,8 +1,20 @@
 // @import "../media.scss";
+.contain{
+    position: relative;
+    max-width:1140px;
+    width:100%;
+    margin:0 auto
+}
+.sideCard{
+    position: absolute;
+    right:20px;
+    top:0;
+    width: 300px;
+}
 .content {
     color: var(--primary-text-color);
-    width: 50rem;
-    margin: 20px auto;
+    width: calc(100% - 35rem);
+    margin-top: 20px;
     background-color: white;
     min-height: calc(100vh - 150px);
     padding: 20px;
