@@ -8,8 +8,12 @@ import Styles from '../timeline_entrylist/timeline_entrylist.module.scss'
 
 function Advertisement({data,article_tab}:any):JSX.Element{
   const [dislike,setDislike]=useState([0])
-return <div>
-    {data.map((post:any)=> 
+ // console.log(data[0].attributes.updatedAt);
+    return <div>
+    {data.sort((a,b)=>{
+      if(a.attributes.updatedAt.indexOf('天')>-1&&b.attributes.updatedAt.inddexof('天')==-1)
+      return 1})
+    .map((post:any)=> 
      <li key={post.id} className={`${(dislike.indexOf(post.id)==-1)?Styles.item:Styles.none}`}>
     <div className={Styles.advertisement}>
     <div className={`${Styles.meta_container}`}>
@@ -84,11 +88,13 @@ return <div>
 )
 }</div>
 
+  }
 
 
 
 
 
-}
+
+
 
 export default Advertisement;
