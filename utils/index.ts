@@ -15,52 +15,23 @@ export const getIsSupportWebp = (context: AppContext) => {
   const { headers = {} } = context.ctx.req || {};
   return headers.accept?.includes("image/webp");
 };
-
-export function TimeCal(date: string): string {
-  let timestamp = new Date()
-  let cur_year = timestamp.getFullYear()
-  let cur_month = timestamp.getMonth() + 1
-  let cur_day = timestamp.getDate()
-  let cur_hour = timestamp.getHours()
-  let cur_min = timestamp.getMinutes()
-  let cur_sec = timestamp.getSeconds()
-  let year = Number(date.slice(0, 4))
-  //console.log(year)
-  let gap_year = cur_year - year
-  if (gap_year > 0) {
-    return gap_year.toString() + "年前"
+//将时间与本地时间比较，返回相差的时间
+export const getDiffTime = (time: string) => {
+  const now = new Date().getTime();
+  const diff = now - new Date(time).getTime();
+  const diffDay = Math.floor(diff / (24 * 3600 * 1000));
+  const diffHour = Math.floor((diff / (3600 * 1000)) % 24);
+  const diffMinute = Math.floor((diff / (60 * 1000)) % 60);
+  const diffSecond = Math.floor((diff / 1000) % 60);
+  if (diffDay > 0) {
+    return `${diffDay}天前`;
+  } else if (diffHour > 0) {
+    return `${diffHour}小时前`;
+  } else if (diffMinute > 0) {
+    return `${diffMinute}分钟前`;
+  } else if (diffSecond > 0) {
+    return `${diffSecond}秒前`;
+  } else {
+    return "刚刚";
   }
-  if (gap_year < 0) {
-    return "时间计算错误"
-  }
-  let month = Number(date.slice(5, 7))
-  let gap_month = cur_month - month
-  if (gap_month > 0) {
-    return gap_month.toString() + "月前"
-  }
-  if (gap_month < 0) {
-    return "时间计算错误"
-  }
-  let day = Number(date.slice(8, 10))
-  let gap_day = cur_day - day
-  if (gap_day > 0) {
-    return gap_day.toString() + "天前"
-  }
-  if (gap_day < 0) {
-    return "时间计算错误"
-  }
-  let hour = Number(date.slice(11, 13))+8
-  let gap_hour = cur_hour - hour
-  if (gap_hour > 0) {
-    return gap_hour.toString() + "小时前"
-  }
-  if (gap_hour < 0) {
-    return "时间计算错误"
-  }
-  let sec = Number(date.slice(11, 13))
-  let gap_sec = cur_sec - sec
-  if (gap_sec > 0) {
-    return gap_sec.toString() + "秒前"
-  }
-  return "时间计算有误"
 }

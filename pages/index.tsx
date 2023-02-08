@@ -1,6 +1,6 @@
 import {NextPage} from "next"
 import {GetServerSideProps} from "next"
-import {SERVERDOMAIN,TimeCal} from "@/utils"
+import {SERVERDOMAIN,getDiffTime} from "@/utils"
 import Navbarview, {navBarViewData} from "@/components/navbar-view"
 import MainContent from "@/components/maincontent/maincontent"
 import TimeLineContent from "@/components/timelinecontent/timelinecontent"
@@ -76,7 +76,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     )
 
     for (let i = 0; i < res_ad.length; i++) {
-        res_ad[i].attributes.updatedAt = TimeCal(res_ad[i].attributes.updatedAt)
+        res_ad[i].attributes.updatedAt = getDiffTime(res_ad[i].attributes.updatedAt)
     }
     
    // console.log(res_ad[2].attributes.article_type_tabs.data);
