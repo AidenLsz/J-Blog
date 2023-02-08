@@ -2,12 +2,14 @@ import { SERVERDOMAIN } from '@/utils'
 import { useState } from 'react'
 import Image from 'next/image'
 import Styles from '../timeline_entrylist/timeline_entrylist.module.scss'
+import { log } from 'console'
 
 
 
 
 function Advertisement({data}:any):JSX.Element{
   const [dislike,setDislike]=useState([0])
+  console.log(data)
 return <div>
     {data.map((post:any)=> 
      <li key={post.id} className={`${(dislike.indexOf(post.id)==-1)?Styles.item:Styles.none}`}>
@@ -22,7 +24,7 @@ return <div>
       </div>
       <div className={Styles.dividing}></div>
       <div className={Styles.date}>
-        {post.attributes.updatedAt}
+        {post.attributes.date}
         </div>
       <div className={`${post.attributes.ad?Styles.none:Styles.tag_list}`}>
       {(`${post.attributes.article_type_tabs.data}`.length==0 &&
