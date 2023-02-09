@@ -4,8 +4,11 @@ import { useEffect, useState,useContext } from 'react'
 import styles from './FixedBtn.module.scss'
 import {ThemeContext} from "@/stores/theme";
 import {Themes} from "@/constants/enum";
+interface IProps {
+  IsLoading: boolean
+}
 
-const FixedBtn: NextPage = () => {
+const FixedBtn: NextPage<IProps> = ({IsLoading}) => {
   const [IsShow, setIsShow] = useState(false)
   const {theme,setTheme} = useContext(ThemeContext)
   // 监听滚动事件
@@ -35,6 +38,7 @@ const FixedBtn: NextPage = () => {
 
   return (
     <div className={styles.fixed_btn}>
+      <div className={`${styles.spinner} ${IsLoading?styles.active:''}`}></div>
       <div
         className={`${styles.fixed_btn_item} ${!IsShow ? styles.hide : ''}`}
         onClick={backTop}
