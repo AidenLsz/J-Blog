@@ -27,8 +27,7 @@ export interface IProps {
     data_ad: DataAd,
     AdvertisementData: AdvertisementItemProps,
     UserListData: UserListItemProp,
-    IsFixed: boolean,
-    handlerLoading: () => void,
+    IsFixed: boolean
 }
 
 const Home: NextPage<IProps> = ({
@@ -37,8 +36,7 @@ const Home: NextPage<IProps> = ({
                                     AdvertisementData,
                                     UserListData,
                                     data_ad,
-                                    IsFixed,
-                                    handlerLoading
+                                    IsFixed
                                 }) => {
     return (
         <MainContent>
@@ -48,7 +46,6 @@ const Home: NextPage<IProps> = ({
                     <Timeline_entrylist
                         dataTab={data_tab}
                         dataAd={data_ad}
-                        handlerLoading={handlerLoading}
                     />
                     {/*<Sidebar>*/}
                     {/*</Sidebar>*/}

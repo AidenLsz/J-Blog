@@ -14,8 +14,6 @@ const Layout: NextPage<ILayoutProps & { children: JSX.Element }> = ({
   NavData
 }) => {
   const [IsFixed, setIsFixed] = useState<boolean>(false)
-
-  const [IsLoading, setIsLoading] = useState<boolean>(false)
   useEffect(() => {
     document.addEventListener("scroll", handlerScroll)
 
@@ -33,19 +31,15 @@ const Layout: NextPage<ILayoutProps & { children: JSX.Element }> = ({
       setIsFixed(false)
     }
   }
-  //处理loading
-  const handlerLoading = (IsLoading:boolean):void => {
-    setIsLoading(IsLoading)
-  }
 
  
   return (
     <div className={styles.layout_wrapper}>
       <div className={styles.main_header_box}>
-        <NavBar NavData={NavData} IsFixed={IsFixed} />
+        <NavBar NavData={NavData} IsFixed={IsFixed}/>
       </div>
-      {React.cloneElement(children, { IsFixed ,handlerLoading})}
-      <FixedBtn IsLoading={IsLoading}/>
+      {React.cloneElement(children, { IsFixed })}
+      <FixedBtn />
     </div>
   )
 }

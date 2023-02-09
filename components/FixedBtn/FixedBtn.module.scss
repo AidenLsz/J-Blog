@@ -2,43 +2,7 @@
   position: fixed;
   right: 20px;
   bottom: 10px;
-  .spinner {
-    display: none;
-  
-    &.active {
-      width: 32px;
-      height: 32px;
-      display: grid;
-      border: 4.5px solid #0000;
-      border-radius: 50%;
-      border-color: #dbdcef #0000;
-      animation: spinner-e04l1k 1s infinite linear;
-      &::before {
-        content: "";
-      grid-area: 1/1;
-      margin: 2.2px;
-      border: inherit;
-      border-radius: 50%;
-      border-color: #474bff #0000;
-      animation: inherit;
-      animation-duration: 0.5s;
-      animation-direction: reverse;
-      }
-      &::after {
-        content: "";
-      grid-area: 1/1;
-      margin: 2.2px;
-      border: inherit;
-      border-radius: 50%;
-      margin: 8.9px;
-      }
-    }
-  }
-  @keyframes spinner-e04l1k {
-    100% {
-      transform: rotate(1turn);
-    }
-  }
+
   .fixed_btn_item {
     width: 40px;
     height: 40px;
@@ -52,7 +16,6 @@
     cursor: pointer;
     transition: all 0.4s ease-in-out;
     border: var(--border-color) solid 1px;
-   
     &:first-child {
       color: var(--primary-text-color);
     }
