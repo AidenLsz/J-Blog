@@ -15,7 +15,7 @@ function Advertisement({ data, article_tab,handlerLoading }: any): JSX.Element {
     ) {
       handlerLoading(true)
       const advertisement = await axios.get(
-        `http://101.42.229.5:1337/api/articles?pagination[page]=${page}&pagination[pageSize]=5`
+        `http://101.42.229.5:1337/api/articles?pagination[page]=${page}&pagination[pageSize]=5&populate=*`
       );
       for (let i = 0; i < advertisement.data.data.length; i++) {
         advertisement.data.data[i].attributes.date = getDiffTime(
@@ -125,7 +125,7 @@ function Advertisement({ data, article_tab,handlerLoading }: any): JSX.Element {
                 <a className={Styles.description}>{post.attributes.brief}</a>
               </div>
 
-              {/* {`${post.attributes.image.data}` == "null" ? (
+              {`${post.attributes.image.data}` == "null" ? (
                 <div className={Styles.blank}></div>
               ) : (
                 <Image
@@ -135,7 +135,7 @@ function Advertisement({ data, article_tab,handlerLoading }: any): JSX.Element {
                   className={`${Styles.lazy} ${Styles.thumb}`}
                   src={`${SERVERDOMAIN}${post.attributes.image.data[0].attributes.url}`}
                 />
-              )} */}
+              )}
             </div>
           </div>
         </li>
