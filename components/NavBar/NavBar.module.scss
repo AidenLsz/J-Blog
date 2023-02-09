@@ -863,7 +863,7 @@
 @include media-mobile{
   .container {
     width: 97%;
-    margin: 0 1rem !important;
+    margin: 0 2rem !important;
   }
 
   .main_nav {
@@ -889,7 +889,8 @@
           font-size: 1.33rem;
           justify-content: center;
           padding: 0;
-          width: 4.66rem;
+          width: 5.66rem;
+
           span {
             margin-right: .333rem
           }
@@ -942,13 +943,13 @@
   }
   .search_add {
     .search_add_ul{
-      width: 11rem!important;
+      width: 14rem!important;
       .nav_item.search{
         .search_form{
-          width: 12rem!important;
+          width: 14rem!important;
           z-index: 2;
           &.active{
-            width: 20rem!important;
+            width: 22rem!important;
           }
         }
 

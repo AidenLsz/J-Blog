@@ -21,7 +21,7 @@ export interface INavBarItemProps {
 
 export interface INavBarProps {
   NavData: INavBarItemProps[],
-  IsFixed: boolean,
+  IsFixed: boolean
 }
 
 const NavBar: NextPage<INavBarProps> = ({ NavData,IsFixed }) => {
