@@ -19,6 +19,7 @@ import { BusinessCardProps } from "@/components/BusinessCard/BusinessCard"
 
 import { AdvertisementProps } from "@/components/Advertisement/Advertisement"
 import { UserListProp } from "@/components/UserList/UserList"
+import ArticleNavBar from "@/components/ArticleNavBar/ArticleNavBar"
 
 const Home: NextPage<any> = ({
   data_nav,
@@ -31,6 +32,7 @@ const Home: NextPage<any> = ({
     <MainContent>
       <>
         <Navbarview Data_Nav={data_nav} />
+        <ArticleNavBar></ArticleNavBar>
         <Timelinecontent>
           <Timeline_entrylist
             Data_Tab={data_tab}
@@ -52,20 +54,20 @@ const Home: NextPage<any> = ({
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async () =>  {
+export const getServerSideProps: GetServerSideProps = async () => {
   const tab = axios.get(`${SERVERDOMAIN}/api/article-tabs`)
   const navbarview = axios.get(`${SERVERDOMAIN}/api/article-type-tabs`)
   const advertisement = axios.get(`${SERVERDOMAIN}/api/articles?populate=*`)
   const res_tab = (await tab).data.data
   const res_nav = (await navbarview).data.data
-  const res_ad=(await advertisement).data.data
+  const res_ad = (await advertisement).data.data
   const { data: res_advertisement } = await axios.get(
     `${SERVERDOMAIN}/api/advertisements?populate=deep`
   )
   const { data: res_userlist } = await axios.get(
     `${SERVERDOMAIN}/api/author-lists?populate=deep`
   )
- // console.log(res_ad[0].attributes.image.data[0].attributes.url);
+  // console.log(res_ad[0].attributes.image.data[0].attributes.url);
   return {
     props: {
       data_tab: res_tab,

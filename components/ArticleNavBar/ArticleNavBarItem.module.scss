@@ -10,6 +10,11 @@
   padding: 0 .83rem;
   margin-right: 1rem;
   margin-bottom: 1rem;
+  &:hover{
+   .link{
+    color:#007fff
+   }
+  }
   .link {
     text-decoration: none;
     cursor: pointer;
