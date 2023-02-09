@@ -20,6 +20,7 @@ import { BusinessCardProps } from "@/components/BusinessCard/BusinessCard"
 import { AdvertisementProps } from "@/components/Advertisement/Advertisement"
 import { UserListProp } from "@/components/UserList/UserList"
 import ArticleNavBar from "@/components/ArticleNavBar/ArticleNavBar"
+import { ExtendContextProvider } from "@/stores/expend"
 
 const Home: NextPage<any> = ({
   data_nav,
@@ -31,12 +32,14 @@ const Home: NextPage<any> = ({
   return (
     <MainContent>
       <>
-        <Navbarview Data_Nav={data_nav} />
-        <ArticleNavBar></ArticleNavBar>
+        <Navbarview dataNav={data_nav} />
+        <ExtendContextProvider>
+          <ArticleNavBar></ArticleNavBar>
+        </ExtendContextProvider>
         <Timelinecontent>
           <Timeline_entrylist
-            Data_Tab={data_tab}
-            Data_Ad={data_ad}
+            dataTab={data_tab}
+            dataAd={data_ad}
           ></Timeline_entrylist>
 
           {/* 

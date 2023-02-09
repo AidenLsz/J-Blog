@@ -1,8 +1,10 @@
-import { useState } from "react"
+import { ExtendContext } from "@/stores/expend"
+import { useContext, useState } from "react"
 import style from "./ArticleNavBar.module.scss"
 import ArticleNavBarItem from "./ArticleNavBarItem"
 
-const ArticleNavBar = ({ navListData }) => {
+const ArticleNavBar = () => {
+  let { isExtend, setExtend } = useContext(ExtendContext)
   const navList = [
     { id: 1, title: "后端" },
     { id: 2, title: "前端" },
@@ -24,9 +26,30 @@ const ArticleNavBar = ({ navListData }) => {
 
   function showRawData() {
     console.log("还原数据")
-    setNewNavList(navList)
+    if (!isExtend) {
+      setExtend(true)
+      setNewNavList(navList)
+    }
   }
-
+  if (isExtend) {
+    return (
+      <div className={style["nav-list"]}>
+        {navList.map((navitem) => (
+          <ArticleNavBarItem
+            key={navitem.id}
+            navItemData={navitem}
+            extend={showRawData}
+          >
+            {navitem.title === "展开" ? (
+              <span className={style["triangle"]}>{navitem.title}</span>
+            ) : (
+              navitem.title
+            )}
+          </ArticleNavBarItem>
+        ))}
+      </div>
+    )
+  }
   return (
     <div className={style["nav-list"]}>
       {newNavList.map((navitem) => (
