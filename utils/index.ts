@@ -35,3 +35,37 @@ export const getDiffTime = (time: string) => {
     return "刚刚";
   }
 }
+
+export function throttle<T extends (...args: any[]) => any>(
+  func: T,
+  limit: number
+): T {
+  let lastFunc;
+  let lastRan;
+  return function(this: any, ...args: any[]) {
+    if (!lastRan) {
+      func.apply(this, args);
+      lastRan = Date.now();
+    } else {
+      clearTimeout(lastFunc);
+      lastFunc = setTimeout(() => {
+        if (Date.now() - lastRan >= limit) {
+          func.apply(this, args);
+          lastRan = Date.now();
+        }
+      }, limit - (Date.now() - lastRan));
+    }
+  } as T;
+}
+
+export function debounce(func, wait) {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}

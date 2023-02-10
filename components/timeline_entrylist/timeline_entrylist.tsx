@@ -11,6 +11,7 @@ import { navBarViewData } from "@/components/navbar-view"
 export interface timeLineEntryListProps {
   dataTab: navBarViewData
   dataAd: navBarViewData
+  handlerLoading: () => void
 }
 
 export interface DataAd extends navBarViewData {
@@ -19,7 +20,8 @@ export interface DataAd extends navBarViewData {
 
 export const Timeline_entrylist: FC<timeLineEntryListProps> = ({
   dataTab,
-  dataAd
+  dataAd,
+  handlerLoading
 }) => {
   const [active, setActive] = useState(1)
 
@@ -44,7 +46,11 @@ export const Timeline_entrylist: FC<timeLineEntryListProps> = ({
           </ul>
         </nav>
       </header>
-      <Advertisement data={dataAd} article_tab={active} />
+      <Advertisement
+        data={dataAd}
+        article_tab={active}
+        handlerLoading={handlerLoading}
+      />
       {/*<ArticleList>*/}
 
       {/*</ArticleList>*/}

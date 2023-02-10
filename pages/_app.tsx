@@ -1,5 +1,4 @@
 import "@/styles/globals.scss"
-
 import type { AppProps } from "next/app"
 import App, { AppContext } from "next/app"
 import Layout from "@/layout"
@@ -10,16 +9,17 @@ import { ThemeContextProvider } from "@/stores/theme"
 import { UserAgentProvider } from "@/stores/userAgent"
 import { INavBarItemProps } from "@/components/NavBar/NavBar"
 import "@fortawesome/fontawesome-free/css/all.min.css"
-import { log } from "console"
 import { SERVERDOMAIN } from "@/utils"
-
+import Page404 from "@/pages/404"
 interface INavBarProps {
   data: INavBarItemProps[]
 }
 
 const MyApp = (Props: AppProps & INavBarProps): JSX.Element => {
   const { Component, pageProps, data } = Props
-
+  if (Component === undefined) {
+    return <Page404 />;
+  }
   return (
     <div>
       <Head>
