@@ -1,15 +1,29 @@
 import Styles from "./navbar.module.css";
-import React from "react";
+import React, {FC} from "react";
 
 
-function Navbarview({Data_Nav}:any):JSX.Element{
+export interface navBarViewData {
+    id: number,
+    attributes: {
+        title: string,
+        createdAt: string,
+        updatedAt: string,
+        publishedAt: string
+    }
+}
+
+export interface navBarViewProps {
+    dataNav: navBarViewData,
+    IsFixed: boolean
+}
+
+
+export const Navbarview: FC<navBarViewProps> = ({dataNav,IsFixed}) => {
   return (
     <div>
-      
-      <div className={Styles.view_nav}>
+              <div className={`${Styles.view_nav} ${IsFixed?Styles.fixed:''}`}>
         <div className={Styles.nav_list}>
-
-        {Data_Nav.map((post:any) => (
+                    {Object.values(dataNav).map((post: navBarViewData) => (
          <a key={post.id} href="" className={
           `{
          ${Styles.nav_item} 

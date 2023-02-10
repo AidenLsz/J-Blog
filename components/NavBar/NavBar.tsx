@@ -1,4 +1,5 @@
 import { NextPage } from "next"
+import Head from "next/head"
 import Image from "next/image"
 import styles from "./NavBar.module.scss"
 import React, { useContext, useEffect, useState } from "react"
@@ -19,13 +20,13 @@ export interface INavBarItemProps {
 }
 
 export interface INavBarProps {
-  NavData: INavBarItemProps[]
+  NavData: INavBarItemProps[],
+  IsFixed: boolean,
 }
 
-const NavBar: NextPage<INavBarProps> = ({ NavData }) => {
+const NavBar: NextPage<INavBarProps> = ({ NavData,IsFixed }) => {
   const [MobileNav, setMobileNav] = useState<boolean>(false)
   const [IsHide, setIsHide] = useState<boolean>(false)
-  const { theme, setTheme } = useContext(ThemeContext)
   const [searchQuery, setSearchQuery] = useState<string>("")
   const [IsFocus, setIsFocus] = useState<boolean>(false)
   const [IsActive, setIsActive] = useState<boolean>(false)
@@ -52,28 +53,20 @@ const NavBar: NextPage<INavBarProps> = ({ NavData }) => {
     }
   }
   useEffect(() => {
-    document.addEventListener("scroll", handlerScroll)
+
     document.addEventListener("click", handleClick)
 
     return () => {
       document.removeEventListener("click", handleClick)
-      document.addEventListener("scroll", handlerScroll)
+   
     }
   })
-  // 滚动事件处理函数
-  const handlerScroll = () => {
-    const scrollTop =
-      document.documentElement.scrollTop || document.body.scrollTop
-    if (scrollTop > 446) {
-      setIsHide(true)
-    } else {
-      setIsHide(false)
-    }
-  }
+
 
   return (
+    
     <header
-      className={`${styles.main_header} ${!IsHide ? styles.visible : ""}`}
+      className={`${styles.main_header} ${!IsFixed ? styles.visible : ""}`}
     >
       <div className={styles.container}>
         <a href="https://juejin.cn/" className={styles.logo_wrap}>

@@ -17,7 +17,7 @@ const RelatedArticles=({article}:articleArray)=>{
             <div className={styles.block_list}>
                 {article&&article.map((item:any,index:number)=>{
                   if(index<10){
-                    return (<Link className={styles.item} href="#" key={item.id}><div className={styles.entry_title} >{item.attributes.title}</div></Link>)
+                    return (<Link className={styles.item} href={`http://localhost:3000/article/${item.id}`} key={item.id}><div className={styles.entry_title} >{item.attributes.title}</div></Link>)
                   }
                   else{
                     return
