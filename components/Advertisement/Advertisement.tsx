@@ -18,15 +18,18 @@ export interface AdvertisementItemProps {
 }
 
 export interface AdvertisementProps {
-    AdvertisementData: AdvertisementItemProps
+  AdvertisementData: AdvertisementItemProps
 }
 
-const Advertisement: NextPage<AdvertisementProps> = ({AdvertisementData}) => {
-    function filterDownload(AdvertisementData: AdvertisementItemProps) {
-        return Object.values(AdvertisementData).filter((item) => item.attributes.title)
-    }
+const Advertisement: NextPage<AdvertisementProps> = ({ AdvertisementData }) => {
+  function filterDownload(AdvertisementData: AdvertisementItemProps) {
+    return Object.values(AdvertisementData).filter(
+      (item) => item.attributes.qr_code.data
+    )
+  }
 
   const downloadData = filterDownload(AdvertisementData)
+  console.log(downloadData)
 
   return (
     <aside className={style["advertisement-container"]}>
@@ -37,19 +40,19 @@ const Advertisement: NextPage<AdvertisementProps> = ({AdvertisementData}) => {
           width={400}
           height={400}
           priority
-                />
+        />
         <div className={style["advertisement-label"]}>
           <span>广告</span>
         </div>
       </div>
       <div className={style["download-container"]}>
         <Image
-          src={`${SERVERDOMAIN}${AdvertisementData[0].attributes.image.data.attributes.url}`}
+          src={`${SERVERDOMAIN}${downloadData[0].attributes.qr_code.data.attributes.url}`}
           className={style["download-logo"]}
           alt="二维码"
           width={500}
           height={500}
-                />
+        />
         <div className={style["download-info"]}>
           <div className={style["download-headline"]}>
             {downloadData[0].attributes.title}

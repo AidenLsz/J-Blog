@@ -1,0 +1,23 @@
+.nav-item{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2rem;
+  background-color: #fff;
+  border-radius: 1rem;
+  font-size: 1.1rem;
+  color: #8a9aa9;
+  padding: 0 .83rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  &:hover{
+   .link{
+    color:#007fff
+   }
+  }
+  .link {
+    text-decoration: none;
+    cursor: pointer;
+    color: #909090;
+  }
+}
