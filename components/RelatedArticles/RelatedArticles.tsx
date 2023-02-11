@@ -9,7 +9,6 @@ export interface article{
     attributes:{title:string}
 }
 const RelatedArticles=({article}:articleArray)=>{
-    console.log(article)
     return(
     <div className={styles.block}>
         <div className={styles.block_title}>相关文章</div>

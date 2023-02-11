@@ -1,5 +1,5 @@
 import { NextPage, GetServerSideProps } from 'next'
-import { LOCALDOMAIN, CMSDOMAIN } from 'utils'
+import { LOCALDOMAIN,SERVERDOMAIN } from 'utils'
 import Image from 'next/image'
 import { Converter } from 'showdown'
 import styles from './Article.module.scss'
@@ -20,7 +20,7 @@ const ArticleDetail: NextPage<dataProps> = ({ currentArticle: { title, image, ar
         simplifiedAutoLink: true,
         emoji: true,
     })
-    console.log(article_detail.data.attributes.description)
+    console.log()
     return (
         <div className={styles.contain}>
             <div className={styles.content}>
@@ -29,7 +29,7 @@ const ArticleDetail: NextPage<dataProps> = ({ currentArticle: { title, image, ar
                     作者：{article_detail.data.attributes.AuthorName} | 创建时间: {createdAt}
                 </div>
                 {/* <div className={styles.description}>{description}</div> */}
-                {image.data && <Image src={CMSDOMAIN + image.data[0].attributes.url} alt='文章封面' width={700} height={400} />}
+                {image.data && <Image src={SERVERDOMAIN + image.data[0].attributes.url} alt='文章封面' width={700} height={400} />}
                 <article dangerouslySetInnerHTML={{ __html: converter.makeHtml(article_detail.data.attributes.description) }} className={styles['markdown-body']} />
             </div>
             <div className={styles.sideCard}>
@@ -62,6 +62,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
         articleId,
         },
     })
+    console.log(currentArticle)
     const relatedArticles =await getRelatedArticles(articleId)
 
     return {
@@ -69,9 +70,9 @@ export const getServerSideProps: GetServerSideProps = async context => {
     };
 };
             //获取相关文章 (建议抽取到api下)
-async function getRelatedArticles(articleId:string|string[]|undefined){
-    const {data} = await axios.get(`http://localhost:1337/api/article-type-tabs?populate=*`);
-    const articles = await axios.get(`http://localhost:1337/api/articles?populate=*`)
+async function getRelatedArticles(articleId:string|string[]|undefined){   
+    const {data} = await axios.get(`${SERVERDOMAIN}/api/article-type-tabs?populate=*`);
+    const articles = await axios.get(`${SERVERDOMAIN}/api/articles?populate=*`)
     const tab:string = articles.data.data.filter((item:any)=>{
         return item.id==articleId  //articleId 
     })[0].attributes.article_type_tabs.data[0].attributes.title
