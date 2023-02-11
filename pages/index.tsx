@@ -25,6 +25,7 @@ import { AdvertisementProps } from "@/components/Advertisement/Advertisement"
 import { UserListProp } from "@/components/UserList/UserList"
 import ArticleNavBar from "@/components/ArticleNavBar/ArticleNavBar"
 import { ExtendContextProvider } from "@/stores/expend"
+import { Fragment } from "react"
 
 export interface IProps {
   data_nav: navBarViewData
@@ -48,7 +49,11 @@ const Home: NextPage<IProps> = ({
   return (
     <MainContent>
       <>
-        <Navbarview dataNav={data_nav} IsFixed={IsFixed} />
+        <ExtendContextProvider>
+          <Fragment>
+            <Navbarview dataNav={data_nav} IsFixed={IsFixed} />
+          </Fragment>
+        </ExtendContextProvider>
         <Timelinecontent>
           <Timeline_entrylist
             dataTab={data_tab}
@@ -80,7 +85,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const { data: res_userlist } = await axios.get(
     `${SERVERDOMAIN}/api/author-lists?populate=deep`
   )
-  // console.log(res_ad[0].attributes.image.data[0].attributes.url);
   return {
     props: {
       data_tab: res_tab,
