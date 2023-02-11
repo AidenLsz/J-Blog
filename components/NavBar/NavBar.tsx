@@ -7,6 +7,7 @@ import { ThemeContext } from "@/stores/theme"
 import { Themes } from "@/constants/enum"
 import { usePathname } from "next/navigation"
 import { useRouter } from "next/router"
+import { SERVERDOMAIN } from "@/utils"
 export interface INavBarItemProps {
   id: string
   attributes: {
@@ -16,15 +17,25 @@ export interface INavBarItemProps {
     publishedAt: Date
     tag?: string
     url: string
+    imgurl?: {
+      data: {
+        id: string
+        attributes: {
+          name: string
+
+          url: string
+        }
+      }
+    }
   }
 }
 
 export interface INavBarProps {
-  NavData: INavBarItemProps[],
-  IsFixed: boolean,
+  NavData: INavBarItemProps[]
+  IsFixed: boolean
 }
 
-const NavBar: NextPage<INavBarProps> = ({ NavData,IsFixed }) => {
+const NavBar: NextPage<INavBarProps> = ({ NavData, IsFixed }) => {
   const [MobileNav, setMobileNav] = useState<boolean>(false)
   const [IsHide, setIsHide] = useState<boolean>(false)
   const [searchQuery, setSearchQuery] = useState<string>("")
@@ -53,18 +64,14 @@ const NavBar: NextPage<INavBarProps> = ({ NavData,IsFixed }) => {
     }
   }
   useEffect(() => {
-
     document.addEventListener("click", handleClick)
 
     return () => {
       document.removeEventListener("click", handleClick)
-   
     }
   })
 
-
   return (
-    
     <header
       className={`${styles.main_header} ${!IsFixed ? styles.visible : ""}`}
     >
@@ -83,7 +90,14 @@ const NavBar: NextPage<INavBarProps> = ({ NavData,IsFixed }) => {
                   setMobileNav(!MobileNav)
                 }}
               >
-                <span>首页</span>
+                <span
+                  onClick={(e) => {
+                    router.push("/")
+                    e.stopPropagation()
+                  }}
+                >
+                  首页
+                </span>
                 <svg
                   width="12"
                   height="12"
@@ -102,11 +116,11 @@ const NavBar: NextPage<INavBarProps> = ({ NavData,IsFixed }) => {
                   MobileNav ? styles.show : ""
                 }`}
               >
-                {NavData.map((item) => {
+                {NavData.map((item:INavBarItemProps) => {
                   return (
                     <li
                       key={item.id}
-                      className={`${styles.nav_item} ${styles.link_item} ${
+                      className={`${styles.nav_item} ${!item.attributes.imgurl?.data?styles.link_item:''} ${
                         pathname === item.attributes.url ? styles.active : ""
                       } ${
                         item.attributes.title === "插件"
@@ -114,7 +128,19 @@ const NavBar: NextPage<INavBarProps> = ({ NavData,IsFixed }) => {
                           : ""
                       }`}
                     >
-                      <a href={item.attributes.url}>{item.attributes.title}</a>
+                      <a href={item.attributes.url}
+                      className={item.attributes.imgurl?.data ? styles.activity : ""}
+                      >
+                        {item.attributes.title}
+                        {item.attributes.imgurl?.data && (
+                          <Image
+                          src={`${SERVERDOMAIN}${item.attributes.imgurl.data.attributes.url}`}
+                            alt={item.attributes.imgurl.data.attributes.name}
+                            width={115}
+                            height={40}
+                          ></Image>
+                        )}
+                      </a>
                       <span
                         className={item.attributes.tag ? styles.tablead : ""}
                       >
@@ -123,21 +149,7 @@ const NavBar: NextPage<INavBarProps> = ({ NavData,IsFixed }) => {
                     </li>
                   )
                 })}
-                <li className={styles.nav_item}>
-                  <a
-                    target="_blank"
-                    href="https://juejin.cn/report2022/mobile?utm_source=daohang"
-                    className={styles.activity}
-                    rel="noreferrer"
-                  >
-                    <Image
-                      src="/年度报告.image"
-                      alt="123"
-                      width={115}
-                      height={40}
-                    ></Image>
-                  </a>
-                </li>
+                
               </ul>
             </li>
             <ul className={styles.right_side_nav}>

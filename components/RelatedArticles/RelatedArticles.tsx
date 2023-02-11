@@ -1,9 +1,14 @@
 
 import styles from './RelatedArticles.module.css'
 import Link from 'next/link'
-
-const RelatedArticles=({article}:any)=>{
-
+export interface articleArray{
+    article:article[]
+}
+export interface article{
+    id:String;
+    attributes:{title:string}
+}
+const RelatedArticles=({article}:articleArray)=>{
     return(
     <div className={styles.block}>
         <div className={styles.block_title}>相关文章</div>
@@ -23,5 +28,4 @@ const RelatedArticles=({article}:any)=>{
     </div>
     )
 }
-  
 export default RelatedArticles
