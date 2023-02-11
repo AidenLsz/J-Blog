@@ -29,16 +29,16 @@ const ArticleDetail: NextPage<dataProps> = ({ currentArticle: { title, image, ar
                     作者：{article_detail.data.attributes.AuthorName} | 创建时间: {createdAt}
                 </div>
                 {/* <div className={styles.description}>{description}</div> */}
-                {image.data && <Image src={SERVERDOMAIN + image.data[0].attributes.url} alt='文章封面' width={700} height={400} />}
+                {image.data && <Image src={SERVERDOMAIN + image.data[0].attributes.url} alt='文章封面' width={700} height={400} className={styles.article_img} />}
                 <article dangerouslySetInnerHTML={{ __html: converter.makeHtml(article_detail.data.attributes.description) }} className={styles['markdown-body']} />
             </div>
             <div className={styles.sideCard}>
                 <BusinessCard BusinessCardData={business} />
                 <RelatedArticles article={relatedArticles} />
-                <div style={{backgroundColor:'white',paddingTop:'10px'}}>
+                <div className={styles.article_menu}>
                 <div className={styles.navTitle}>文章目录</div>
                     <MarkNav
-                        className="article-menu"
+                        className={styles.article_menu}
                         source={article_detail.data.attributes.description}
                         headingTopOffset={0}
                         ordered={false}
