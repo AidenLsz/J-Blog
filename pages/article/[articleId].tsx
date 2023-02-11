@@ -12,15 +12,19 @@ import { IArticleProps } from '../api/ArticleInfo'
 interface dataProps {
     currentArticle: IArticleProps,
     relatedArticles: article[],
-    business: BusinessCardData[]
+    business: BusinessCardData
 }
-const ArticleDetail: NextPage<dataProps> = ({ currentArticle: { title, image, article_detail, createdAt, description }, relatedArticles, business }) => {
+
+const ArticleDetail: NextPage<dataProps> = ({
+                                                currentArticle: {title, image, article_detail, createdAt, description},
+                                                relatedArticles,
+                                                business
+                                            }) => {
     const converter = new Converter({
         tables: true,
         simplifiedAutoLink: true,
         emoji: true,
     })
-    console.log()
     return (
         <div className={styles.contain}>
             <div className={styles.content}>
@@ -57,29 +61,29 @@ export const getServerSideProps: GetServerSideProps = async context => {
         articleId,
         },
     });
-    const {data:{BusinessCardData:business}}= await axios.get(`${LOCALDOMAIN}/api/BusinessCardData`, { //获取作者信息
+    let business = await axios.get(`${LOCALDOMAIN}/api/BusinessCardData`, { //获取作者信息
         params: {
-        articleId,
+            articleId,
         },
     })
-    console.log(currentArticle)
-    const relatedArticles =await getRelatedArticles(articleId)
-
+    business = business.data
+    console.log('business.data', business)
+    const relatedArticles = await getRelatedArticles(articleId)
     return {
         props: {relatedArticles, currentArticle, business}, // 需要拿props包裹
     };
 };
-            //获取相关文章 (建议抽取到api下)
-async function getRelatedArticles(articleId:string|string[]|undefined){   
+
+//获取相关文章 (建议抽取到api下)
+async function getRelatedArticles(articleId: string | string[] | undefined) {
     const {data} = await axios.get(`${SERVERDOMAIN}/api/article-type-tabs?populate=*`);
     const articles = await axios.get(`${SERVERDOMAIN}/api/articles?populate=*`)
-    const tab:string = articles.data.data.filter((item:any)=>{
-        return item.id==articleId  //articleId 
+    const tab: string = articles.data.data.filter((item: any) => {
+        return item.id == articleId  //articleId
     })[0].attributes.article_type_tabs.data[0].attributes.title
-    const article =data.data.filter((item:any)=>{
-        return tab==item.attributes.title
+    return data.data.filter((item: any) => {
+        return tab == item.attributes.title
     })[0].attributes.articles.data
-
-    return article
 }
+
 export default ArticleDetail
