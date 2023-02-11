@@ -4,9 +4,9 @@ import Image from "next/image"
 import Styles from "../timeline_entrylist/timeline_entrylist.module.scss"
 import axios from "axios"
 
-function Advertisement({ data, article_tab,handlerLoading }: any): JSX.Element {
+function Advertisement({ articleInitial,handlerLoading,article_tab }: any): JSX.Element {
   const [dislike, setDislike] = useState([0])
-  const [articles, setArticles] = useState(data)
+  const [articles,setArticles]=useState(articleInitial)
   const [page, setPage] = useState(5)
   const handlerScroll = throttle(async () => {
     if (
@@ -14,9 +14,19 @@ function Advertisement({ data, article_tab,handlerLoading }: any): JSX.Element {
       document.body.scrollHeight 
     ) {
       handlerLoading(true)
-      const advertisement = await axios.get(
+      let advertisement 
+      if(article_tab==1)
+      {advertisement= await axios.get(
         `http://101.42.229.5:1337/api/articles?pagination[page]=${page}&pagination[pageSize]=5&populate=*`
-      );
+      );}
+      if(article_tab==2)
+      {advertisement= await axios.get(
+        `http://101.42.229.5:1337/api/articles?sort[0]=updatedAt:desc&pagination[page]=${page}&pagination[pageSize]=5&populate=*`
+      );}
+      if(article_tab==3)
+      {advertisement= await axios.get(
+        `http://101.42.229.5:1337/api/articles?sort[0]=view_count:desc&pagination[page]=${page}&pagination[pageSize]=5&populate=*`
+      );}
       for (let i = 0; i < advertisement.data.data.length; i++) {
         advertisement.data.data[i].attributes.date = getDiffTime(
           advertisement.data.data[i].attributes.updatedAt
@@ -27,6 +37,8 @@ function Advertisement({ data, article_tab,handlerLoading }: any): JSX.Element {
       handlerLoading(false)
     }
   }, 250);
+  useEffect(()=>{setArticles(articleInitial)},[articleInitial])
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       document.addEventListener("scroll", handlerScroll);
@@ -36,29 +48,6 @@ function Advertisement({ data, article_tab,handlerLoading }: any): JSX.Element {
     }
   });
 
-  if (article_tab == 1) {
-    articles.sort((a, b) => {
-      return a.id - b.id
-    })
-  }
-  if (article_tab == 2) {
-    articles.sort(function (a, b) {
-      if (a.attributes.updatedAt > b.attributes.updatedAt) {
-        return -1
-      } else {
-        return 1
-      }
-    })
-  }
-  if (article_tab == 3) {
-    articles.sort((a, b) => {
-      if (a.attributes.view_count > b.attributes.view_count) {
-        return -1
-      } else {
-        return 1
-      }
-    })
-  }
   return (
     <div>
       {articles.map((post: any) => (
