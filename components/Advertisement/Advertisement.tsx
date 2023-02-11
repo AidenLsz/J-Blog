@@ -29,6 +29,7 @@ const Advertisement: NextPage<AdvertisementProps> = ({ AdvertisementData }) => {
   }
 
   const downloadData = filterDownload(AdvertisementData)
+  console.log(downloadData)
 
   return (
     <aside className={style["advertisement-container"]}>
