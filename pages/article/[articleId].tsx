@@ -1,5 +1,5 @@
 import { NextPage, GetServerSideProps } from 'next'
-import { LOCALDOMAIN, SERVERDOMAIN } from 'utils'
+import { LOCALDOMAIN,SERVERDOMAIN } from 'utils'
 import Image from 'next/image'
 import { Converter } from 'showdown'
 import styles from './Article.module.scss'
@@ -20,7 +20,7 @@ const ArticleDetail: NextPage<dataProps> = ({ currentArticle: { title, image, ar
         simplifiedAutoLink: true,
         emoji: true,
     })
-    console.log(article_detail.data.attributes.description)
+    console.log()
     return (
         <div className={styles.contain}>
             <div className={styles.content}>
@@ -62,6 +62,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
         articleId,
         },
     })
+    console.log(currentArticle)
     const relatedArticles =await getRelatedArticles(articleId)
 
     return {
@@ -69,9 +70,9 @@ export const getServerSideProps: GetServerSideProps = async context => {
     };
 };
             //获取相关文章 (建议抽取到api下)
-async function getRelatedArticles(articleId:string|string[]|undefined){
-    const {data} = await axios.get(`http://101.42.229.5:1337/api/article-type-tabs?populate=*`);
-    const articles = await axios.get(`http://101.42.229.5:1337/api/articles?populate=*`)
+async function getRelatedArticles(articleId:string|string[]|undefined){   
+    const {data} = await axios.get(`${SERVERDOMAIN}/api/article-type-tabs?populate=*`);
+    const articles = await axios.get(`${SERVERDOMAIN}/api/articles?populate=*`)
     const tab:string = articles.data.data.filter((item:any)=>{
         return item.id==articleId  //articleId 
     })[0].attributes.article_type_tabs.data[0].attributes.title
