@@ -45,7 +45,11 @@ function Advertisement({ articleInitial,handlerLoading,article_tab }: any): JSX.
       }
     }
   })
-
+  const goDetail = async(postId)=>{
+    const data = axios.get(`http://101.42.229.5:1337/api/articles/${postId}/?populate=*`)
+    const id = (await data).data.data.attributes.article_detail.data.id
+    router.push(`/article/${id}`)
+  }
   return (
     <div>
       {articles.map((post: any) => (
@@ -54,7 +58,9 @@ function Advertisement({ articleInitial,handlerLoading,article_tab }: any): JSX.
           className={`${
             dislike.indexOf(post.id) == -1 ? Styles.item : Styles.none
           }`}
-          onClick={() => router.push(`/article/${post.id}`)}
+          onClick={() => {
+           goDetail(post.id)
+          }}
         >
           <div className={Styles.advertisement}>
             <div className={`${Styles.meta_container}`}>
