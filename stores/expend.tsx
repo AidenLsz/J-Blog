@@ -2,7 +2,9 @@ import React, { useState, useEffect, createContext } from "react"
 
 interface IExtendContextProps {
   isExtend: Boolean
+  active: Number
   setExtend: (isExtend: Boolean) => void
+  setActive: (active: Number) => void
 }
 
 interface IProps {
@@ -15,12 +17,15 @@ export const ExtendContext = createContext<IExtendContextProps>(
 
 export const ExtendContextProvider = ({ children }: IProps): JSX.Element => {
   const [isExtend, setExtend] = useState<Boolean>(false)
+  const [active, setActive] = useState<Number>(1)
 
   return (
     <ExtendContext.Provider
       value={{
         isExtend,
-        setExtend
+        setExtend,
+        active,
+        setActive
       }}
     >
       {children}

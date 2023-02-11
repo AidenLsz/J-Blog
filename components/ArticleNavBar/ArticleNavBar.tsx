@@ -3,7 +3,7 @@ import { useContext, useState } from "react"
 import style from "./ArticleNavBar.module.scss"
 import ArticleNavBarItem from "./ArticleNavBarItem"
 
-const ArticleNavBar = () => {
+const ArticleNavBar = ({ isCard }) => {
   let { isExtend, setExtend } = useContext(ExtendContext)
   const navList = [
     { id: 1, title: "后端" },
@@ -25,13 +25,12 @@ const ArticleNavBar = () => {
   let [newNavList, setNewNavList] = useState(filterNavList)
 
   function showRawData() {
-    console.log("还原数据")
     if (!isExtend) {
       setExtend(true)
       setNewNavList(navList)
     }
   }
-  if (isExtend) {
+  if (isExtend || isCard) {
     return (
       <div className={style["nav-list"]}>
         {navList.map((navitem) => (
@@ -39,12 +38,9 @@ const ArticleNavBar = () => {
             key={navitem.id}
             navItemData={navitem}
             extend={showRawData}
+            isCard={isCard}
           >
-            {navitem.title === "展开" ? (
-              <span className={style["triangle"]}>{navitem.title}</span>
-            ) : (
-              navitem.title
-            )}
+            {navitem.title}
           </ArticleNavBarItem>
         ))}
       </div>
@@ -57,6 +53,7 @@ const ArticleNavBar = () => {
           key={navitem.id}
           navItemData={navitem}
           extend={showRawData}
+          isCard={isCard}
         >
           {navitem.title === "展开" ? (
             <span className={style["triangle"]}>{navitem.title}</span>
