@@ -12,15 +12,18 @@
   list-style: none;
   background-color: var(--primary-background-color);
   font-size: 16px;
+
   &.is-fixed {
     position: fixed;
     top: 10px;
   }
+
   &.fixed {
     position: fixed;
     top: 15px;
     width: 300px;
   }
+
   &-title {
     @include detail-title;
   }

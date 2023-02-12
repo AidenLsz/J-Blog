@@ -1,13 +1,15 @@
-.nav-list{
+.nav-list {
   display: flex;
 }
-.triangle{
+
+.triangle {
   padding-right: 2rem;
   position: relative;
-  &::after{
+
+  &::after {
     position: absolute;
     right: 8px;
-    top:40%;
+    top: 40%;
     content: "";
     height: 5px;
     width: 0;
