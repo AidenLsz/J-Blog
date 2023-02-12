@@ -1,11 +1,16 @@
 import { NextPage, GetServerSideProps } from 'next'
-import { LOCALDOMAIN,SERVERDOMAIN } from 'utils'
+import React, { useEffect, useRef, useState } from 'react'
+import Link from 'next/link'
+import { LOCALDOMAIN, SERVERDOMAIN } from 'utils'
 import Image from 'next/image'
 import { Converter } from 'showdown'
-import styles from './Article.module.scss'
 import axios from 'axios';
-import MarkNav from 'markdown-navbar';
 import 'markdown-navbar/dist/navbar.css';
+import styles from './Article.module.scss'
+import MarkdownIt from 'markdown-it'
+import hightLight from 'highlight.js'
+import 'highlight.js/styles/atom-one-dark.css'
+import markdownItAnchor from 'markdown-it-anchor'
 import RelatedArticles, { article } from '@/components/RelatedArticles/RelatedArticles';
 import BusinessCard, { BusinessCardData } from '@/components/BusinessCard/BusinessCard'
 import { IArticleProps } from '../api/ArticleInfo'
@@ -14,17 +19,79 @@ interface dataProps {
     relatedArticles: article[],
     business: BusinessCardData
 }
-
-const ArticleDetail: NextPage<dataProps> = ({
-                                                currentArticle: {title, image, article_detail, createdAt, description},
-                                                relatedArticles,
-                                                business
-                                            }) => {
+const ArticleDetail: NextPage<dataProps> = ({ currentArticle: { title, image, article_detail, createdAt, description }, relatedArticles, business }) => {
+    let headLength = 0
     const converter = new Converter({
         tables: true,
         simplifiedAutoLink: true,
         emoji: true,
     })
+    const md = new MarkdownIt({
+        html: true,
+        linkify: true,
+        typographer: true,
+        highlight: (str, lang) => {
+            if (lang && hightLight.getLanguage(lang)) {
+            try {
+                return hightLight.highlight(str, { language: lang }).value
+            } catch (__) {}
+            }
+
+            return ''
+        }
+        }).use(markdownItAnchor, {
+        level: [1, 2, 3],
+        slugify: () => 'head-' + headLength++
+    })
+    const article_content = md.render(article_detail ? article_detail.data.attributes.description : '')
+    const catalogRef = useRef<HTMLDivElement>(null)
+    const contentRef = useRef<HTMLDivElement>(null)
+    const Head = useRef<HTMLHeadingElement[]>([])
+    const [activeHeadIndex, setActiveHeadIndex] = useState(0)
+
+    const CatalogItems = () => {
+        let left = 0
+        return Head.current.map((item, index, arr) => {
+            if (item.tagName != arr[index - 1]?.tagName) {
+                left = item.tagName > arr[index - 1]?.tagName ? left + 12 : 0
+            }
+            const className = 'navlink' + (activeHeadIndex == index ? ' is-active' : '')
+
+            return (
+                <li className='navitem' key={item.id}>
+                <div style={{ left }}>
+                    <Link className={className} href={'#' + item.id}>
+                    {item.innerText}
+                    </Link>
+                </div>
+                </li>
+            )
+        })
+    }
+
+    useEffect(() => {
+        Head.current.splice(0, Head.current.length)
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((item) => {
+              if (item.isIntersecting) {
+                const index = Head.current.findIndex((head) => head.id == item.target.id)
+                setActiveHeadIndex(index)
+              }
+            })
+          },
+          { rootMargin: '0px 0px -96% 0px' }
+        )
+        for (let i = 0; i < headLength; i++) {
+          const key = 'head-' + i
+          const heading = contentRef.current?.children.namedItem(key)
+          if (heading) {
+            Head.current.push(heading as HTMLHeadingElement)
+            observer.observe(heading)
+          }
+        }
+      }, [headLength])
+    
     return (
         <div className={styles.contain}>
             <div className={styles.content}>
@@ -33,24 +100,30 @@ const ArticleDetail: NextPage<dataProps> = ({
                     作者：{article_detail.data.attributes.AuthorName} | 创建时间: {createdAt}
                 </div>
                 {/* <div className={styles.description}>{description}</div> */}
-                {image.data && <Image src={SERVERDOMAIN + image.data[0].attributes.url} alt='文章封面' width={700} height={400} className={styles.article_img} />}
-                <article dangerouslySetInnerHTML={{ __html: converter.makeHtml(article_detail.data.attributes.description) }} className={styles['markdown-body']} />
+                {image.data && <Image src={SERVERDOMAIN + image.data[0].attributes.url} alt='文章封面' width={700} height={400} />}
+                <div ref={contentRef} dangerouslySetInnerHTML={{ __html: article_content }} className={styles['markdown-body']} />
             </div>
             <div className={styles.sideCard}>
                 <BusinessCard BusinessCardData={business} />
                 <RelatedArticles article={relatedArticles} />
-                <div className={styles.article_menu}>
-                <div className={styles.navTitle}>文章目录</div>
+                <div style={{backgroundColor:'white',paddingTop:'10px'}}>
+                {/* <div className={styles.navTitle}>目录</div>
                     <MarkNav
-                        className={styles.article_menu}
+                        className={styles.articleMenu}
                         source={article_detail.data.attributes.description}
                         headingTopOffset={0}
                         ordered={false}
-                    />
+                    /> */}
+                <div ref={catalogRef} className='navcatalog'>
+                    <div className={styles.navTitle}>目录</div>
+                    <ul className='navcatalog-list'>
+                        {CatalogItems()}
+                    </ul>
                 </div>
             </div>
-            </div>
-            )
+        </div>
+        </div>
+        )
 }
 
 
