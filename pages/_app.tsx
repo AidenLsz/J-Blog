@@ -46,7 +46,7 @@ const MyApp = (Props: AppProps & INavBarProps): JSX.Element => {
 MyApp.getInitialProps = async (context: AppContext): Promise<AppProps> => {
   const pageProps = await App.getInitialProps(context)
   // const data = await axios.get('http://localhost:3000/api/NavData')
-  const res = await axios.get(`${SERVERDOMAIN}/api/top-tabs`)
+  const res = await axios.get(`${SERVERDOMAIN}/api/top-tabs?populate=*`)
 
   return Object.assign({}, pageProps, res.data)
 }
