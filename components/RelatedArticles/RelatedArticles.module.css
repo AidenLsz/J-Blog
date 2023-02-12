@@ -4,7 +4,7 @@
     box-shadow: none;
     border-radius: 4px;
     margin-bottom: 1.5rem;
-    background-color: #ffff;
+    background-color: var(--primary-background-color);
 }
 .block_list{
     padding: 0.667rem 0 1.333rem;
@@ -31,9 +31,9 @@
     line-height: 25px;
     font-size: 1.15rem;
     font-weight: 400;
-    color: #252933;
+    color: var(--secondary-text-color);
     
 }
 .item:hover .entry_title{
-    color: var(--active-hover-color);
+    color: var(--link-color);
 }
