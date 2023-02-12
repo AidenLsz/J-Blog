@@ -90,14 +90,7 @@ const NavBar: NextPage<INavBarProps> = ({ NavData, IsFixed }) => {
                   setMobileNav(!MobileNav)
                 }}
               >
-                <span
-                  onClick={(e) => {
-                    router.push("/")
-                    e.stopPropagation()
-                  }}
-                >
-                  首页
-                </span>
+                <span>首页</span>
                 <svg
                   width="12"
                   height="12"
@@ -116,11 +109,13 @@ const NavBar: NextPage<INavBarProps> = ({ NavData, IsFixed }) => {
                   MobileNav ? styles.show : ""
                 }`}
               >
-                {NavData.map((item:INavBarItemProps) => {
+                {NavData.map((item: INavBarItemProps) => {
                   return (
                     <li
                       key={item.id}
-                      className={`${styles.nav_item} ${!item.attributes.imgurl?.data?styles.link_item:''} ${
+                      className={`${styles.nav_item} ${
+                        !item.attributes.imgurl?.data ? styles.link_item : ""
+                      } ${
                         pathname === item.attributes.url ? styles.active : ""
                       } ${
                         item.attributes.title === "插件"
@@ -128,13 +123,16 @@ const NavBar: NextPage<INavBarProps> = ({ NavData, IsFixed }) => {
                           : ""
                       }`}
                     >
-                      <a href={item.attributes.url}
-                      className={item.attributes.imgurl?.data ? styles.activity : ""}
+                      <a
+                        href={item.attributes.url}
+                        className={
+                          item.attributes.imgurl?.data ? styles.activity : ""
+                        }
                       >
                         {item.attributes.title}
                         {item.attributes.imgurl?.data && (
                           <Image
-                          src={`${SERVERDOMAIN}${item.attributes.imgurl.data.attributes.url}`}
+                            src={`${SERVERDOMAIN}${item.attributes.imgurl.data.attributes.url}`}
                             alt={item.attributes.imgurl.data.attributes.name}
                             width={115}
                             height={40}
@@ -149,7 +147,6 @@ const NavBar: NextPage<INavBarProps> = ({ NavData, IsFixed }) => {
                     </li>
                   )
                 })}
-                
               </ul>
             </li>
             <ul className={styles.right_side_nav}>

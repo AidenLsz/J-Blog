@@ -1,5 +1,8 @@
 .timeline_entrylist{
-    margin-right:1rem;
+    // margin-right:1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     border-radius: 2px;
     padding: 0.2rem;
     width: 700px;
@@ -7,6 +10,9 @@
     background-color: var(--primary-background-color);
 }
 
+.advertisement_wrap{
+    width: 100%;
+}
 .advertisement:hover {
     background: var(--secondary-background-color);
 }

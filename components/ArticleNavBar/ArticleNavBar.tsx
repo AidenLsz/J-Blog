@@ -4,6 +4,7 @@ import { useContext, useState } from "react"
 import style from "./ArticleNavBar.module.scss"
 import ArticleNavBarItem from "./ArticleNavBarItem"
 
+
 export interface IArticleNavBarProp {
   navList: smallNavBarList
   isCard: boolean
@@ -32,6 +33,7 @@ export interface smallNavBarList {
 }
 
 const ArticleNavBar: NextPage<IArticleNavBarProp> = ({ navList, isCard }) => {
+
   let { isExtend, setExtend } = useContext(ExtendContext)
   let navListData = navList.attributes.labels.data
   let bigNavId = navList.id
@@ -50,13 +52,14 @@ const ArticleNavBar: NextPage<IArticleNavBarProp> = ({ navList, isCard }) => {
   let newNavList = filterNavList
 
   function showRawData() {
+    console.log("还原数据")
     if (!isExtend) {
       setExtend(true)
       // setNewNavList(navListData)
       newNavList = navListData
     }
   }
-  if (isExtend || isCard) {
+  if (isExtend) {
     return (
       <div className={style["nav-list"]}>
         {navListData.map((navitem) => (
@@ -68,6 +71,7 @@ const ArticleNavBar: NextPage<IArticleNavBarProp> = ({ navList, isCard }) => {
             bigNavId={bigNavId}
           >
             {navitem.attributes.title}
+
           </ArticleNavBarItem>
         ))}
       </div>
@@ -81,7 +85,6 @@ const ArticleNavBar: NextPage<IArticleNavBarProp> = ({ navList, isCard }) => {
           navItemData={navitem}
           bigNavId={bigNavId}
           extend={showRawData}
-          isCard={isCard}
         >
           {navitem.attributes.title === "展开" ? (
             <span className={style["triangle"]}>

@@ -1,12 +1,15 @@
 import { NextPage } from "next"
+
 import { useContext, useEffect, useRef, useState } from "react"
 import style from "./ArticleNavBarItem.module.scss"
 import { ExtendContext } from "@/stores/expend"
 import { useRouter } from "next/router"
 
+
 const ArticleNavBarItem: NextPage<any> = ({
   navItemData,
   children,
+
   extend,
   isCard,
   bigNavId
@@ -49,7 +52,9 @@ const ArticleNavBarItem: NextPage<any> = ({
           navItemData.id === active ? style["activelink"] : ""
         }`}
         onClick={addActive.bind(this, navItemData.id)}
+
         ref={linkRef}
+        id={navItemData.id}
       >
         {children}
       </div>

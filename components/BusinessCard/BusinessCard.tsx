@@ -1,10 +1,10 @@
 import classes from "./BusinessCard.module.scss"
 import Link from "next/link"
-import {FC, Fragment} from "react";
+import {FC, Fragment, useState} from "react";
 import Image from "next/image";
-import {useState} from "react";
-import { LOCALDOMAIN,SERVERDOMAIN} from 'utils'
+
 export interface BusinessCardData {
+
     avatar_large: string,
     user_id: number,
     user_name: string,
@@ -13,14 +13,16 @@ export interface BusinessCardData {
     company: string,
     got_digg_count: number,
     got_view_count: number
+
 }
 
 export interface BusinessCardProps {
-    BusinessCardData: BusinessCardData[]
+    BusinessCardData: BusinessCardData
 }
 
 
 const BusinessCard: FC<BusinessCardProps> = (props) => {
+    // console.log(props.BusinessCardData.got_digg_count)
     const [Follow, setFollow] = useState(false);
     // 数字添加千分符
     const numFormat = (num: number): string => {
@@ -58,29 +60,25 @@ const BusinessCard: FC<BusinessCardProps> = (props) => {
             }, 500)
             setFollow(false)
         }
-
-        console.log(Follow)
     }
+    // console.log((props.BusinessCardData.avatar_large).replace(/\\u002F/g,"/"))
     return (
         <Fragment>
             <div className={classes.businessCard}>
                 <Link href={"/"} className={classes.userItem}>
-                    <Image className={classes.img} src={`${SERVERDOMAIN}${props.BusinessCardData[0].avatar_large}`} width={48} height={48}
-                         alt="avatar"/>
+                    <img className={classes.img} src={(props.BusinessCardData.avatar_large).replace(/\\u002F/g,"/")}
+                           width={48} height={48}
+                           alt="avatar"/>
                     <div className={classes.infoBox}>
-                            <span className={classes.userName}>{props.BusinessCardData[0].user_name}
-                                <Image alt={`level${props.BusinessCardData[0].level}`} width={35} height={16}
-                                       src={`/images/lv-${props.BusinessCardData[0].level}.png`}/></span>
+                            <span className={classes.userName}>{props.BusinessCardData.user_name}
+                                <Image alt={`level${props.BusinessCardData.level}`} width={35} height={16}
+                                       src={`/images/lv-${props.BusinessCardData.level}.png`}/></span>
                         <div
-                            className={classes.position}>{props.BusinessCardData[0].job_title} @ {props.BusinessCardData[0].company}</div>
+                            className={classes.position}>{props.BusinessCardData.job_title} @ {props.BusinessCardData.company}</div>
                     </div>
                 </Link>
                 <div className={classes.operateBtn}>
                     <button id={"followBtn"} className={classes.unfollow} onClick={changeFollow}>
-                        {/*<img id={"loadingImg"} className={[classes.displayBlock, classes.img].join(' ')}*/}
-                        {/*     src="/images/loading-light.png"*/}
-                        {/*     height={15} width={15}*/}
-                        {/*     alt="loading"/>*/}
                         关注
                     </button>
                     <button className={classes.message}>私信</button>
@@ -100,7 +98,7 @@ const BusinessCard: FC<BusinessCardProps> = (props) => {
                             </g>
                         </svg>
                         <div
-                            className={classes.content}>获得点赞 <span> {numFormat(props.BusinessCardData[0].got_digg_count)}</span>
+                            className={classes.content}>获得点赞 <span> {numFormat(props.BusinessCardData.got_digg_count)}</span>
                         </div>
                     </li>
                     <li className={classes.statItem}>
@@ -115,7 +113,7 @@ const BusinessCard: FC<BusinessCardProps> = (props) => {
                             </g>
                         </svg>
                         <div
-                            className={classes.content}>文章被阅读 <span> {numFormat(props.BusinessCardData[0].got_view_count)}</span>
+                            className={classes.content}>文章被阅读 <span> {numFormat(props.BusinessCardData.got_view_count)}</span>
                         </div>
                     </li>
                 </ul>

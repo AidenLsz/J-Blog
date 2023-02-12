@@ -1,5 +1,13 @@
 .advertisement-container{
+  position: relative;
   width: 240px;
+  transition: transform .3s ease-in-out;
+  &.fixed{
+    position: fixed;
+    top: 20px;
+    width: 240px;
+    transform: translateY(50px);
+  }
   .advertisement{
     position: relative;
     height: 200px;

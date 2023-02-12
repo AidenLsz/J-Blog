@@ -1,10 +1,12 @@
 import Styles from "./navbar.module.css"
+
 import React, { FC, useContext, useEffect, useRef, useState } from "react"
 import ArticleNavBar, { smallNavBarList } from "../ArticleNavBar/ArticleNavBar"
 import { debounce, SERVERDOMAIN, throttle } from "@/utils"
 import { useRouter } from "next/router"
 import axios from "axios"
 import { ExtendContext } from "@/stores/expend"
+
 
 export interface navBarViewData {
   id: number
@@ -22,6 +24,7 @@ export interface navBarViewProps {
 }
 
 export const Navbarview: FC<navBarViewProps> = ({ dataNav, IsFixed }) => {
+
   let cardRef: any = useRef()
   let smallNavBarRef: any = useRef()
   let [activeIndex, setActiveIndex] = useState(1)
@@ -91,6 +94,7 @@ export const Navbarview: FC<navBarViewProps> = ({ dataNav, IsFixed }) => {
     smallNavBarRef.current.style.display = "block"
   }
 
+
   return (
     <div>
       <div className={`${Styles.view_nav} ${IsFixed ? Styles.fixed : ""}`}>
@@ -98,12 +102,14 @@ export const Navbarview: FC<navBarViewProps> = ({ dataNav, IsFixed }) => {
           {Object.values(dataNav).map((post: navBarViewData) => (
             <div
               key={post.id}
+
               className={`{
          ${Styles.nav_item} 
-         ${post.id == activeIndex ? Styles.active : null}
+         ${post.id == 1 ? Styles.active : null}
         }`}
               onClick={maopao}
             >
+
               <div
                 className={Styles.category_popover_box}
                 onClick={addActive.bind(this, post.id)}
@@ -146,6 +152,7 @@ export const Navbarview: FC<navBarViewProps> = ({ dataNav, IsFixed }) => {
           <ArticleNavBar navList={navList2} isCard={false}></ArticleNavBar>
         )}
       </div>
+
     </div>
   )
 }
