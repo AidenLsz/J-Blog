@@ -1,6 +1,16 @@
-.advertisement-container{
+.advertisement-container {
+  position: relative;
   width: 240px;
-  .advertisement{
+  transition: transform .3s ease-in-out;
+
+  &.fixed {
+    position: fixed;
+    top: 20px;
+    width: 240px;
+    transform: translateY(50px);
+  }
+
+  .advertisement {
     position: relative;
     height: 200px;
     background-color: var(--background-color);
@@ -11,11 +21,13 @@
     line-height: 1.29;
     color: var(--primary-text-color);
     overflow: hidden;
-    img{
+
+    img {
       width: 100%;
       height: 100%;
     }
-    .advertisement-label{
+
+    .advertisement-label {
       position: absolute;
       right: 10px;
       bottom: 10px;
@@ -28,18 +40,20 @@
       transform-origin: right bottom;
       -webkit-transform-origin: right bottom;
       color: var(--primary-color);
-      background-color: rgba(0,0,0,.2);
+      background-color: rgba(0, 0, 0, .2);
       border: 1px solid var(--border-color);
       border-radius: 6px;
       padding-left: 15px;
       padding-right: 15px;
       font-weight: 300;
-      span{
+
+      span {
         vertical-align: top;
       }
     }
   }
-  .download-container{
+
+  .download-container {
     width: 216px;
     display: flex;
     align-items: center;
@@ -51,21 +65,25 @@
     font-size: 1.16rem;
     line-height: 1.29;
     color: var(--primary-text-color);
-    .download-logo{
+
+    .download-logo {
       margin-right: 16px;
       width: 4.167rem;
       height: 4.167rem;
     }
-    .download-info{
+
+    .download-info {
       display: flex;
       flex-direction: column;
-      .download-headline{
+
+      .download-headline {
         font-weight: 500;
         font-size: 14px;
         line-height: 22px;
         color: var(--primary-text-color);
       }
-      .download-desc{
+
+      .download-desc {
         margin-top: .5rem;
         font-size: 12px;
         line-height: 20px;
