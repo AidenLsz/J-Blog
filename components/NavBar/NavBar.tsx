@@ -76,7 +76,7 @@ const NavBar: NextPage<INavBarProps> = ({ NavData, IsFixed }) => {
       className={`${styles.main_header} ${!IsFixed ? styles.visible : ""}`}
     >
       <div className={styles.container}>
-        <a href="https://juejin.cn/" className={styles.logo_wrap}>
+        <a href="http://localhost:3000" className={styles.logo_wrap}>
           <div className={styles.logo}></div>
           <div className={styles.title}>稀土掘金</div>
         </a>
