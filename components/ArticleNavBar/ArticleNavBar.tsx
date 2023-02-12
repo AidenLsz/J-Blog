@@ -1,46 +1,71 @@
 import { ExtendContext } from "@/stores/expend"
+import { NextPage } from "next"
 import { useContext, useState } from "react"
 import style from "./ArticleNavBar.module.scss"
 import ArticleNavBarItem from "./ArticleNavBarItem"
 
-const ArticleNavBar = ({ isCard }) => {
+export interface IArticleNavBarProp {
+  navList: smallNavBarList
+  isCard: boolean
+}
+export interface smallNavBarLItemProp {
+  id: number
+  attributes: {
+    title: string
+    createdAt: string
+    updatedAt: string
+    publishedAt: string
+  }
+}
+export interface smallNavBarList {
+  id: number
+  attributes: {
+    title: string
+    createdAt: string
+    updatedAt: string
+    publishedAt: string
+    labels: {
+      data: Array<smallNavBarLItemProp>
+    }
+    articles: Object
+  }
+}
+
+const ArticleNavBar: NextPage<IArticleNavBarProp> = ({ navList, isCard }) => {
   let { isExtend, setExtend } = useContext(ExtendContext)
-  const navList = [
-    { id: 1, title: "后端" },
-    { id: 2, title: "前端" },
-    { id: 3, title: "后端" },
-    { id: 4, title: "前端" },
-    { id: 5, title: "后端" },
-    { id: 6, title: "前端" },
-    { id: 7, title: "后端" },
-    { id: 8, title: "前端" },
-    { id: 9, title: "后端" },
-    { id: 10, title: "前端" },
-    { id: 11, title: "后端" },
-    { id: 12, title: "前端" }
-  ]
-  const filterNavList = navList.filter((item) => item.id <= 10)
-  filterNavList.push({ id: 11, title: "展开" })
+  let navListData = navList.attributes.labels.data
+  let bigNavId = navList.id
+  const filterNavList = navListData.filter((item, index) => item.id <= 10)
+  filterNavList.push({
+    id: 11,
+    attributes: {
+      title: "展开",
+      createdAt: "1",
+      updatedAt: "",
+      publishedAt: ""
+    }
+  })
 
   let [newNavList, setNewNavList] = useState(filterNavList)
 
   function showRawData() {
     if (!isExtend) {
       setExtend(true)
-      setNewNavList(navList)
+      setNewNavList(navListData)
     }
   }
   if (isExtend || isCard) {
     return (
       <div className={style["nav-list"]}>
-        {navList.map((navitem) => (
+        {navListData.map((navitem) => (
           <ArticleNavBarItem
             key={navitem.id}
             navItemData={navitem}
             extend={showRawData}
             isCard={isCard}
+            bigNavId={bigNavId}
           >
-            {navitem.title}
+            {navitem.attributes.title}
           </ArticleNavBarItem>
         ))}
       </div>
@@ -52,13 +77,16 @@ const ArticleNavBar = ({ isCard }) => {
         <ArticleNavBarItem
           key={navitem.id}
           navItemData={navitem}
+          bigNavId={bigNavId}
           extend={showRawData}
           isCard={isCard}
         >
-          {navitem.title === "展开" ? (
-            <span className={style["triangle"]}>{navitem.title}</span>
+          {navitem.attributes.title === "展开" ? (
+            <span className={style["triangle"]}>
+              {navitem.attributes.title}
+            </span>
           ) : (
-            navitem.title
+            navitem.attributes.title
           )}
         </ArticleNavBarItem>
       ))}

@@ -25,6 +25,7 @@ import { AdvertisementProps } from "@/components/Advertisement/Advertisement"
 import { UserListProp } from "@/components/UserList/UserList"
 import { navBarViewProps } from "@/components/navbar-view"
 import { ExtendContextProvider } from "@/stores/expend"
+import { useRouter } from "next/router"
 
 export interface IProps {
   data_nav: navBarViewData
@@ -49,6 +50,9 @@ const Home: NextPage<IProps> = ({
   IsFixed,
   handlerLoading
 }) => {
+  let route = useRouter()
+  console.log(route.query)
+
   return (
     <MainContent>
       <>

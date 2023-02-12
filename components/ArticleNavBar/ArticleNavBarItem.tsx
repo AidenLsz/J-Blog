@@ -1,23 +1,25 @@
 import { NextPage } from "next"
-import Link from "next/link"
 import { useContext, useEffect, useRef, useState } from "react"
 import style from "./ArticleNavBarItem.module.scss"
 import { ExtendContext } from "@/stores/expend"
+import { useRouter } from "next/router"
 
 const ArticleNavBarItem: NextPage<any> = ({
   navItemData,
   children,
   extend,
-  isCard
+  isCard,
+  bigNavId
 }) => {
   let navItemRef: any = useRef()
   let linkRef: any = useRef()
-  let { setExtend, active, setActive } = useContext(ExtendContext)
+  let { active, setActive } = useContext(ExtendContext)
+  let route = useRouter()
 
   function addActive(id) {
     // 当是card点击的时候，要将其展开
     if (isCard) {
-      setExtend(true)
+      // setExtend(true)
       // 点击完成，将卡片隐藏
       navItemRef.current.parentNode.parentNode.style.display = "none"
     }
@@ -28,14 +30,12 @@ const ArticleNavBarItem: NextPage<any> = ({
     }
     // 添加点击效果
     setActive(id)
+    // 路由跳转
+    // route.push({
+    //   pathname: "/[bigid]/[smallid]",
+    //   query: { bigid: bigNavId, smallid: id }
+    // })
   }
-
-  // useEffect(() => {
-  //   if (navItemData.id === 1) {
-  //     navItemRef.current.style.backgroundColor = "#007fff"
-  //     linkRef.current.style.color = "#fff"
-  //   }
-  // }, [])
 
   return (
     <div
@@ -44,8 +44,7 @@ const ArticleNavBarItem: NextPage<any> = ({
       }`}
       ref={navItemRef}
     >
-      <Link
-        href="javascript:;"
+      <div
         className={`${style["link"]} ${
           navItemData.id === active ? style["activelink"] : ""
         }`}
@@ -53,7 +52,7 @@ const ArticleNavBarItem: NextPage<any> = ({
         ref={linkRef}
       >
         {children}
-      </Link>
+      </div>
     </div>
   )
 }
