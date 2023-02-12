@@ -17,9 +17,11 @@ import axios from "axios"
 import {LOCALDOMAIN} from "@/utils"
 import {BusinessCardProps} from "@/components/BusinessCard/BusinessCard"
 
-import {AdvertisementProps} from "@/components/Advertisement/Advertisement"
-import {UserListProp} from "@/components/UserList/UserList"
-import {navBarViewProps} from "@/components/navbar-view";
+import { AdvertisementProps } from "@/components/Advertisement/Advertisement"
+import { UserListProp } from "@/components/UserList/UserList"
+import { navBarViewProps } from "@/components/navbar-view"
+import { ExtendContextProvider } from "@/stores/expend"
+
 
 export interface IProps {
     data_nav: navBarViewData,
@@ -34,40 +36,42 @@ export interface IProps {
 }
 
 const Home: NextPage<IProps> = ({
-                                    data_nav,
-                                    data_tab,
-                                    AdvertisementData,
-                                    UserListData,
-                                    data_article,
-                                    data_latest,
-                                    data_hot,
-                                    IsFixed,
-                                    handlerLoading
-                                }) => {
-    return (
-        <MainContent>
-            <>
-                <Navbarview dataNav={data_nav} IsFixed={IsFixed}/>
-                <TimeLineContent>
-                    <Timeline_entrylist
-                        dataTab={data_tab}
-                        data_article={data_article}
-                        data_latest={data_latest}
-                        data_hot={data_hot}
-                        handlerLoading={handlerLoading}
-                    />
-                    {/*<Sidebar>*/}
-                    {/*</Sidebar>*/}
-                    <aside className={style["aside"]}>
-                        <Advertisement
-                            AdvertisementData={AdvertisementData}
-                        />
-                        <UserList UserListData={UserListData}/>
-                    </aside>
-                </TimeLineContent>
-            </>
-        </MainContent>
-    )
+
+  data_nav,
+  data_tab,
+  AdvertisementData,
+  UserListData,
+  data_article,
+  data_latest,
+  data_hot,
+  IsFixed,
+  handlerLoading
+}) => {
+  return (
+    <MainContent>
+      <>
+        <ExtendContextProvider>
+          <Navbarview dataNav={data_nav} IsFixed={IsFixed} />
+        </ExtendContextProvider>
+        <TimeLineContent>
+          <Timeline_entrylist
+            dataTab={data_tab}
+            data_article={data_article}
+            data_latest={data_latest}
+            data_hot={data_hot}
+            handlerLoading={handlerLoading}
+          />
+          {/*<Sidebar>*/}
+          {/*</Sidebar>*/}
+          <aside className={style["aside"]}>
+            <Advertisement AdvertisementData={AdvertisementData} />
+            <UserList UserListData={UserListData} />
+          </aside>
+        </TimeLineContent>
+      </>
+    </MainContent>
+  )
+
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
