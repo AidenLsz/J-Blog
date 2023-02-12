@@ -55,7 +55,7 @@ export const Navbarview: FC<navBarViewProps> = ({ dataNav, IsFixed }) => {
     }
 
     setActiveIndex(id)
-    route.push({ pathname: "/[bigid]", query: { bigid: id } })
+    // route.push({ pathname: "/[bigid]", query: { bigid: id } })
     // 修改ArticleNavBar数据
   }
   // 显示card类型的元素
@@ -140,10 +140,10 @@ export const Navbarview: FC<navBarViewProps> = ({ dataNav, IsFixed }) => {
         </div>
       </div>
       <div ref={smallNavBarRef} className={Styles.smallNavBar}>
-        {!navList ? (
+        {!navList2 ? (
           <span></span>
         ) : (
-          <ArticleNavBar navList={navList} isCard={false}></ArticleNavBar>
+          <ArticleNavBar navList={navList2} isCard={false}></ArticleNavBar>
         )}
       </div>
     </div>

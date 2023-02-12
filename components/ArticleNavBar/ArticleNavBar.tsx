@@ -35,9 +35,9 @@ const ArticleNavBar: NextPage<IArticleNavBarProp> = ({ navList, isCard }) => {
   let { isExtend, setExtend } = useContext(ExtendContext)
   let navListData = navList.attributes.labels.data
   let bigNavId = navList.id
-  const filterNavList = navListData.filter((item, index) => item.id <= 10)
+  const filterNavList = navListData.slice(0, 9)
   filterNavList.push({
-    id: 11,
+    id: 3333,
     attributes: {
       title: "展开",
       createdAt: "1",
@@ -46,12 +46,14 @@ const ArticleNavBar: NextPage<IArticleNavBarProp> = ({ navList, isCard }) => {
     }
   })
 
-  let [newNavList, setNewNavList] = useState(filterNavList)
+  // let [newNavList, setNewNavList] = useState(filterNavList)
+  let newNavList = filterNavList
 
   function showRawData() {
     if (!isExtend) {
       setExtend(true)
-      setNewNavList(navListData)
+      // setNewNavList(navListData)
+      newNavList = navListData
     }
   }
   if (isExtend || isCard) {
