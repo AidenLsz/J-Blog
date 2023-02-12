@@ -51,7 +51,7 @@ function Advertisement({ articleInitial,handlerLoading,article_tab }: any): JSX.
     router.push(`/article/${id}`)
   }
   return (
-    <div>
+    <div className={Styles.advertisement_wrap}>
       {articles.map((post: any) => (
         <li
           key={post.id}

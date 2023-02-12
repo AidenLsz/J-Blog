@@ -2,6 +2,7 @@ import style from "./Advertisement.module.scss"
 import Image from "next/image"
 import { NextPage } from "next"
 import { SERVERDOMAIN } from "@/utils"
+import { useEffect, useRef, useState } from "react"
 
 export interface AdvertisementItemProps {
   id: number
@@ -31,8 +32,26 @@ const Advertisement: NextPage<AdvertisementProps> = ({ AdvertisementData }) => {
   const downloadData = filterDownload(AdvertisementData)
   console.log(downloadData)
 
+  const [adIsFixed, setAdIsFixed] = useState(false)
+  const handleScroll = () => {
+    const scrollTop = document.documentElement.scrollTop
+   
+    
+    if (scrollTop>800) {
+      setAdIsFixed(true)
+    }else{
+    setAdIsFixed(false)
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll)
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+    }
+  })
   return (
-    <aside className={style["advertisement-container"]}>
+    <aside className={`${style["advertisement-container"] } ${adIsFixed?style["fixed"]:style[""] }`}>
       <div className={style["advertisement"]}>
         <Image
           src={`${SERVERDOMAIN}${AdvertisementData[0].attributes.image.data.attributes.url}`}
