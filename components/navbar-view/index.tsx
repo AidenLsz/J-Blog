@@ -55,7 +55,7 @@ export const Navbarview: FC<navBarViewProps> = ({ dataNav, IsFixed }) => {
     }
 
     setActiveIndex(id)
-    // route.push({ pathname: "/[bigid]", query: { bigid: id } })
+    route.push({ pathname: "/[bigid]", query: { bigid: id } })
     // 修改ArticleNavBar数据
   }
   // 显示card类型的元素

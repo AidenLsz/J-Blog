@@ -31,10 +31,10 @@ const ArticleNavBarItem: NextPage<any> = ({
     // 添加点击效果
     setActive(id)
     // 路由跳转
-    // route.push({
-    //   pathname: "/[bigid]/[smallid]",
-    //   query: { bigid: bigNavId, smallid: id }
-    // })
+    route.push({
+      pathname: "/[bigid]/[smallid]",
+      query: { bigid: bigNavId, smallid: id }
+    })
   }
 
   return (
