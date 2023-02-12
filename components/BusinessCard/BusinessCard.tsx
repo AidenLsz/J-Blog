@@ -22,6 +22,7 @@ export interface BusinessCardProps {
 
 
 const BusinessCard: FC<BusinessCardProps> = (props) => {
+    // console.log(props.BusinessCardData.got_digg_count)
     const [Follow, setFollow] = useState(false);
     // 数字添加千分符
     const numFormat = (num: number): string => {
@@ -60,13 +61,14 @@ const BusinessCard: FC<BusinessCardProps> = (props) => {
             setFollow(false)
         }
     }
+    // console.log((props.BusinessCardData.avatar_large).replace(/\\u002F/g,"/"))
     return (
         <Fragment>
             <div className={classes.businessCard}>
                 <Link href={"/"} className={classes.userItem}>
-                    <img className={classes.img} src={(props.BusinessCardData.avatar_large).replace(/\\u002F/g, "/")}
-                         width={48} height={48}
-                         alt="avatar"/>
+                    <img className={classes.img} src={(props.BusinessCardData.avatar_large).replace(/\\u002F/g,"/")}
+                           width={48} height={48}
+                           alt="avatar"/>
                     <div className={classes.infoBox}>
                             <span className={classes.userName}>{props.BusinessCardData.user_name}
                                 <Image alt={`level${props.BusinessCardData.level}`} width={35} height={16}
