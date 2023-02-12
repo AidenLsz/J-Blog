@@ -25,9 +25,10 @@
     @content;
   }
 }
+
 //ipad-pc
 @mixin media-ipad-pc {
-  @media screen and (min-width: 900px) and (max-width: 1190px){
+  @media screen and (min-width: 900px) and (max-width: 1190px) {
     @content;
   }
 }

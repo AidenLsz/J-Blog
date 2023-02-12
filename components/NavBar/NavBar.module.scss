@@ -13,6 +13,7 @@
   height: 5rem;
   z-index: 250;
   transition: transform 0.2s;
+
   &.visible {
     transform: translate3d(0, 0, 0);
   }
@@ -143,25 +144,23 @@
                 }
 
 
-               
+                .tablead {
+                  position: absolute;
+                  top: 5px;
+                  left: 16px;
+                  z-index: 9;
+                  white-space: nowrap;
+                  padding: 2px 7px;
+                  background-color: #ee502f;
+                  border-radius: 50px;
+                  text-align: center;
+                  font-weight: 500;
+                  font-size: 16px;
+                  transform: scale(.5);
+                  line-height: 18px;
+                  color: #fff;
+                }
 
-                  .tablead {
-                    position: absolute;
-                    top: 5px;
-                    left: 16px;
-                    z-index: 9;
-                    white-space: nowrap;
-                    padding: 2px 7px;
-                    background-color: #ee502f;
-                    border-radius: 50px;
-                    text-align: center;
-                    font-weight: 500;
-                    font-size: 16px;
-                    transform: scale(.5);
-                    line-height: 18px;
-                    color: #fff;
-                  }
-              
               }
 
               .broswer_extension {
@@ -242,6 +241,7 @@
               box-sizing: border-box;
               box-shadow: 0 0 24px rgb(81 87 103 / 16%);
               border-radius: 6px;
+
               &.notification_dropdown_menu {
                 display: none;
                 position: absolute;
@@ -285,7 +285,8 @@
                 }
               }
             }
-            &.notification_item:hover{
+
+            &.notification_item:hover {
               .menu_list.notification_dropdown_menu {
                 display: block;
               }
@@ -420,9 +421,11 @@
                       border: 1px solid #ebebeb;
                       background-color: #fff;
                       display: none;
+
                       &.active {
                         display: block;
                       }
+
                       .search_annual {
                         padding: .5rem 1rem;
                         display: flex;
@@ -755,7 +758,7 @@
   }
 }
 
-@include media-ipad{
+@include media-ipad {
   .container {
     width: 97%;
     margin: 0 2rem !important;
@@ -833,24 +836,27 @@
   .logo {
     margin-left: 0
   }
-  .title{
+  .title {
     display: none
   }
   .search_add {
-    .search_add_ul{
-      width: 23rem!important;
-      .nav_item.search{
-        .search_form{
+    .search_add_ul {
+      width: 23rem !important;
+
+      .nav_item.search {
+        .search_form {
           width: 18rem;
           z-index: 2;
-          &.active{
+
+          &.active {
             width: 34rem;
           }
         }
 
       }
-      .nav_item.add{
-        display: none!important;
+
+      .nav_item.add {
+        display: none !important;
       }
     }
 
@@ -860,7 +866,7 @@
   }
 }
 
-@include media-mobile{
+@include media-mobile {
   .container {
     width: 97%;
     margin: 0 1rem !important;
@@ -890,6 +896,7 @@
           justify-content: center;
           padding: 0;
           width: 4.66rem;
+
           span {
             margin-right: .333rem
           }
@@ -937,24 +944,27 @@
   .logo {
     margin-left: 0
   }
-  .title{
+  .title {
     display: none
   }
   .search_add {
-    .search_add_ul{
-      width: 11rem!important;
-      .nav_item.search{
-        .search_form{
-          width: 12rem!important;
+    .search_add_ul {
+      width: 11rem !important;
+
+      .nav_item.search {
+        .search_form {
+          width: 12rem !important;
           z-index: 2;
-          &.active{
-            width: 20rem!important;
+
+          &.active {
+            width: 20rem !important;
           }
         }
 
       }
-      .nav_item.add{
-        display: none!important;
+
+      .nav_item.add {
+        display: none !important;
       }
     }
 

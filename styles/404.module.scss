@@ -4,18 +4,21 @@
   background: var(--main-background-color);
   padding: 100px 0;
   text-align: center;
+
   .error_title {
     font-size: 50px;
     font-weight: 700;
     color: var(--primary-text-color);
     margin-bottom: 20px;
   }
+
   .error_text {
     font-size: 20px;
     font-weight: 400;
     color: var(--primary-text-color);
     margin-bottom: 20px;
   }
+
   .error_btn_group {
     .error_btn {
       display: inline-block;
@@ -29,6 +32,7 @@
       text-decoration: none;
     }
   }
+
   .tips {
     font-size: 14px;
     font-weight: 400;
