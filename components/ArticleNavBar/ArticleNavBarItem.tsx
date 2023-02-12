@@ -12,7 +12,6 @@ const ArticleNavBarItem: NextPage<any> = ({
     let linkRef: any = useRef()
 
     function addActive() {
-        console.dir(linkRef.current)
 
         if (linkRef.current.id === "11" && linkRef.current.innerText === "展开") {
             extend()
