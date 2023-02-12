@@ -1,0 +1,63 @@
+@mixin detail-title {
+    font-size: 16px;
+    font-weight: 500;
+    padding: 16px 0;
+    margin: 0 20px;
+    color: var(--color);
+    border-bottom: 1px solid #e4e6eb;
+  }
+  
+      .navcatalog {
+        list-style: none;
+        background-color: var(--background);
+        font-size: 16px;
+        &.is-fixed {
+          position: fixed;
+          top: 10px;
+        }
+  
+        &-title {
+          @include detail-title;
+        }
+  
+        &-list {
+          list-style: none;
+          padding-bottom: 12px;
+          max-height: 460px;
+          overflow: auto;
+  
+          .navitem {
+            padding: 8px 8px 0 8px;
+  
+            .navlink {
+              display: block;
+              text-decoration: none;
+              color: var(--text-color);
+              padding: 8px 12px;
+  
+              &:hover {
+                background-color: var(--hover-list);
+              }
+  
+              &.is-active {
+                position: relative;
+                color: var(--normal);
+                
+                &::before {
+                  content: '';
+                  position: absolute;
+                  top: 4px;
+                  left: 0;
+                  margin-top: 7px;
+                  width: 4px;
+                  height: 16px;
+                  background: var(--normal);
+                  border-radius: 0 4px 4px 0;
+                }
+              }
+            }
+          }
+        }
+      }
+
+  

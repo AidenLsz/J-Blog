@@ -1,3 +1,6 @@
+@use './nav.scss';
+
+
 * {
   //初始化边距
   padding: 0;
@@ -24,6 +27,10 @@ html[data-theme="dark"] {
   --theme-icon: url("../public/theme_dark.svg");
   --border-color: #494949;
   --shadow-color: #737373;
+  --normal: #ffffff;
+  --hover-list: hsla(0, 0%, 84.7%, 0.1);
+  --hover: #bfbfbf;
+  --color: #ffffff;
 }
 
 html[data-theme="light"] {
@@ -40,6 +47,10 @@ html[data-theme="light"] {
   --theme-icon: url("../public/theme_light.svg");
   --border-color: #f5f5f5;
   --shadow-color: #262a2b;
+  --hover-list:  #f7f8fa;
+  --normal: #1e80ff;
+  --hover: #1171ee;
+  --color: #333;
 }
 
 body,
