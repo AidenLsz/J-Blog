@@ -50,8 +50,7 @@ const Home: NextPage<IProps> = ({
   IsFixed,
   handlerLoading
 }) => {
-  let route = useRouter()
-  console.log(route.query)
+
 
   return (
     <MainContent>
@@ -79,16 +78,20 @@ const Home: NextPage<IProps> = ({
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const bigNav = context.query.slug?.toLocaleString().split(",")[0]
+  const smallNav = context.query.slug?.toLocaleString().split(",")[1]
+
   const tab = axios.get(`${SERVERDOMAIN}/api/article-tabs`)
   const navbarview = axios.get(`${SERVERDOMAIN}/api/article-type-tabs`)
-  const article = axios.get(`${SERVERDOMAIN}/api/articles?populate=*`)
+  const article = axios.get(`${SERVERDOMAIN}/api/articles?populate=*&filters[article_type_tabs][id]=${bigNav}&filters[tags][id]=${smallNav}`)
   const article_latest = axios.get(
-    `${SERVERDOMAIN}/api/articles?sort[0]=updatedAt:desc&populate=*`
+    `${SERVERDOMAIN}/api/articles?filters[article_type_tabs][id]=${bigNav}&filters[tags][id]=${smallNav}&sort[0]=updatedAt:desc&populate=*`
   )
   const article_hot = axios.get(
-    `${SERVERDOMAIN}/api/articles?sort[0]=view_count:desc&populate=*`
+    `${SERVERDOMAIN}/api/articles?filters[article_type_tabs][id]=${bigNav}&filters[tags][id]=${smallNav}&sort[0]=view_count:desc&populate=*`
   )
+
   const res_tab = (await tab).data.data
   const res_nav = (await navbarview).data.data
   const res_article = (await article).data.data
