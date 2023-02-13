@@ -1,13 +1,12 @@
-.timeline_entrylist {
-  // margin-right:1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border-radius: 2px;
-  padding: 0.2rem;
-  width: 700px;
-  color: var(--primary-text-color);
-  background-color: var(--primary-background-color);
+.timeline_entrylist{
+    // margin-right:1rem;
+    display: flex;
+    flex-direction: column;
+    border-radius: 2px;
+    padding: 0.2rem;
+    width: 700px;
+    color: var(--primary-text-color);
+    background-color: var(--primary-background-color);
 }
 
 .advertisement_wrap {
