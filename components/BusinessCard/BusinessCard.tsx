@@ -73,7 +73,7 @@ const BusinessCard: FC<BusinessCardProps> = (props) => {
                                 <Image alt={`level${props.BusinessCardData.level}`} width={35} height={16}
                                        src={`/images/lv-${props.BusinessCardData.level}.png`}/></span>
                         <div
-                            className={classes.position}>{props.BusinessCardData.job_title} @ {props.BusinessCardData.company}</div>
+                            className={classes.position}>{props.BusinessCardData.job_title}{props.BusinessCardData.company ? ' @ ' + props.BusinessCardData.company : ''}</div>
                     </div>
                 </Link>
                 <div className={classes.operateBtn}>

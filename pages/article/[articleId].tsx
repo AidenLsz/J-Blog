@@ -203,16 +203,16 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 //获取相关文章 (建议抽取到api下)
 async function getRelatedArticles(articleId: string | string[] | undefined) {
-    const {data} = await axios.get(
-        `${SERVERDOMAIN}/api/article-type-tabs?populate=*`
-    )
-    const articles = await axios.get(`${SERVERDOMAIN}/api/articles?populate=*`)
-    const tab: string = articles.data.data.filter((item: any) => {
-        return item.id == articleId //articleId
-    })[0].attributes.article_type_tabs.data[0].attributes.title
-    return data.data.filter((item: any) => {
-        return tab == item.attributes.title
-    })[0].attributes.articles.data
+  const article = await axios.get(`${SERVERDOMAIN}/api/articles/${articleId}?fields=title&populate=article_type_tabs`)
+
+  const tab: string = (await article).data.data.attributes.article_type_tabs.data[0].attributes.title
+
+  const  {data}  = await axios.get(
+    `${SERVERDOMAIN}/api/articles?filters[article_type_tabs][title]=${tab}`
+  )
+
+  return data.data
 }
+
 
 export default ArticleDetail
