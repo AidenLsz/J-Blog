@@ -5,7 +5,7 @@ import Styles from "../timeline_entrylist/timeline_entrylist.module.scss"
 import axios from "axios"
 import router from "next/router"
 
-function Advertisement({ articleInitial,handlerLoading,article_tab }: any): JSX.Element {
+function Article({ articleInitial,handlerLoading,article_tab }: any): JSX.Element {
   const [dislike, setDislike] = useState([0])
   const [articles,setArticles]=useState(articleInitial)
   const [page, setPage] = useState(5)
@@ -148,4 +148,4 @@ function Advertisement({ articleInitial,handlerLoading,article_tab }: any): JSX.
   )
 }
 
-export default Advertisement
+export default Article

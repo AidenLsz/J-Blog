@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import Styles from "../timeline_entrylist/timeline_entrylist.module.scss"
-import Advertisement from "./advertisement"
+import Article from "./article"
 import { FC } from "react"
 import { navBarViewData } from "@/components/navbar-view"
 
@@ -48,7 +48,7 @@ export const Timeline_entrylist: FC<timeLineEntryListProps> = ({
           </ul>
         </nav>
       </header>
-      <Advertisement
+      <Article
         articleInitial={articles}
         handlerLoading={handlerLoading}
         article_tab={active}
