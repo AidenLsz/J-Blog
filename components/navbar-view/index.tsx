@@ -44,6 +44,10 @@ export const Navbarview: FC<navBarViewProps> = ({ dataNav, IsFixed }) => {
     if (type === "click") {
       setNavList2(res.data)
       console.log(navList2)
+      route.push({
+        pathname: "/[bigid]",
+        query: { bigid: id}
+      })
     } else if (type === "mouse") {
       setNavList(res.data)
     }
