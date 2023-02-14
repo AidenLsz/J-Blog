@@ -8,6 +8,7 @@ import { Themes } from "@/constants/enum"
 import { usePathname } from "next/navigation"
 import { useRouter } from "next/router"
 import { SERVERDOMAIN } from "@/utils"
+import Link from "next/link"
 export interface INavBarItemProps {
   id: string
   attributes: {
@@ -76,10 +77,10 @@ const NavBar: NextPage<INavBarProps> = ({ NavData, IsFixed }) => {
       className={`${styles.main_header} ${!IsFixed ? styles.visible : ""}`}
     >
       <div className={styles.container}>
-        <a href="https://juejin.cn/" className={styles.logo_wrap}>
+        <Link href="/" className={styles.logo_wrap}>
           <div className={styles.logo}></div>
           <div className={styles.title}>稀土掘金</div>
-        </a>
+        </Link>
         <nav role="navigation" className={styles.main_nav}>
           <ul className={styles.nav_list}>
             <li className={styles.main_nav_list}>
