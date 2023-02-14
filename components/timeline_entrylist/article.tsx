@@ -11,7 +11,10 @@ function Article({ articleInitial,handlerLoading,article_tab }: any): JSX.Elemen
   const [page, setPage] = useState(5)
   const router=useRouter()
   const bignav=router.query.Bignav
-  const smallnav=router.query.SmallNav
+  let smallnav=router.query.SmallNav
+  if(smallnav!=undefined){
+    smallnav=smallnav.replace('_','')
+  }
   const handlerScroll = throttle(async () => {
     if (window.scrollY + window.innerHeight >= document.body.scrollHeight) {
       handlerLoading(true)

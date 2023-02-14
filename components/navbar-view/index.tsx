@@ -30,6 +30,11 @@ export const Navbarview: FC<navBarViewProps> = ({dataNav, IsFixed}) => {
     let [mouseEnterIndex, setMouseEnterIndex] = useState(0)
     let route = useRouter()
     let {setActive} = useContext(ExtendContext)
+    const bigNav=route.query.Bignav
+    let smallnav=route.query.SmallNav
+    if(smallnav!=undefined){
+      smallnav=smallnav.replace('_','')
+    }
 
     let isKeep = true
 
@@ -91,6 +96,9 @@ export const Navbarview: FC<navBarViewProps> = ({dataNav, IsFixed}) => {
 
     // 通过事件冒泡的机制方式来获取到小标签的点击
     function maopao() {
+        if(mouseEnterIndex==1){
+            route.push('/')
+        }
         // 将此大标签设为active
         setActiveIndex(mouseEnterIndex)
 
@@ -107,9 +115,11 @@ export const Navbarview: FC<navBarViewProps> = ({dataNav, IsFixed}) => {
                             key={post.id}
                             className={`{
          ${Styles.nav_item} 
-         ${post.id == activeIndex ? Styles.active : null}
-        }`}
+         ${(post.id == Number(bigNav)||bigNav==undefined&&post.id==1) ? Styles.active : null}
+        }`
+    }
                             onClick={maopao}
+
                         >
                             <div
                                 className={Styles.category_popover_box}

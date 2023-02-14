@@ -32,8 +32,7 @@ const TagPage: NextPage<IProps> = ({
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const bigNav = context.query.Bignav
-    const smallNav = context.query.SmallNav
-
+    const smallNav = context.query.SmallNav.replace('_','')
     const tab = axios.get(`${SERVERDOMAIN}/api/article-tabs`)
     const navbarview = axios.get(`${SERVERDOMAIN}/api/article-type-tabs`)
     const article = axios.get(`${SERVERDOMAIN}/api/articles?populate=*&filters[article_type_tabs][id]=${bigNav}&filters[tags][id]=${smallNav}`)

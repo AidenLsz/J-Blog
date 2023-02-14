@@ -91,6 +91,7 @@ const ArticleNavBar: NextPage<IArticleNavBarProp> = ({navList, isCard}) => {
                             bigNavId={bigNavId}
                         >
                             {navitem.attributes.title}
+                            
                         </ArticleNavBarItem>
                     ))}
             </div>
