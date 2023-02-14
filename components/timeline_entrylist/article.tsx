@@ -3,27 +3,32 @@ import { useEffect, useState } from "react"
 import Image from "next/image"
 import Styles from "../timeline_entrylist/timeline_entrylist.module.scss"
 import axios from "axios"
-import router from "next/router"
+import router, { useRouter } from "next/router"
 
 function Article({ articleInitial,handlerLoading,article_tab }: any): JSX.Element {
   const [dislike, setDislike] = useState([0])
   const [articles,setArticles]=useState(articleInitial)
   const [page, setPage] = useState(5)
+  const router=useRouter()
+  const bignav=router.query.Bignav
+  const smallnav=router.query.SmallNav
   const handlerScroll = throttle(async () => {
     if (window.scrollY + window.innerHeight >= document.body.scrollHeight) {
       handlerLoading(true)
       let advertisement 
       if(article_tab==1)
-      {advertisement= await axios.get(
-        `http://101.42.229.5:1337/api/articles?pagination[page]=${page}&pagination[pageSize]=5&populate=*`
+      { 
+        console.log(`http://101.42.229.5:1337/api/articles?${`${`${bignav}==undefined?"":"filters[article_type_tabs][id]=${bignav}"`}`}&${`${smallnav}==undefined?"":filters[tags][id]=${smallnav}`}&pagination[page]=${page}&pagination[pageSize]=5&populate=*`)
+        advertisement= await axios.get(
+        `http://101.42.229.5:1337/api/articles?${`${bignav}==undefined?"":filters[article_type_tabs][id]=${bignav}`}&${`${smallnav}==undefined?"":filters[tags][id]=${smallnav}`}&pagination[page]=${page}&pagination[pageSize]=5&populate=*`
       );}
       if(article_tab==2)
       {advertisement= await axios.get(
-        `http://101.42.229.5:1337/api/articles?sort[0]=updatedAt:desc&pagination[page]=${page}&pagination[pageSize]=5&populate=*`
+        `http://101.42.229.5:1337/api/articles?${`${bignav}==undefined?"":filters[article_type_tabs][id]=${bignav}`}&${`${smallnav}==undefined?"":filters[tags][id]=${smallnav}`}&sort[0]=updatedAt:desc&pagination[page]=${page}&pagination[pageSize]=5&populate=*`
       );}
       if(article_tab==3)
       {advertisement= await axios.get(
-        `http://101.42.229.5:1337/api/articles?sort[0]=view_count:desc&pagination[page]=${page}&pagination[pageSize]=5&populate=*`
+        `http://101.42.229.5:1337/api/articles?${`${bignav}==undefined?"":filters[article_type_tabs][id]=${bignav}`}&${`${smallnav}==undefined?"":filters[tags][id]=${smallnav}`}&sort[0]=view_count:desc&pagination[page]=${page}&pagination[pageSize]=5&populate=*`
       );}
       for (let i = 0; i < advertisement.data.data.length; i++) {
         advertisement.data.data[i].attributes.date = getDiffTime(
