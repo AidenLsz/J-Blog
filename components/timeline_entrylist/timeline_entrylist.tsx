@@ -1,19 +1,19 @@
-import React, { useState } from "react"
+import React, {useState} from "react"
 import Styles from "../timeline_entrylist/timeline_entrylist.module.scss"
-import Advertisement from "./advertisement"
+import Article from "./article"
 import { FC } from "react"
 import { navBarViewData } from "@/components/navbar-view"
 
 export interface timeLineEntryListProps {
-  dataTab: navBarViewData
-  data_article: navBarViewData
-  data_latest: navBarViewData
-  data_hot: navBarViewData
-  handlerLoading: () => void
+    dataTab: navBarViewData
+    data_article: navBarViewData
+    data_latest: navBarViewData
+    data_hot: navBarViewData
+    handlerLoading: () => void
 }
 
 export interface DataAd extends navBarViewData {
-  brief: string
+    brief: string
 }
 
 export const Timeline_entrylist: FC<timeLineEntryListProps> = ({
@@ -48,14 +48,11 @@ export const Timeline_entrylist: FC<timeLineEntryListProps> = ({
           </ul>
         </nav>
       </header>
-      <Advertisement
+      <Article
         articleInitial={articles}
         handlerLoading={handlerLoading}
         article_tab={active}
       />
-      {/*<ArticleList>*/}
-
-      {/*</ArticleList>*/}
     </div>
   )
 }

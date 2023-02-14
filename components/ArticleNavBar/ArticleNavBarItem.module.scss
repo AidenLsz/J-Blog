@@ -1,4 +1,4 @@
-.nav-item{
+.nav-item {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,11 +10,13 @@
   padding: 0 .83rem;
   margin-right: 1rem;
   margin-bottom: 1rem;
-  &:hover{
-   .link{
-    color:#007fff
-   }
+
+  &:hover {
+    .link {
+      color: #007fff
+    }
   }
+
   .link {
     text-decoration: none;
     cursor: pointer;
