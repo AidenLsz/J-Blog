@@ -121,7 +121,7 @@ const NavBar: NextPage<INavBarProps> = ({NavData, IsFixed}) => {
                     <li
                       key={item.id}
                       className={`${styles.nav_item} ${!item.attributes.imgurl?.data?styles.link_item:''} ${
-                        pathname === item.attributes.url ? styles.active : ""
+                        item.id =='1' ? styles.active : ""
                       } ${
                         item.attributes.title === "插件"
                           ? styles.broswer_extension

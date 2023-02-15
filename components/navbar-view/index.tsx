@@ -5,7 +5,7 @@ import { SERVERDOMAIN, throttle} from "@/utils"
 import {useRouter} from "next/router"
 import axios from "axios"
 import {ExtendContext} from "@/stores/expend";
-
+import Head from "next/head"
 export interface navBarViewData {
     id: number
     attributes: {
@@ -31,10 +31,11 @@ export const Navbarview: FC<navBarViewProps> = ({dataNav, IsFixed}) => {
     let route = useRouter()
     let {setActive} = useContext(ExtendContext)
     const bigNav=route.query.Bignav
-    let smallnav=route.query.SmallNav
+    let smallnav=route.query.SmallNav as string //类型断言
     if(smallnav!=undefined){
       smallnav=smallnav.replace('_','')
     }
+    const [currentTitle,setcurrentTitle]=useState('J-Blog')
 
     let isKeep = true
 
@@ -47,6 +48,7 @@ export const Navbarview: FC<navBarViewProps> = ({dataNav, IsFixed}) => {
         if (type === "click") {
             setNavList2(res.data)
             console.log(navList2)
+            setcurrentTitle(res.data.attributes.title)
         } else if (type === "mouse") {
             setNavList(res.data)
         }
@@ -63,6 +65,7 @@ export const Navbarview: FC<navBarViewProps> = ({dataNav, IsFixed}) => {
 
         setActiveIndex(id)
         setActive(0)
+        
         // route.replace({pathname: "/[bigid]", query: {bigid: id}})
         // 修改ArticleNavBar数据
     }
@@ -106,7 +109,12 @@ export const Navbarview: FC<navBarViewProps> = ({dataNav, IsFixed}) => {
         smallNavBarRef.current.style.display = "block"
     }
 
+
     return (
+        <>
+       <Head>
+      <title>{currentTitle+'- 掘金'}</title>
+    </Head>
         <div>
             <div className={`${Styles.view_nav} ${IsFixed ? Styles.fixed : ""}`}>
                 <div className={Styles.nav_list}>
@@ -164,6 +172,8 @@ export const Navbarview: FC<navBarViewProps> = ({dataNav, IsFixed}) => {
                 )}
             </div>
         </div>
+        </>
+        
     )
 }
 
