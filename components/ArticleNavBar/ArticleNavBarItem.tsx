@@ -16,6 +16,7 @@ const ArticleNavBarItem: NextPage<any> = ({
   let { active, setActive } = useContext(ExtendContext)
   let route = useRouter()
 
+  let bigNav = route.query.Bignav
   let smallNav = route.query.SmallNav
 
   function addActive(id) {
@@ -32,8 +33,9 @@ const ArticleNavBarItem: NextPage<any> = ({
     }
     // 添加点击效果
     setActive(id)
+
     // 路由跳转
-    if (id == 0||id=="_0") {
+    if (id == 0 || id == "_0") {
       console.log("111111111111")
       route.push({
         pathname: "/[bigid]",
@@ -47,21 +49,23 @@ const ArticleNavBarItem: NextPage<any> = ({
     }
   }
   useEffect(() => {
+    console.log()
+
     if (smallNav) {
-      setActive(smallNav)
+      setActive(`${bigNav}${smallNav}`)
     }
   }, [smallNav])
 
   return (
     <div
       className={`${isCard ? style["nav-item-card"] : style["nav-item"]} ${
-        navItemData.id == active ? style["active"] : ""
+        navItemData.activeId == active ? style["active"] : ""
       }`}
       ref={navItemRef}
     >
       <div
         className={`${style["link"]} ${
-          navItemData.id == active ? style["activelink"] : ""
+          navItemData.activeId == active ? style["activelink"] : ""
         }`}
         onClick={addActive.bind(this, navItemData.id)}
         ref={linkRef}

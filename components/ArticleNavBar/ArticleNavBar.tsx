@@ -37,9 +37,14 @@ const ArticleNavBar: NextPage<IArticleNavBarProp> = ({ navList, isCard }) => {
   let { isExtend, setExtend, setActive } = useContext(ExtendContext)
 
   let navListData = navList.attributes.labels.data as smallNavBarLItemProp[]
+  let bigNavId = navList.id
 
   let tagList = navListData.map((v) => {
-    return { id: "_" + v.id, attributes: v.attributes }
+    return {
+      id: "_" + v.id,
+      attributes: v.attributes,
+      activeId: `${bigNavId}_${v.id}`
+    }
   })
   if (!isCard) {
     tagList.unshift({
@@ -49,19 +54,21 @@ const ArticleNavBar: NextPage<IArticleNavBarProp> = ({ navList, isCard }) => {
         createdAt: "",
         updatedAt: "",
         publishedAt: ""
-      }
+      },
+      activeId: "_0"
     })
   }
-  let bigNavId = navList.id
+
   const filterNavList = navListData.slice(0, 9)
   filterNavList.unshift({
-    id: 0,
+    id: "_0",
     attributes: {
       title: "全部",
       createdAt: "",
       updatedAt: "",
       publishedAt: ""
-    }
+    },
+    activeId: "_0"
   })
   filterNavList.push({
     id: 3333,
