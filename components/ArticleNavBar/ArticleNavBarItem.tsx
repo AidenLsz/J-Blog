@@ -49,6 +49,8 @@ const ArticleNavBarItem: NextPage<any> = ({
     }
   }
   useEffect(() => {
+    console.log()
+
     if (smallNav) {
       setActive(`${bigNav}${smallNav}`)
     }
