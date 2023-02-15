@@ -37,7 +37,7 @@ export const Navbarview: FC<navBarViewProps> = ({ dataNav, IsFixed }) => {
     smallnav = smallnav.replace("_", "")
   }
 
-  let isKeep = true
+  let isKeep = false
 
   // 获取小标签数据
   async function getSmallNavData(id, type) {
@@ -103,7 +103,7 @@ export const Navbarview: FC<navBarViewProps> = ({ dataNav, IsFixed }) => {
     setActiveIndex(mouseEnterIndex)
 
     // 将下方小标签列表显示
-    smallNavBarRef.current.style.display = "block"
+    //smallNavBarRef.current.style.display = "block"
   }
 
   useEffect(() => {
@@ -127,7 +127,7 @@ export const Navbarview: FC<navBarViewProps> = ({ dataNav, IsFixed }) => {
               key={post.id}
               className={`{
          ${Styles.nav_item} 
-         ${post.id == activeIndex ? Styles.active : null}
+         ${post.id == Number(bigNav)||bigNav==undefined&&post.id==1 ? Styles.active : null}
         }`}
               onClick={maopao}
             >
