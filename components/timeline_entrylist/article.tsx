@@ -23,15 +23,18 @@ function Article({ articleInitial,handlerLoading,article_tab }: any): JSX.Elemen
       { 
         advertisement= await axios.get(
         `http://101.42.229.5:1337/api/articles?${bignav==undefined?"":"filters[article_type_tabs][id]="}${bignav}&${smallnav==undefined?"":"filters[tags][id]="}${smallnav}&pagination[page]=${page}&pagination[pageSize]=5&populate=*`
-          );}
+          );
+        }
       if(article_tab==2)
       {advertisement= await axios.get(
         `http://101.42.229.5:1337/api/articles?${bignav==undefined?"":"filters[article_type_tabs][id]="}${bignav}&${smallnav==undefined?"":"filters[tags][id]="}${smallnav}&sort[0]=updatedAt:desc&pagination[page]=${page}&pagination[pageSize]=5&populate=*`
-      );}
+      );
+    }
       if(article_tab==3)
       {advertisement= await axios.get(
         `http://101.42.229.5:1337/api/articles?${bignav==undefined?"":"filters[article_type_tabs][id]="}${bignav}&${smallnav==undefined?"":"filters[tags][id]="}${smallnav}&sort[0]=view_count:desc&pagination[page]=${page}&pagination[pageSize]=5&populate=*`
-      );}
+      );
+    }
       for (let i = 0; i < advertisement.data.data.length; i++) {
         advertisement.data.data[i].attributes.date = getDiffTime(
           advertisement.data.data[i].attributes.updatedAt
