@@ -37,7 +37,7 @@ export const Navbarview: FC<navBarViewProps> = ({ dataNav, IsFixed }) => {
     smallnav = smallnav.replace("_", "")
   }
 
-  let isKeep = true
+  let isKeep = false
 
   // 获取小标签数据
   async function getSmallNavData(id, type) {
@@ -61,7 +61,7 @@ export const Navbarview: FC<navBarViewProps> = ({ dataNav, IsFixed }) => {
     }
 
     setActiveIndex(id)
-    setActive(0)
+    setActive("_0")
     // route.replace({pathname: "/[bigid]", query: {bigid: id}})
     // 修改ArticleNavBar数据
   }
@@ -102,8 +102,8 @@ export const Navbarview: FC<navBarViewProps> = ({ dataNav, IsFixed }) => {
     // 将此大标签设为active
     setActiveIndex(mouseEnterIndex)
 
-    // 将下方小标签列表显示
-    smallNavBarRef.current.style.display = "block"
+    // // 将下方小标签列表显示
+    // smallNavBarRef.current.style.display = "block"
   }
 
   useEffect(() => {
