@@ -8,7 +8,9 @@ import router, { useRouter } from "next/router"
 function Article({ articleInitial,handlerLoading,article_tab }: any): JSX.Element {
   const [dislike, setDislike] = useState([0])
   const [articles,setArticles]=useState(articleInitial)
-  const [page, setPage] = useState(5)
+  const [page1, setPage1] = useState(5)
+  const [page2, setPage2] = useState(5)
+  const [page3, setPage3] = useState(5)
   const router=useRouter()
   const bignav=router.query.Bignav
   let smallnav=router.query.SmallNav as string
@@ -22,18 +24,21 @@ function Article({ articleInitial,handlerLoading,article_tab }: any): JSX.Elemen
       if(article_tab==1)
       { 
         advertisement= await axios.get(
-        `http://101.42.229.5:1337/api/articles?${bignav==undefined?"":"filters[article_type_tabs][id]="}${bignav}&${smallnav==undefined?"":"filters[tags][id]="}${smallnav}&pagination[page]=${page}&pagination[pageSize]=5&populate=*`
+        `http://101.42.229.5:1337/api/articles?${bignav==undefined?"":"filters[article_type_tabs][id]="}${bignav}&${smallnav==undefined?"":"filters[tags][id]="}${smallnav}&pagination[page]=${page1}&pagination[pageSize]=5&populate=*`
           );
+          setPage1(page1 + 1)
         }
       if(article_tab==2)
       {advertisement= await axios.get(
-        `http://101.42.229.5:1337/api/articles?${bignav==undefined?"":"filters[article_type_tabs][id]="}${bignav}&${smallnav==undefined?"":"filters[tags][id]="}${smallnav}&sort[0]=updatedAt:desc&pagination[page]=${page}&pagination[pageSize]=5&populate=*`
+        `http://101.42.229.5:1337/api/articles?${bignav==undefined?"":"filters[article_type_tabs][id]="}${bignav}&${smallnav==undefined?"":"filters[tags][id]="}${smallnav}&sort[0]=updatedAt:desc&pagination[page]=${page2}&pagination[pageSize]=5&populate=*`
       );
+      setPage2(page2 + 1)
     }
       if(article_tab==3)
       {advertisement= await axios.get(
-        `http://101.42.229.5:1337/api/articles?${bignav==undefined?"":"filters[article_type_tabs][id]="}${bignav}&${smallnav==undefined?"":"filters[tags][id]="}${smallnav}&sort[0]=view_count:desc&pagination[page]=${page}&pagination[pageSize]=5&populate=*`
+        `http://101.42.229.5:1337/api/articles?${bignav==undefined?"":"filters[article_type_tabs][id]="}${bignav}&${smallnav==undefined?"":"filters[tags][id]="}${smallnav}&sort[0]=view_count:desc&pagination[page]=${page3}&pagination[pageSize]=5&populate=*`
       );
+      setPage3(page3 + 1)
     }
       for (let i = 0; i < advertisement.data.data.length; i++) {
         advertisement.data.data[i].attributes.date = getDiffTime(
@@ -41,7 +46,6 @@ function Article({ articleInitial,handlerLoading,article_tab }: any): JSX.Elemen
         )
       }
       setArticles([...articles, ...advertisement.data.data])
-      setPage(page + 1)
       handlerLoading(false)
     }
   }, 250);

@@ -33,7 +33,8 @@ const ArticleNavBarItem: NextPage<any> = ({
     // 添加点击效果
     setActive(id)
     // 路由跳转
-    if (id == 0) {
+    if (id == 0||id=="_0") {
+      console.log("111111111111")
       route.push({
         pathname: "/[bigid]",
         query: { bigid: bigNavId }
