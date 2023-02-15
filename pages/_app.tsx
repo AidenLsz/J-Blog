@@ -18,9 +18,7 @@ interface INavBarProps {
 
 const MyApp = (Props: AppProps & INavBarProps): JSX.Element => {
     const {Component, pageProps, data} = Props
-    if (Component === undefined) {
-        return <Page404/>;
-    }
+
     return (
         <div>
             <Head>

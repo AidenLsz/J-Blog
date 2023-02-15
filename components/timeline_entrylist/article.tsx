@@ -11,7 +11,7 @@ function Article({ articleInitial,handlerLoading,article_tab }: any): JSX.Elemen
   const [page, setPage] = useState(5)
   const router=useRouter()
   const bignav=router.query.Bignav
-  let smallnav=router.query.SmallNav
+  let smallnav=router.query.SmallNav as string
   if(smallnav!=undefined){
     smallnav=smallnav.replace('_','')
   }
@@ -58,7 +58,9 @@ function Article({ articleInitial,handlerLoading,article_tab }: any): JSX.Elemen
   const goDetail = async(postId)=>{
     const data = axios.get(`http://101.42.229.5:1337/api/articles/${postId}/?populate=*`)
     const id = (await data).data.data.attributes.article_detail.data.id
-    router.push(`/article/${id}`)
+    // router.push(`/article/${id}`)
+    //打开新标签页（与掘金一样）
+    window.open(`/article/${id}`)
   }
   return (
     <div>

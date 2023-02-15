@@ -6,6 +6,7 @@ import Home from ".."
 import { IProps } from ".."
 import React from "react"
 
+
 const TagPage: NextPage<IProps> = ({
   data_nav,
   data_tab,
@@ -17,17 +18,23 @@ const TagPage: NextPage<IProps> = ({
   IsFixed,
   handlerLoading
 }) =>{
-  return <Home
-  data_nav={data_nav}
-  data_tab={data_tab}
-  AdvertisementData={AdvertisementData}
-  UserListData={UserListData}
-  data_article={data_article}
-  data_latest={data_latest}
-  data_hot={data_hot}
-  IsFixed={IsFixed}
-  handlerLoading={handlerLoading}
-  ></Home>
+  
+  return (
+  
+    
+    <Home
+    data_nav={data_nav}
+    data_tab={data_tab}
+    AdvertisementData={AdvertisementData}
+    UserListData={UserListData}
+    data_article={data_article}
+    data_latest={data_latest}
+    data_hot={data_hot}
+    IsFixed={IsFixed}
+    handlerLoading={handlerLoading}
+    ></Home>
+  )
+ 
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
