@@ -11,7 +11,10 @@ function Article({ articleInitial,handlerLoading,article_tab }: any): JSX.Elemen
   const [page, setPage] = useState(5)
   const router=useRouter()
   const bignav=router.query.Bignav
-  const smallnav=router.query.SmallNav
+  let smallnav=router.query.SmallNav
+  if(smallnav!=undefined){
+    smallnav=smallnav.replace('_','')
+  }
   const handlerScroll = throttle(async () => {
     if (window.scrollY + window.innerHeight >= document.body.scrollHeight) {
       handlerLoading(true)
@@ -19,15 +22,15 @@ function Article({ articleInitial,handlerLoading,article_tab }: any): JSX.Elemen
       if(article_tab==1)
       { 
         advertisement= await axios.get(
-        `http://101.42.229.5:1337/api/articles?${bignav==undefined?"":"filters[article_type_tabs][id]="}${bignav}&${bignav==undefined?"":"filters[article_type_tabs][id]="}${smallnav}&pagination[page]=${page}&pagination[pageSize]=5&populate=*`
+        `http://101.42.229.5:1337/api/articles?${bignav==undefined?"":"filters[article_type_tabs][id]="}${bignav}&${smallnav==undefined?"":"filters[tags][id]="}${smallnav}&pagination[page]=${page}&pagination[pageSize]=5&populate=*`
           );}
       if(article_tab==2)
       {advertisement= await axios.get(
-        `http://101.42.229.5:1337/api/articles?${bignav==undefined?"":"filters[article_type_tabs][id]="}${bignav}&${bignav==undefined?"":"filters[article_type_tabs][id]="}${smallnav}&sort[0]=updatedAt:desc&pagination[page]=${page}&pagination[pageSize]=5&populate=*`
+        `http://101.42.229.5:1337/api/articles?${bignav==undefined?"":"filters[article_type_tabs][id]="}${bignav}&${smallnav==undefined?"":"filters[tags][id]="}${smallnav}&sort[0]=updatedAt:desc&pagination[page]=${page}&pagination[pageSize]=5&populate=*`
       );}
       if(article_tab==3)
       {advertisement= await axios.get(
-        `http://101.42.229.5:1337/api/articles?${bignav==undefined?"":"filters[article_type_tabs][id]="}${bignav}&${bignav==undefined?"":"filters[article_type_tabs][id]="}${smallnav}&sort[0]=view_count:desc&pagination[page]=${page}&pagination[pageSize]=5&populate=*`
+        `http://101.42.229.5:1337/api/articles?${bignav==undefined?"":"filters[article_type_tabs][id]="}${bignav}&${smallnav==undefined?"":"filters[tags][id]="}${smallnav}&sort[0]=view_count:desc&pagination[page]=${page}&pagination[pageSize]=5&populate=*`
       );}
       for (let i = 0; i < advertisement.data.data.length; i++) {
         advertisement.data.data[i].attributes.date = getDiffTime(
@@ -58,7 +61,7 @@ function Article({ articleInitial,handlerLoading,article_tab }: any): JSX.Elemen
     <div>
       {articles.map((post: any) => (
         <li
-          key={post.id}
+          key={post.attributes.title}
           className={`${
             dislike.indexOf(post.id) == -1 ? Styles.item : Styles.none
           }`}
