@@ -2,8 +2,8 @@ import {NextPage} from "next"
 import {GetServerSideProps} from "next"
 import {SERVERDOMAIN, getDiffTime} from "@/utils"
 import axios from "axios"
-import Home from ".."
-import {IProps} from ".."
+import Home from "../index"
+import {IProps} from "../index"
 import React from "react"
 
 const TagPage: NextPage<IProps> = ({
@@ -32,7 +32,8 @@ const TagPage: NextPage<IProps> = ({
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const bigNav = context.query.Bignav
-    const smallNav = context.query.SmallNav.replace('_','')
+    
+    const smallNav = (context.query.SmallNav as string).replace('_','') //添加类型断言
     const tab = axios.get(`${SERVERDOMAIN}/api/article-tabs`)
     const navbarview = axios.get(`${SERVERDOMAIN}/api/article-type-tabs`)
     const article = axios.get(`${SERVERDOMAIN}/api/articles?populate=*&filters[article_type_tabs][id]=${bigNav}&filters[tags][id]=${smallNav}`)

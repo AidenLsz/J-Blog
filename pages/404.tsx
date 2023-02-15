@@ -2,10 +2,12 @@ import Link from "next/link"
 import {useRouter} from "next/router"
 import React from "react"
 import styles from "../styles/404.module.scss"
-
+import Head from "next/head"
 const Page404 = () => {
     const router = useRouter()
     return (
+        <>
+        <Head>404</Head>
         <div className={styles.error_wrap}>
             <div className={styles.error}>
                 <div className={styles.error_title}>
@@ -30,6 +32,7 @@ const Page404 = () => {
 
             <div className={styles.tips}>更多功能正在开发中</div>
         </div>
+        </>
     )
 }
 

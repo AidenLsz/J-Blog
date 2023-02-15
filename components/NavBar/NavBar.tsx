@@ -2,13 +2,13 @@ import {NextPage} from "next"
 import Head from "next/head"
 import Image from "next/image"
 import styles from "./NavBar.module.scss"
-import React, {useContext, useEffect, useState} from "react"
-import {ThemeContext} from "@/stores/theme"
-import {Themes} from "@/constants/enum"
-import {usePathname} from "next/navigation"
-import {useRouter} from "next/router"
-import {SERVERDOMAIN} from "@/utils"
-
+import React, { useContext, useEffect, useState } from "react"
+import { ThemeContext } from "@/stores/theme"
+import { Themes } from "@/constants/enum"
+import { usePathname } from "next/navigation"
+import { useRouter } from "next/router"
+import { SERVERDOMAIN } from "@/utils"
+import Link from "next/link"
 export interface INavBarItemProps {
     id: string
     attributes: {
@@ -76,10 +76,10 @@ const NavBar: NextPage<INavBarProps> = ({NavData, IsFixed}) => {
       className={`${styles.main_header} ${!IsFixed ? styles.visible : ""}`}
     >
       <div className={styles.container}>
-        <a href="http://localhost:3000" className={styles.logo_wrap}>
+        <Link href="/" className={styles.logo_wrap}>
           <div className={styles.logo}></div>
           <div className={styles.title}>稀土掘金</div>
-        </a>
+        </Link>
         <nav role="navigation" className={styles.main_nav}>
           <ul className={styles.nav_list}>
             <li className={styles.main_nav_list}>
@@ -121,7 +121,7 @@ const NavBar: NextPage<INavBarProps> = ({NavData, IsFixed}) => {
                     <li
                       key={item.id}
                       className={`${styles.nav_item} ${!item.attributes.imgurl?.data?styles.link_item:''} ${
-                        pathname === item.attributes.url ? styles.active : ""
+                        item.id =='1' ? styles.active : ""
                       } ${
                         item.attributes.title === "插件"
                           ? styles.broswer_extension

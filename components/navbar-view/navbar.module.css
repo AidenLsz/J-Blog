@@ -6,7 +6,7 @@
     z-index: 100;
 
     box-shadow: 0 1px 2px 0 rgb(0 0 0 / 5%);
-    transition: all 0.5s ease-in-out;
+    transition: all 0.2s;
 }
 
 .view_nav.fixed {
@@ -28,8 +28,8 @@
     z-index: 999;
     width: 300px;
     padding: 2rem;
-    background-color: #fff;
-    border-radius: 0.2rem;
+    background: var(--primary-background-color);
+    border-radius: 0.3rem;
     box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .15);
     transition: all 0.2s;
 }
@@ -64,7 +64,8 @@
     display: flex;
     flex-shrink: 0;
     font-size: 1.16rem;
-    color: #71777c;
+
+    color:var(--secondary-text-color);
     padding: 0 1rem;
     cursor: pointer;
     transition: none
