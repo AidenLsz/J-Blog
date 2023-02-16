@@ -61,7 +61,7 @@ export const Navbarview: FC<navBarViewProps> = ({ dataNav, IsFixed }) => {
     }
 
     setActiveIndex(id)
-    setActive(0)
+    setActive("_0")
     // route.replace({pathname: "/[bigid]", query: {bigid: id}})
     // 修改ArticleNavBar数据
   }
@@ -127,7 +127,11 @@ export const Navbarview: FC<navBarViewProps> = ({ dataNav, IsFixed }) => {
               key={post.id}
               className={`{
          ${Styles.nav_item} 
-         ${post.id == Number(bigNav)||bigNav==undefined&&post.id==1 ? Styles.active : null}
+         ${
+           post.id == Number(bigNav) || (bigNav == undefined && post.id == 1)
+             ? Styles.active
+             : null
+         }
         }`}
               onClick={maopao}
             >
