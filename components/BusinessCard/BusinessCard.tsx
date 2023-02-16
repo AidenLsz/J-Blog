@@ -64,10 +64,10 @@ const BusinessCard: FC<BusinessCardProps> = (props) => {
         <Fragment>
             <div className={classes.businessCard}>
                 <Link href={"/"} className={classes.userItem}>
-                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img className={classes.img} src={(props.BusinessCardData.avatar_large).replace(/\\u002F/g,"/")}
-                           width={48} height={48}
-                           alt="avatar"/>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img className={classes.img} src={(props.BusinessCardData.avatar_large).replace(/\\u002F/g, "/")}
+                         width={48} height={48}
+                         alt="avatar"/>
                     <div className={classes.infoBox}>
                             <span className={classes.userName}>{props.BusinessCardData.user_name}
                                 <Image alt={`level${props.BusinessCardData.level}`} width={35} height={16}

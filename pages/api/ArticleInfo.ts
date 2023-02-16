@@ -11,11 +11,12 @@ export interface IArticleProps {
     image: any;
     AuthorImage: string,
     article_detail: any,
+    img: string
 }
 
 const getArticleInfoData = (req: NextApiRequest, res: NextApiResponse<IArticleProps>): void => {
     const {articleId} = req.query;
-    axios.get(`${SERVERDOMAIN}/api/articles/${articleId}?populate=*`).then(result => {
+    axios.get(`${SERVERDOMAIN}/api/articles/${articleId}?populate=*`).then((result) => {
         const data = result.data || {};
         res.status(200).json(
             data.data.attributes
