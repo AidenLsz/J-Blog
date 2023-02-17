@@ -55,9 +55,15 @@ export const Navbarview: FC<navBarViewProps> = ({ dataNav, IsFixed }) => {
   function addActive(id) {
     if (id === 1 || id === 2) {
       smallNavBarRef.current.style.display = "none"
+      if(id==2){
+        route.push("/").catch(err => {})
+      }
     } else {
-      getSmallNavData(id, "click")
-      smallNavBarRef.current.style.display = "block"
+      route.push({
+          pathname: "/[bigid]",
+          query: { bigid: id }
+      }).catch(err => {})
+
     }
 
     setActiveIndex(id)
@@ -96,7 +102,7 @@ export const Navbarview: FC<navBarViewProps> = ({ dataNav, IsFixed }) => {
   // 通过事件冒泡的机制方式来获取到小标签的点击
   function maopao() {
     if (mouseEnterIndex == 1) {
-      route.push("/")
+      route.push("/").catch(err => {})
     }
 
     // 将此大标签设为active
