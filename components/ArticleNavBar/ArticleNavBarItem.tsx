@@ -40,16 +40,15 @@ const ArticleNavBarItem: NextPage<any> = ({
       route.push({
         pathname: "/[bigid]",
         query: { bigid: bigNavId }
-      })
+      }).catch(err => {})
     } else {
       route.push({
         pathname: "/[bigid]/[smallid]",
         query: { bigid: bigNavId, smallid: id }
-      })
+      }).catch(err => {})
     }
   }
   useEffect(() => {
-    console.log()
 
     if (smallNav) {
       setActive(`${bigNav}${smallNav}`)
