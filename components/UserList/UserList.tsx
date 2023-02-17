@@ -30,8 +30,8 @@ const UserList: NextPage<UserListProp> = ({UserListData}) => {
                     return (
                         <div key={user.id} className={style["user-item"]}>
                             <div className={style["link"]}>
-                                <Image
-                                    src={`${SERVERDOMAIN}${user.attributes.image.data.attributes.url}`}
+                                <img
+                                    src={`${SERVERDOMAIN}${user.attributes.image.data[0].attributes.url}`}
                                     className={style["avatar"]}
                                     alt="作者头像"
                                     width={500}
