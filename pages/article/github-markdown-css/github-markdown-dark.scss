@@ -128,10 +128,12 @@
   .markdown-body hr {
     box-sizing: content-box;
     overflow: hidden;
+    background: transparent;
+    border-bottom: 1px solid #21262d;
     height: 0.25em;
     padding: 0;
     margin: 24px 0;
-    background: #30363d;
+    background-color: #30363d;
     border: 0;
   }
 
@@ -139,6 +141,8 @@
     font: inherit;
     margin: 0;
     overflow: visible;
+    font-family: inherit;
+    font-size: inherit;
     line-height: inherit;
   }
 
@@ -237,7 +241,8 @@
     color: #c9d1d9;
     vertical-align: middle;
     background-color: #161b22;
-    border: 1px solid rgba(110, 118, 129, 0.4);
+    border: solid 1px rgba(110, 118, 129, 0.4);
+    border-bottom-color: rgba(110, 118, 129, 0.4);
     border-radius: 6px;
     box-shadow: inset 0 -1px 0 rgba(110, 118, 129, 0.4);
   }
@@ -475,7 +480,7 @@
   }
 
   .markdown-body g-emoji {
-    font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', serif;
+    font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
     font-size: 1em;
     font-style: normal !important;
     font-weight: 400;
@@ -833,6 +838,7 @@
   .markdown-body pre code,
   .markdown-body pre tt {
     display: inline;
+    max-width: auto;
     padding: 0;
     margin: 0;
     overflow: visible;

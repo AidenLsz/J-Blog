@@ -2,7 +2,7 @@ import style from "./Advertisement.module.scss"
 import Image from "next/image"
 import {NextPage} from "next"
 import {SERVERDOMAIN} from "@/utils"
-import {useEffect, useState} from "react"
+import {useEffect, useRef, useState} from "react"
 
 export interface AdvertisementItemProps {
     id: number
