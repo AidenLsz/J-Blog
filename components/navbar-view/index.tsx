@@ -115,6 +115,7 @@ export const Navbarview: FC<navBarViewProps> = ({dataNav, IsFixed}) => {
             smallNavBarRef.style.display = "block"
             setActiveIndex(bigNav)
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [bigNav, smallnav])
 
     return (
