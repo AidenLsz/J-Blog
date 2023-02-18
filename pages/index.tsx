@@ -28,6 +28,7 @@ export interface IProps {
     UserListData: UserListItemProp
     IsFixed: boolean
     handlerLoading: () => void
+    currentTitle?: string
 }
 
 const Home: NextPage<IProps> = ({

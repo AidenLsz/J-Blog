@@ -5,7 +5,7 @@ import { SERVERDOMAIN, throttle } from "@/utils"
 import { useRouter } from "next/router"
 import axios from "axios"
 import { ExtendContext } from "@/stores/expend"
-
+import Head from "next/head"
 export interface navBarViewData {
   id: number
   attributes: {
@@ -31,8 +31,8 @@ export const Navbarview: FC<navBarViewProps> = ({ dataNav, IsFixed }) => {
   let route = useRouter()
   let { active, setActive, setExtend } = useContext(ExtendContext)
   const bigNav = route.query.Bignav
-  let smallnav:any = route.query.SmallNav
-
+  let smallnav: any = route.query.SmallNav
+  const [currentTitle, setcurrentTitle] = useState("J-Blog")
   if (smallnav != undefined) {
     smallnav = smallnav.replace("_", "")
   }
@@ -46,6 +46,7 @@ export const Navbarview: FC<navBarViewProps> = ({ dataNav, IsFixed }) => {
     )
     if (type === "click") {
       setNavList2(res.data)
+      setcurrentTitle(res.data.attributes.title)
     } else if (type === "mouse") {
       setNavList(res.data)
     }
@@ -55,15 +56,16 @@ export const Navbarview: FC<navBarViewProps> = ({ dataNav, IsFixed }) => {
   function addActive(id) {
     if (id === 1 || id === 2) {
       smallNavBarRef.current.style.display = "none"
-      if(id==2){
-        route.push("/").catch(err => {})
+      if (id == 2) {
+        route.push("/").catch((err) => {})
       }
     } else {
-      route.push({
+      route
+        .push({
           pathname: "/[bigid]",
           query: { bigid: id }
-      }).catch(err => {})
-
+        })
+        .catch((err) => {})
     }
 
     setActiveIndex(id)
@@ -102,7 +104,7 @@ export const Navbarview: FC<navBarViewProps> = ({ dataNav, IsFixed }) => {
   // 通过事件冒泡的机制方式来获取到小标签的点击
   function maopao() {
     if (mouseEnterIndex == 1) {
-      route.push("/").catch(err => {})
+      route.push("/").catch((err) => {})
     }
 
     // 将此大标签设为active
@@ -113,9 +115,14 @@ export const Navbarview: FC<navBarViewProps> = ({ dataNav, IsFixed }) => {
   }
 
   useEffect(() => {
-    let smallNavBarRef:any = document.querySelector("#smallNavBar")
+    let smallNavBarRef: any = document.querySelector("#smallNavBar")
 
     console.log(bigNav, smallnav)
+    if (bigNav == undefined) {
+      setcurrentTitle("J-Blog")
+    }else{
+      setcurrentTitle(dataNav[Number(bigNav)-1].attributes.title)
+    }
     if (bigNav && smallnav) {
       setExtend(true)
       getSmallNavData(bigNav, "click")
@@ -126,6 +133,9 @@ export const Navbarview: FC<navBarViewProps> = ({ dataNav, IsFixed }) => {
 
   return (
     <div>
+      <Head>
+        <title>{currentTitle + "- 掘金"}</title>
+      </Head>
       <div className={`${Styles.view_nav} ${IsFixed ? Styles.fixed : ""}`}>
         <div className={Styles.nav_list}>
           {Object.values(dataNav).map((post: navBarViewData) => (

@@ -1,6 +1,7 @@
 .advertisement-container {
   position: relative;
   width: 240px;
+ 
   transition: transform .3s ease-in-out;
 
   &.fixed {
@@ -13,7 +14,7 @@
   .advertisement {
     position: relative;
     height: 200px;
-    background-color: var(--background-color);
+    background-color: var(--primary-background-color);
     box-shadow: 0 1px 2px 0 var(--shadow-color);
     border-radius: 2px;
     margin-bottom: 1.3rem;
@@ -58,8 +59,8 @@
     display: flex;
     align-items: center;
     padding: 1rem;
-    background-color: var(--background-color);
-    box-shadow: 0 1px 2px 0 var(--shadow-color);
+    background-color: var(--primary-background-color);
+   
     border-radius: 2px;
     margin-bottom: 1.3rem;
     font-size: 1.16rem;
