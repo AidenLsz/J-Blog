@@ -1,12 +1,12 @@
-.timeline_entrylist {
-  margin-right: 2rem;
-  display: flex;
-  flex-direction: column;
-  border-radius: 2px;
-  padding: 0.2rem;
-  width: 700px;
-  color: var(--primary-text-color);
-  background-color: var(--primary-background-color);
+.timeline_entrylist{
+    margin-right:2rem;
+    display: flex;
+    flex-direction: column;
+    border-radius: 2px;
+    padding: 0.2rem;
+    width: 700px;
+    color: var(--primary-text-color);
+    background-color: var(--primary-background-color);
 }
 
 .advertisement_wrap {
@@ -22,7 +22,7 @@
     width: 95%;
     margin: 0 auto;
   }
-
+  
 }
 
 .list_header {
@@ -208,12 +208,13 @@
 }
 
 .img {
+  overflow-clip-margin: content-box;
   overflow: clip;
   border-style: none;
 }
 
 .blank {
-  width: 0;
+  width: 0px;
   height: 80px;
   background-color: white;
 }
