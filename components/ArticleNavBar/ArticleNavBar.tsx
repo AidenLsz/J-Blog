@@ -10,17 +10,18 @@ export interface IArticleNavBarProp {
 }
 
 export interface smallNavBarLItemProp {
-  id: number
+  id: string|number
   attributes: {
     title: string
     createdAt: string
     updatedAt: string
     publishedAt: string
   }
+  [propName: string]: any;
 }
 
 export interface smallNavBarList {
-  id: number
+  id: number|string
   attributes: {
     title: string
     createdAt: string

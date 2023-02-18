@@ -31,7 +31,7 @@ export const Navbarview: FC<navBarViewProps> = ({ dataNav, IsFixed }) => {
   let route = useRouter()
   let { active, setActive, setExtend } = useContext(ExtendContext)
   const bigNav = route.query.Bignav
-  let smallnav = route.query.SmallNav
+  let smallnav:any = route.query.SmallNav
 
   if (smallnav != undefined) {
     smallnav = smallnav.replace("_", "")
@@ -113,16 +113,16 @@ export const Navbarview: FC<navBarViewProps> = ({ dataNav, IsFixed }) => {
   }
 
   useEffect(() => {
-    let smallNavBarRef = document.querySelector("#smallNavBar")
+    let smallNavBarRef:any = document.querySelector("#smallNavBar")
 
     console.log(bigNav, smallnav)
     if (bigNav && smallnav) {
       setExtend(true)
       getSmallNavData(bigNav, "click")
       smallNavBarRef.style.display = "block"
-      setActiveIndex(bigNav)
+      setActiveIndex(bigNav as any)
     }
-  }, [bigNav, smallnav])
+  }, [bigNav, setExtend, smallnav])
 
   return (
     <div>
