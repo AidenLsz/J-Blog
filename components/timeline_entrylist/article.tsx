@@ -67,7 +67,6 @@ function Article({articleInitial, handlerLoading, article_tab}: any): JSX.Elemen
         //打开新标签页（与掘金一样）
         window.open(`/article/${id}`)
     }
-    // console.log(articles)
     return (
         <div>
             {articles.map((post: any) => (

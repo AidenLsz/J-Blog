@@ -1,7 +1,6 @@
 import Link from "next/link"
 import style from "./UserList.module.scss"
 import {NextPage} from "next"
-import Image from "next/image"
 import {SERVERDOMAIN} from "@/utils"
 
 export interface UserListItemProp {
@@ -13,7 +12,7 @@ export interface UserListItemProp {
         updatedAt: Date
         publishedAt: Date
         level: number
-        image: any
+        image: string
     }
 }
 

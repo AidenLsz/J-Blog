@@ -162,13 +162,6 @@ const ArticleDetail: NextPage<dataProps> = ({
                         }}
                         className={styles.catalog_wrap}
                     >
-                        {/* <div className={styles.navTitle}>目录</div>
-                    <MarkNav
-                        className={styles.articleMenu}
-                        source={article_detail.data.attributes.description}
-                        headingTopOffset={0}
-                        ordered={false}
-                    /> */}
                         <div ref={catalogRef} className="navcatalog">
                             <div className={styles.navTitle}>目录</div>
                             <ul className="navcatalog-list">{CatalogItems()}</ul>
