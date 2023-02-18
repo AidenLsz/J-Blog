@@ -1,10 +1,12 @@
 import React, { useState, createContext } from "react"
 
 interface IExtendContextProps {
+
   isExtend: Boolean
   active: Number | String
   setExtend: (isExtend: Boolean) => void
   setActive: (active: Number | String) => void
+
 }
 
 interface IProps {
@@ -30,4 +32,5 @@ export const ExtendContextProvider = ({ children }: IProps): JSX.Element => {
       {children}
     </ExtendContext.Provider>
   )
+
 }

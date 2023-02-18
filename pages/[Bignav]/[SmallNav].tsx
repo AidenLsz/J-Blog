@@ -1,9 +1,9 @@
 import {NextPage} from "next"
 import {GetServerSideProps} from "next"
-import {SERVERDOMAIN, getDiffTime} from "@/utils"
+import {getDiffTime, LOCALDOMAIN} from "@/utils"
 import axios from "axios"
 import Home from "../index"
-import {IProps} from "../index"
+import {IProps} from "@/pages"
 import React from "react"
 
 const TagPage: NextPage<IProps> = ({
@@ -32,53 +32,37 @@ const TagPage: NextPage<IProps> = ({
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const bigNav = context.query.Bignav
-    
-    const smallNav = (context.query.SmallNav as string).replace('_','') //添加类型断言
-    const tab = axios.get(`${SERVERDOMAIN}/api/article-tabs`)
-    const navbarview = axios.get(`${SERVERDOMAIN}/api/article-type-tabs`)
-    const article = axios.get(`${SERVERDOMAIN}/api/articles?populate=*&filters[article_type_tabs][id]=${bigNav}&filters[tags][id]=${smallNav}`)
-    const article_latest = axios.get(
-        `${SERVERDOMAIN}/api/articles?filters[article_type_tabs][id]=${bigNav}&filters[tags][id]=${smallNav}&sort[0]=updatedAt:desc&populate=*`
-    )
-    const article_hot = axios.get(
-        `${SERVERDOMAIN}/api/articles?filters[article_type_tabs][id]=${bigNav}&filters[tags][id]=${smallNav}&sort[0]=view_count:desc&populate=*`
-    )
-
-    const res_tab = (await tab).data.data
-    const res_nav = (await navbarview).data.data
-    const res_article = (await article).data.data
-    const res_latestarticle = (await article_latest).data.data
-    const res_hotarticle = (await article_hot).data.data
-    const {data: res_advertisement} = await axios.get(
-        `${SERVERDOMAIN}/api/advertisements?populate=deep`
-    )
-
-    const {data: res_userlist} = await axios.get(
-        `${SERVERDOMAIN}/api/author-lists?populate=deep`
-    )
-
+    const smallNav = (context.query.SmallNav as string).replace('_', '') //添加类型断言
+    const {
+        tab: res_tab,
+        navbarview: res_nav,
+        article: res_article,
+        article_latest: res_latestarticle,
+        article_hot: res_hotarticle,
+        res_advertisement: res_advertisement,
+        res_userlist: res_userlist
+    } = (await axios.get(`${LOCALDOMAIN}/api/smallNavData`, {
+        params: {
+            bigNav,
+            smallNav
+        }
+    })).data.data
     for (let i = 0; i < res_article.length; i++) {
-        res_article[i].attributes.date = getDiffTime(
-            res_article[i].attributes.updatedAt
-        )
-        res_latestarticle[i].attributes.date = getDiffTime(
-            res_latestarticle[i].attributes.updatedAt
-        )
-        res_hotarticle[i].attributes.date = getDiffTime(
-            res_hotarticle[i].attributes.updatedAt
-        )
+        res_article[i].attributes.date = getDiffTime(res_article[i].attributes.updatedAt)
+        res_latestarticle[i].attributes.date = getDiffTime(res_latestarticle[i].attributes.updatedAt)
+        res_hotarticle[i].attributes.date = getDiffTime(res_hotarticle[i].attributes.updatedAt)
     }
-
     return {
         props: {
             data_tab: res_tab,
             data_nav: res_nav,
-            AdvertisementData: res_advertisement.data,
-            UserListData: res_userlist.data,
+            AdvertisementData: res_advertisement,
+            UserListData: res_userlist,
             data_article: res_article,
             data_latest: res_latestarticle,
             data_hot: res_hotarticle
         }
     }
 }
+
 export default TagPage

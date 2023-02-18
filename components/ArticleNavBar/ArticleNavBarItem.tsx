@@ -19,7 +19,7 @@ const ArticleNavBarItem: NextPage<any> = ({
   let bigNav = route.query.Bignav
   let smallNav = route.query.SmallNav
 
-  function addActive(id) {
+  function addActive(id:number|string) {
     // 当是card点击的时候，要将其展开
     if (isCard) {
       // setExtend(true)
@@ -40,21 +40,20 @@ const ArticleNavBarItem: NextPage<any> = ({
       route.push({
         pathname: "/[bigid]",
         query: { bigid: bigNavId }
-      })
+      }).catch(err => {})
     } else {
       route.push({
         pathname: "/[bigid]/[smallid]",
         query: { bigid: bigNavId, smallid: id }
-      })
+      }).catch(err => {})
     }
   }
   useEffect(() => {
-    console.log()
 
     if (smallNav) {
       setActive(`${bigNav}${smallNav}`)
     }
-  }, [smallNav])
+  }, [bigNav, setActive, smallNav])
 
   return (
     <div
