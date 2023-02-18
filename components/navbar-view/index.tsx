@@ -118,6 +118,11 @@ export const Navbarview: FC<navBarViewProps> = ({ dataNav, IsFixed }) => {
     let smallNavBarRef: any = document.querySelector("#smallNavBar")
 
     console.log(bigNav, smallnav)
+    if (bigNav == undefined) {
+      setcurrentTitle("J-Blog")
+    }else{
+      setcurrentTitle(dataNav[Number(bigNav)-1].attributes.title)
+    }
     if (bigNav && smallnav) {
       setExtend(true)
       getSmallNavData(bigNav, "click")
