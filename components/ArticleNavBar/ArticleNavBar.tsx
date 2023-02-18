@@ -10,13 +10,14 @@ export interface IArticleNavBarProp {
 }
 
 export interface smallNavBarLItemProp {
-  id: number
+  id: number | string
   attributes: {
     title: string
     createdAt: string
     updatedAt: string
     publishedAt: string
   }
+  activeId: string
 }
 
 export interface smallNavBarList {
@@ -77,7 +78,8 @@ const ArticleNavBar: NextPage<IArticleNavBarProp> = ({ navList, isCard }) => {
       createdAt: "1",
       updatedAt: "",
       publishedAt: ""
-    }
+    },
+    activeId: "_0"
   })
   let newNavList: any = filterNavList
 

@@ -24,14 +24,14 @@ export interface navBarViewProps {
 export const Navbarview: FC<navBarViewProps> = ({ dataNav, IsFixed }) => {
   let cardRef: any = useRef()
   let smallNavBarRef: any = useRef()
-  let [activeIndex, setActiveIndex] = useState(1)
+  let [activeIndex, setActiveIndex] = useState<string | number>(1)
   let [navList, setNavList] = useState()
   let [navList2, setNavList2] = useState()
   let [mouseEnterIndex, setMouseEnterIndex] = useState(0)
   let route = useRouter()
   let { active, setActive, setExtend } = useContext(ExtendContext)
-  const bigNav = route.query.Bignav
-  let smallnav = route.query.SmallNav
+  const bigNav = route.query.Bignav as string
+  let smallnav = route.query.SmallNav as string
 
   if (smallnav != undefined) {
     smallnav = smallnav.replace("_", "")
@@ -107,13 +107,16 @@ export const Navbarview: FC<navBarViewProps> = ({ dataNav, IsFixed }) => {
   }
 
   useEffect(() => {
-    let smallNavBarRef = document.querySelector("#smallNavBar")
+    let smallNavBarRef = document.querySelector("#smallNavBar") as HTMLElement
 
     console.log(bigNav, smallnav)
     if (bigNav && smallnav) {
       setExtend(true)
       getSmallNavData(bigNav, "click")
-      smallNavBarRef.style.display = "block"
+      if (smallNavBarRef) {
+        smallNavBarRef.style.display = "block"
+      }
+
       setActiveIndex(bigNav)
     }
   }, [bigNav, smallnav])
