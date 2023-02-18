@@ -10,6 +10,7 @@ import {UserAgentProvider} from "@/stores/userAgent"
 import {INavBarItemProps} from "@/components/NavBar/NavBar"
 import "@fortawesome/fontawesome-free/css/all.min.css"
 import {SERVERDOMAIN} from "@/utils"
+import Page404 from "@/pages/404"
 
 interface INavBarProps {
     data: INavBarItemProps[]

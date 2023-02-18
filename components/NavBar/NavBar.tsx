@@ -1,12 +1,14 @@
 import {NextPage} from "next"
+import Head from "next/head"
 import Image from "next/image"
 import styles from "./NavBar.module.scss"
-import React, {useEffect, useState} from "react"
-import {usePathname} from "next/navigation"
-import {useRouter} from "next/router"
-import {SERVERDOMAIN} from "@/utils"
+import React, { useContext, useEffect, useState } from "react"
+import { ThemeContext } from "@/stores/theme"
+import { Themes } from "@/constants/enum"
+import { usePathname } from "next/navigation"
+import { useRouter } from "next/router"
+import { SERVERDOMAIN } from "@/utils"
 import Link from "next/link"
-
 export interface INavBarItemProps {
     id: string
     attributes: {
@@ -36,6 +38,7 @@ export interface INavBarProps {
 
 const NavBar: NextPage<INavBarProps> = ({NavData, IsFixed}) => {
     const [MobileNav, setMobileNav] = useState<boolean>(false)
+    const [IsHide, setIsHide] = useState<boolean>(false)
     const [searchQuery, setSearchQuery] = useState<string>("")
     const [IsFocus, setIsFocus] = useState<boolean>(false)
     const [IsActive, setIsActive] = useState<boolean>(false)
@@ -68,80 +71,79 @@ const NavBar: NextPage<INavBarProps> = ({NavData, IsFixed}) => {
         }
     })
 
-    return (
-        <header
-            className={`${styles.main_header} ${!IsFixed ? styles.visible : ""}`}
-        >
-            <div className={styles.container}>
-                <Link href="/" className={styles.logo_wrap}>
-                    <div className={styles.logo}></div>
-                    <div className={styles.title}>稀土掘金</div>
-                </Link>
-                <nav role="navigation" className={styles.main_nav}>
-                    <ul className={styles.nav_list}>
-                        <li className={styles.main_nav_list}>
-                            <div
-                                className={`${styles.phone_show_menu} ${styles.isResourceVisible}`}
-                                onClick={(e) => {
-                                    e.stopPropagation()
-                                    setMobileNav(!MobileNav)
-                                }}
-                            >
+  return (
+    <header
+      className={`${styles.main_header} ${!IsFixed ? styles.visible : ""}`}
+    >
+      <div className={styles.container}>
+        <Link href="/" className={styles.logo_wrap}>
+          <div className={styles.logo}></div>
+          <div className={styles.title}>稀土掘金</div>
+        </Link>
+        <nav role="navigation" className={styles.main_nav}>
+          <ul className={styles.nav_list}>
+            <li className={styles.main_nav_list}>
+              <div
+                className={`${styles.phone_show_menu} ${styles.isResourceVisible}`}
+                onClick={(e) => {
+                  e.stopPropagation()
+                  setMobileNav(!MobileNav)
+                }}
+              >
                 <span
-                    onClick={(e) => {
-                        router.push("/")
-                        e.stopPropagation()
-                    }}
+                  onClick={(e) => {
+                    router.push("/")
+                    e.stopPropagation()
+                  }}
                 >
                   首页
                 </span>
-                                <svg
-                                    width="12"
-                                    height="12"
-                                    viewBox="0 0 12 12"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className={`${styles.mobile_menu_icon} ${
-                                        MobileNav ? styles.active : ""
-                                    }`}
-                                >
-                                    <path
-                                        d="M2.45025 4.82431C2.17422 4.49957 2.40501 4.00049 2.83122 4.00049H9.16878C9.59498 4.00049 9.82578 4.49957 9.54975 4.82431L6.38097 8.55229C6.1813 8.78719 5.8187 8.78719 5.61903 8.55229L2.45025 4.82431Z"></path>
-                                </svg>
-                            </div>
-                            <ul
-                                className={`${styles.phone_hide} ${
-                                    MobileNav ? styles.show : ""
-                                }`}
-                            >
-                                {NavData.map((item: INavBarItemProps) => {
-                                    return (
-                                        <li
-                                            key={item.id}
-                                            className={`${styles.nav_item} ${!item.attributes.imgurl?.data ? styles.link_item : ''} ${
-                                                item.id == '1' ? styles.active : ""
-                                            } ${
-                                                item.attributes.title === "插件"
-                                                    ? styles.broswer_extension
-                                                    : ""
-                                            }`}
-                                        >
-                                            <a href={item.attributes.url}
-                                               className={item.attributes.imgurl?.data ? styles.activity : ""}
-                                            >
-                                                {item.attributes.title}
-                                                {item.attributes.imgurl?.data && (
-                                                    <Image
-                                                        src={`${SERVERDOMAIN}${item.attributes.imgurl.data.attributes.url}`}
-                                                        alt={item.attributes.imgurl.data.attributes.name}
-                                                        width={115}
-                                                        height={40}
-                                                    ></Image>
-                                                )}
-                                            </a>
-                                            <span
-                                                className={item.attributes.tag ? styles.tablead : ""}
-                                            >
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 12 12"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className={`${styles.mobile_menu_icon} ${
+                    MobileNav ? styles.active : ""
+                  }`}
+                >
+                  <path d="M2.45025 4.82431C2.17422 4.49957 2.40501 4.00049 2.83122 4.00049H9.16878C9.59498 4.00049 9.82578 4.49957 9.54975 4.82431L6.38097 8.55229C6.1813 8.78719 5.8187 8.78719 5.61903 8.55229L2.45025 4.82431Z"></path>
+                </svg>
+              </div>
+              <ul
+                className={`${styles.phone_hide} ${
+                  MobileNav ? styles.show : ""
+                }`}
+              >
+                {NavData.map((item:INavBarItemProps) => {
+                  return (
+                    <li
+                      key={item.id}
+                      className={`${styles.nav_item} ${!item.attributes.imgurl?.data?styles.link_item:''} ${
+                        item.id =='1' ? styles.active : ""
+                      } ${
+                        item.attributes.title === "插件"
+                          ? styles.broswer_extension
+                          : ""
+                      }`}
+                    >
+                      <a href={item.attributes.url}
+                      className={item.attributes.imgurl?.data ? styles.activity : ""}
+                      >
+                        {item.attributes.title}
+                        {item.attributes.imgurl?.data && (
+                          <Image
+                          src={`${SERVERDOMAIN}${item.attributes.imgurl.data.attributes.url}`}
+                            alt={item.attributes.imgurl.data.attributes.name}
+                            width={115}
+                            height={40}
+                          ></Image>
+                        )}
+                      </a>
+                      <span
+                        className={item.attributes.tag ? styles.tablead : ""}
+                      >
                         {item.attributes.tag}
                       </span>
                                         </li>

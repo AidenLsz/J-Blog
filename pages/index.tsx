@@ -1,6 +1,6 @@
 import {NextPage} from "next"
 import {GetServerSideProps} from "next"
-import {getDiffTime, LOCALDOMAIN} from "@/utils"
+import {SERVERDOMAIN, getDiffTime, LOCALDOMAIN} from "@/utils"
 import Navbarview, {navBarViewData} from "@/components/navbar-view"
 import MainContent from "@/components/maincontent/maincontent"
 import TimeLineContent from "@/components/timelinecontent/timelinecontent"
@@ -82,6 +82,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
         res_latestarticle[i].attributes.date = getDiffTime(res_latestarticle[i].attributes.updatedAt)
         res_hotarticle[i].attributes.date = getDiffTime(res_hotarticle[i].attributes.updatedAt)
     }
+
     return {
         props: {
             data_tab: res_tab,

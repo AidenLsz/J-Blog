@@ -65,7 +65,7 @@
     flex-shrink: 0;
     font-size: 1.16rem;
 
-    color: var(--secondary-text-color);
+    color:var(--secondary-text-color);
     padding: 0 1rem;
     cursor: pointer;
     transition: none
