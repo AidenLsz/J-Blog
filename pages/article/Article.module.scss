@@ -93,6 +93,11 @@
   }
 }
 
+.cover{
+  max-width: 100%;
+
+}
+
 .markdown-body {
   word-break: break-word;
   line-height: 1.75;
@@ -155,6 +160,7 @@
 
 .markdown-body img {
   max-width: 100%;
+
 }
 
 .markdown-body hr {
