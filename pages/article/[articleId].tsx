@@ -144,7 +144,8 @@ const ArticleDetail: NextPage<dataProps> = ({
                         作者：{article_detail.data.attributes.AuthorName} | 创建时间:{" "}
                         {createdAt}
                     </div>
-                    {img && <img src={img} alt="文章封面" width={700} height={400}/>}
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    {img && <img className={styles.cover} src={img} alt="文章封面" width={700} height={400}/>}
                     <div
                         ref={contentRef}
                         dangerouslySetInnerHTML={{__html: article_content}}
