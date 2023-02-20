@@ -30,6 +30,7 @@ const UserList: NextPage<UserListProp> = ({UserListData}) => {
                     return (
                         <div key={user.id} className={style["user-item"]}>
                             <div className={style["link"]}>
+                                 {/* eslint-disable-next-line @next/next/no-img-element */}
                                 <img
                                     src={`${SERVERDOMAIN}${user.attributes.image.data[0].attributes.url}`}
                                     className={style["avatar"]}
@@ -38,10 +39,7 @@ const UserList: NextPage<UserListProp> = ({UserListData}) => {
                                     height={500}
                                 />
                                 <div className={style["user-info"]}>
-                                    <Link href="/userlist" className={style["user-name"]}>
-                    <span className={style["name"]}>
-                      {user.attributes.title}
-                    </span>
+                                    <Link href="/404">
                                     </Link>
                                     <div className={style["description"]}>
                                         {user.attributes.description}
