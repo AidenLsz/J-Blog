@@ -36,7 +36,6 @@ const ArticleNavBarItem: NextPage<any> = ({
 
     // 路由跳转
     if (id == 0 || id == "_0") {
-      console.log("111111111111")
       route.push({
         pathname: "/[bigid]",
         query: { bigid: bigNavId }

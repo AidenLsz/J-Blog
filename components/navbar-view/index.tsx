@@ -117,7 +117,6 @@ export const Navbarview: FC<navBarViewProps> = ({ dataNav, IsFixed }) => {
   useEffect(() => {
     let smallNavBarRef: any = document.querySelector("#smallNavBar")
 
-    console.log(bigNav, smallnav)
     if (bigNav == undefined) {
       setcurrentTitle("J-Blog")
     }else{
@@ -129,6 +128,7 @@ export const Navbarview: FC<navBarViewProps> = ({ dataNav, IsFixed }) => {
       smallNavBarRef.style.display = "block"
       setActiveIndex(bigNav as any)
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [bigNav, setExtend, smallnav])
 
   return (
