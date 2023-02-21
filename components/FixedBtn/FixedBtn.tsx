@@ -47,7 +47,7 @@ const FixedBtn: NextPage<IProps> = ({IsLoading}) => {
                 <i className={`${styles.back_top} fas fa-arrow-up`}></i>
             </div>
             <div className={styles.fixed_btn_item}>
-                <Link href="/feedback">
+                <Link href="/404">
                     <i className="fas fa-comment-alt"></i>
                 </Link>
             </div>
